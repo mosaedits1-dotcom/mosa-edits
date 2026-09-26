@@ -34,7 +34,8 @@
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MosaEdits Pro | مونتير فيديو وموشن جرافيكس">
-    <meta name="twitter:description" content="مونتاج فيديو وموشن جرافيكس احترافي. تصفح الأعمال وتواصل فوراً عبر واتساب.">
+    <meta name="twitter:description"
+        content="مونتاج فيديو وموشن جرافيكس احترافي. تصفح الأعمال وتواصل فوراً عبر واتساب.">
     <meta name="twitter:image" content="https://mosaedits1-dotcom.github.io/mosa-edits/img/banner.png">
     <meta name="twitter:image:alt" content="MosaEdits Pro | مونتير فيديو وموشن جرافيكس">
 
@@ -144,7 +145,8 @@
     <!-- ==========================================================================
          Cinematic Entrance Screen (Interactive Intro Experience)
          ========================================================================== -->
-    <div id="siteEntrance" class="site-entrance-overlay" role="dialog" aria-modal="true" aria-label="Welcome to MosaEdits">
+    <div id="siteEntrance" class="site-entrance-overlay" role="dialog" aria-modal="true"
+        aria-label="Welcome to MosaEdits">
         <div class="entrance-backdrop-glow"></div>
         <div class="entrance-stars-bg"></div>
 
@@ -190,7 +192,8 @@
                     <div class="entrance-progress-fill" id="entranceProgressFill"></div>
                 </div>
                 <div class="entrance-loader-info">
-                    <span class="entrance-status-text" id="entranceStatus" data-i18n="entrance.status">جاري تجهيز الاستوديو وتجربة العرض...</span>
+                    <span class="entrance-status-text" id="entranceStatus" data-i18n="entrance.status">جاري تجهيز
+                        الاستوديو وتجربة العرض...</span>
                     <span class="entrance-percent-text" id="entranceCounter">0%</span>
                 </div>
             </div>
@@ -289,87 +292,75 @@
         <section class="profile-hero-section" id="profile">
             <div class="container">
                 <div class="profile-id-card ag-reveal ag-reveal-scale">
-                    <!-- Top Cover Banner Header with Seamless Video Animation -->
-                    <div class="profile-card-banner">
-                        <video class="profile-banner-media" autoplay loop muted playsinline poster="img/banner.png" aria-label="MosaEdits Animated Branding Banner">
-                            <source src="img/banner-anim.webm" type="video/webm">
-                            <source src="img/banner-anim.mp4" type="video/mp4">
-                            <img src="img/banner.png" alt="MosaEdits Pro — Short Form Video Editor & Motion Graphics Designer" class="profile-banner-img">
-                        </video>
-                        <div class="profile-banner-sheen"></div>
+                    <!-- Avatar / Profile Picture -->
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar-squircle">
+                            <img src="img/profile.jpeg" alt="MosaEdits Profile Picture" class="profile-avatar-img"
+                                onerror="this.src='WhatsApp Image 2026-09-26 at 1.04.17 PM.jpeg'">
+                            <span class="profile-online-indicator" title="متاح الآن"></span>
+                        </div>
                     </div>
 
-                    <!-- Profile Main Card Body -->
-                    <div class="profile-card-body">
-                        <!-- Avatar / Profile Picture -->
-                        <div class="profile-avatar-wrapper">
-                            <div class="profile-avatar-squircle">
-                                <img src="img/profile.jpeg" alt="MosaEdits Profile Picture" class="profile-avatar-img"
-                                    onerror="this.src='WhatsApp Image 2026-09-26 at 1.04.17 PM.jpeg'">
-                                <span class="profile-online-indicator" title="متاح الآن"></span>
-                            </div>
+                    <!-- Profile Bio & Meta -->
+                    <div class="profile-content">
+                        <div class="profile-header-row">
+                            <span class="profile-status-badge" data-i18n="profile.statusBadge">
+                                <span class="pulse-dot"></span> متاح لمشاريع جديدة
+                            </span>
+                            <span class="profile-experience-tag" data-i18n="profile.expBadge">3 Years
+                                Experience</span>
                         </div>
 
-                        <!-- Profile Bio & Meta -->
-                        <div class="profile-content">
-                            <div class="profile-header-row">
-                                <span class="profile-status-badge" data-i18n="profile.statusBadge">
-                                    <span class="pulse-dot"></span> متاح لمشاريع جديدة
+                        <h1 class="profile-name" data-i18n="profile.name">موسى | MosaEdits</h1>
+                        <h2 class="profile-role" data-i18n="profile.role">مونتير فيديو وموشن جرافيكس</h2>
+
+                        <p class="profile-bio" data-i18n="profile.bio">
+                            بنمنتج فيديوهاتك بحب وشغف عشان فكرتك توصل للناس بأبسط وأجمل شكل مريح للعين ومناسب لكل
+                            المنصات.
+                        </p>
+
+                        <!-- Feature Chips -->
+                        <div class="profile-skills-row">
+                            <span class="skill-chip"><i class="fa-solid fa-wand-magic-sparkles"></i> <span
+                                    data-i18n="profile.skill1">DaVinci Resolve & After Effects</span></span>
+                            <span class="skill-chip"><i class="fa-solid fa-display"></i> <span
+                                    data-i18n="profile.skill2">تصدير مناسب لكل المنصات</span></span>
+                            <span class="skill-chip"><i class="fa-solid fa-play"></i> <span
+                                    data-i18n="profile.skill3">إيقاع ممتع وسريع</span></span>
+                        </div>
+
+                        <!-- Action Buttons with Antigravity Sliding Arrows -->
+                        <div class="profile-actions-row">
+                            <a href="#calculator" class="btn btn-apple-primary">
+                                <span data-i18n="profile.btnCalc">احسب تكلفة مشروعك</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </span>
-                                <span class="profile-experience-tag" data-i18n="profile.expBadge">3 Years Experience</span>
-                            </div>
-
-                            <h1 class="profile-name" data-i18n="profile.name">موسى | MosaEdits</h1>
-                            <h2 class="profile-role" data-i18n="profile.role">مونتير فيديو وموشن جرافيكس</h2>
-
-                            <p class="profile-bio" data-i18n="profile.bio">
-                                بنمنتج فيديوهاتك بحب وشغف عشان فكرتك توصل للناس بأبسط وأجمل شكل مريح للعين ومناسب لكل
-                                المنصات.
-                            </p>
-
-                            <!-- Feature Chips -->
-                            <div class="profile-skills-row">
-                                <span class="skill-chip"><i class="fa-solid fa-wand-magic-sparkles"></i> <span
-                                        data-i18n="profile.skill1">DaVinci Resolve & After Effects</span></span>
-                                <span class="skill-chip"><i class="fa-solid fa-display"></i> <span
-                                        data-i18n="profile.skill2">تصدير مناسب لكل المنصات</span></span>
-                                <span class="skill-chip"><i class="fa-solid fa-play"></i> <span
-                                        data-i18n="profile.skill3">إيقاع ممتع وسريع</span></span>
-                            </div>
-
-                            <!-- Action Buttons with Antigravity Sliding Arrows -->
-                            <div class="profile-actions-row">
-                                <a href="#calculator" class="btn btn-apple-primary">
-                                    <span data-i18n="profile.btnCalc">احسب تكلفة مشروعك</span>
-                                    <span class="btn-chevron">
-                                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
-                                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
-                                    target="_blank" rel="noopener noreferrer" class="btn btn-apple-secondary">
-                                    <i class="fa-brands fa-whatsapp"></i>
-                                    <span data-i18n="profile.btnWhatsApp">مراسلة واتساب فورية</span>
-                                    <span class="btn-chevron">
-                                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
-                                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </a>
-                                <a href="#portfolio" class="btn btn-apple-outline">
-                                    <i class="fa-solid fa-film"></i>
-                                    <span data-i18n="profile.btnWorks">تصفح الأعمال</span>
-                                    <span class="btn-chevron">
-                                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
-                                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                        </svg>
-                                    </span>
-                                </a>
-                            </div>
+                            </a>
+                            <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                                target="_blank" rel="noopener noreferrer" class="btn btn-apple-secondary">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span data-i18n="profile.btnWhatsApp">مراسلة واتساب فورية</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <a href="#portfolio" class="btn btn-apple-outline">
+                                <i class="fa-solid fa-film"></i>
+                                <span data-i18n="profile.btnWorks">تصفح الأعمال</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -624,7 +615,8 @@
                                         <span class="b-val b-delivery-val" id="calcDeliveryVal">يومان كحد أدنى</span>
                                     </div>
                                     <div class="breakdown-row discount-row" id="calcDiscountRow" style="display: none;">
-                                        <span class="b-label" data-i18n="calculator.discountLabel">خصم العرض الشهري:</span>
+                                        <span class="b-label" data-i18n="calculator.discountLabel">خصم العرض
+                                            الشهري:</span>
                                         <span class="b-val discount-val" id="calcDiscountVal">-$53</span>
                                     </div>
                                     <div class="summary-divider"></div>

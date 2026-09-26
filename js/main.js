@@ -752,17 +752,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const waText = currentLang === 'ar'
                 ? `أهلاً موسى 👋\n` +
-                  `أريد الاستفسار عن تفاصيل باقة:\n` +
-                  `• الخدمة: ${serviceName} (${qty} فيديو - ${paramValue})\n` +
-                  `• السعر الإجمالي: $${totalPrice}${discountNote}\n` +
-                  `• مدة التسليم: ${deliveryText}\n` +
-                  `جاهز لبدء العمل معك!`
+                `أريد الاستفسار عن تفاصيل باقة:\n` +
+                `• الخدمة: ${serviceName} (${qty} فيديو - ${paramValue})\n` +
+                `• السعر الإجمالي: $${totalPrice}${discountNote}\n` +
+                `• مدة التسليم: ${deliveryText}\n` +
+                `جاهز لبدء العمل معك!`
                 : `Hi Mosa 👋\n` +
-                  `I would like to inquire about a package:\n` +
-                  `• Service: ${serviceName} (${qty} video(s) - ${paramValue})\n` +
-                  `• Total Price: $${totalPrice}${discountNote}\n` +
-                  `• Turnaround: ${deliveryText}\n` +
-                  `Ready to get started!`;
+                `I would like to inquire about a package:\n` +
+                `• Service: ${serviceName} (${qty} video(s) - ${paramValue})\n` +
+                `• Total Price: $${totalPrice}${discountNote}\n` +
+                `• Turnaround: ${deliveryText}\n` +
+                `Ready to get started!`;
 
             calcWhatsAppBtn.href = `https://wa.me/201096419945?text=${encodeURIComponent(waText)}`;
         }
@@ -943,13 +943,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     let agObserver = null;
 
-    // A) Scroll Reveal System (IntersectionObserver for .ag-reveal)
+    // A) Scroll Reveal System (IntersectionObserver for .ag-reveal on scroll)
     function initAntigravityReveal() {
         if (agObserver) {
             agObserver.disconnect();
         }
 
         const revealElements = document.querySelectorAll('.ag-reveal:not(.is-revealed)');
+        if (!revealElements.length) return;
 
         if ('IntersectionObserver' in window) {
             agObserver = new IntersectionObserver((entries) => {
@@ -960,14 +961,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }, {
-                threshold: 0.02,
-                rootMargin: '0px 0px 80px 0px'
+                threshold: 0.08,
+                rootMargin: '0px 0px -40px 0px' // Reveals smoothly as elements enter viewport while scrolling
             });
 
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
             revealElements.forEach(el => {
-                // If element is already in viewport, reveal immediately
+                // If element is already in the upper viewport on entrance, reveal it immediately
                 const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                if (rect.top >= 0 && rect.top < windowHeight * 0.75) {
                     el.classList.add('is-revealed');
                 } else {
                     agObserver.observe(el);
@@ -983,18 +985,26 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.body.classList.contains('entrance-active')) return;
 
         const newElements = container.querySelectorAll('.ag-reveal:not(.is-revealed)');
-        requestAnimationFrame(() => {
-            newElements.forEach((el, idx) => {
-                const delay = (idx % 8) * 35;
+        if (!newElements.length) return;
+
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        newElements.forEach((el, idx) => {
+            const rect = el.getBoundingClientRect();
+            // If the element is currently visible inside the viewport, reveal with stagger
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const delay = (idx % 6) * 50;
                 el.style.setProperty('--reveal-delay', `${delay}ms`);
                 setTimeout(() => {
                     el.classList.add('is-revealed');
-                }, delay + 10);
-            });
+                }, delay + 20);
+            } else if (agObserver) {
+                // Otherwise let the scroll observer reveal it when the user scrolls to it
+                agObserver.observe(el);
+            }
         });
     }
 
-    // Orchestrated Entrance Cascade: reveals top navbar, hero, and gallery cards as entrance curtain lifts
+    // Orchestrated Entrance Cascade: reveals top navbar, hero, then registers scroll observer
     function triggerSiteEntranceReveal() {
         // 1. Reveal Navbar
         const navbar = document.getElementById('navbar');
@@ -1002,32 +1012,14 @@ document.addEventListener('DOMContentLoaded', () => {
             navbar.classList.add('nav-entered');
         }
 
-        // 2. Reveal Hero Profile Card
+        // 2. Reveal Hero Profile Card (top of viewport)
         const profileCard = document.querySelector('.profile-id-card');
         if (profileCard) {
             profileCard.classList.add('is-revealed');
         }
 
-        // 3. Reveal Portfolio Section Header & Filter Controls
-        const portfolioHeader = document.querySelector('#portfolio .section-header');
-        const portfolioControls = document.querySelector('#portfolio .portfolio-controls-bar');
-        if (portfolioHeader) portfolioHeader.classList.add('is-revealed');
-        if (portfolioControls) portfolioControls.classList.add('is-revealed');
-
-        // 4. Reveal Project Cards in Gallery
-        const projectCards = document.querySelectorAll('#projectsGrid .project-card');
-        projectCards.forEach((card, idx) => {
-            const delay = (idx % 8) * 40;
-            card.style.setProperty('--reveal-delay', `${delay}ms`);
-            setTimeout(() => {
-                card.classList.add('is-revealed');
-            }, delay + 20);
-        });
-
-        // 5. Initialize IntersectionObserver for sections down below the fold
-        setTimeout(() => {
-            initAntigravityReveal();
-        }, 120);
+        // 3. Register Scroll Reveal observer for all sections & cards down the page
+        initAntigravityReveal();
     }
 
     // B) Antigravity Zero-Gravity Floating Particles Canvas
@@ -1390,10 +1382,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initSiteEntrance();
     initAntigravityParticles();
     initCardTilt();
-
-    const bannerVideo = document.querySelector('.profile-banner-media');
-    if (bannerVideo) {
-        bannerVideo.play().catch(() => {});
-    }
 });
 

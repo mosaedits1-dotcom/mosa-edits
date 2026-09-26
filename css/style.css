@@ -531,78 +531,30 @@ body.theme-light .bulb-off {
     background: var(--apple-card);
     border: 1px solid var(--apple-border);
     border-radius: var(--radius-xl);
-    padding: 0;
+    padding: 2.2rem;
     box-shadow: var(--shadow-apple);
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 2.2rem;
     transition: all var(--transition-smooth);
     position: relative;
     overflow: hidden;
 }
 
-/* Elite Cover Banner Header */
-.profile-card-banner {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1024 / 290;
-    max-height: 220px;
-    overflow: hidden;
-    background: linear-gradient(135deg, #d4ecfd, #bfdffc);
-    border-bottom: 1px solid var(--apple-border);
-}
-
-.profile-banner-img,
-.profile-banner-media {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.profile-id-card:hover .profile-banner-img,
-.profile-id-card:hover .profile-banner-media {
-    transform: scale(1.02);
-}
-
-.profile-banner-sheen {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 12, 0.45) 100%);
-    pointer-events: none;
-}
-
-body.theme-light .profile-banner-sheen {
-    background: linear-gradient(180deg, transparent 60%, rgba(245, 245, 247, 0.4) 100%);
-}
-
-.profile-card-body {
-    padding: 1.25rem 2.2rem 2.2rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 2.2rem;
-    position: relative;
-    width: 100%;
-}
-
 .profile-avatar-wrapper {
     flex-shrink: 0;
     position: relative;
-    margin-top: -3.8rem;
-    z-index: 3;
 }
 
 .profile-avatar-squircle {
-    width: 130px;
-    height: 130px;
-    border-radius: 34px;
+    width: 140px;
+    height: 140px;
+    border-radius: 36px;
     overflow: hidden;
     position: relative;
-    border: 4px solid var(--apple-card);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    border: 3px solid var(--apple-border-strong);
+    box-shadow: var(--shadow-card);
     background: var(--apple-card-subtle);
-    transition: border-color var(--transition-smooth);
 }
 
 .profile-avatar-img {
@@ -620,9 +572,9 @@ body.theme-light .profile-banner-sheen {
     width: 14px;
     height: 14px;
     background: var(--apple-green);
-    border: 2.5px solid var(--apple-card);
     border-radius: 50%;
-    box-shadow: 0 0 8px rgba(48, 209, 88, 0.6);
+    border: 2px solid var(--apple-card);
+    box-shadow: 0 0 8px rgba(52, 199, 89, 0.6);
 }
 
 .profile-content {
@@ -2172,30 +2124,10 @@ html[dir="ltr"] .mark-max {
     }
 
     .profile-id-card {
-        padding: 0;
-    }
-
-    .profile-card-banner {
-        aspect-ratio: 1024 / 360;
-        max-height: 150px;
-    }
-
-    .profile-card-body {
         flex-direction: column;
-        align-items: center;
         text-align: center;
-        padding: 1rem 1.25rem 1.75rem;
-        gap: 1.15rem;
-    }
-
-    .profile-avatar-wrapper {
-        margin-top: -3.2rem;
-    }
-
-    .profile-avatar-squircle {
-        width: 108px;
-        height: 108px;
-        border-radius: 28px;
+        padding: 1.75rem 1.25rem;
+        gap: 1.25rem;
     }
 
     .profile-header-row,
@@ -2234,9 +2166,9 @@ body.entrance-active .navbar {
 
 .navbar {
     transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.3s ease,
-                border-color 0.3s ease;
+        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 body.site-revealed .navbar {
@@ -2246,14 +2178,15 @@ body.site-revealed .navbar {
 
 .ag-reveal {
     opacity: 0;
-    transform: translateY(22px);
-    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .ag-reveal.is-revealed {
     opacity: 1;
-    transform: none;
+    transform: translateY(0);
     filter: none !important;
     will-change: auto;
 }
@@ -2265,18 +2198,19 @@ body.site-revealed .navbar {
 
 /* Reveal Variations */
 .ag-reveal-scale {
-    transform: translateY(18px) scale(0.96);
+    transform: translateY(26px) scale(0.96);
 }
 
 .ag-reveal-scale.is-revealed {
-    transform: none;
+    opacity: 1;
+    transform: translateY(0) scale(1);
     filter: none !important;
     will-change: auto;
 }
 
 .ag-reveal-fade {
     transform: none;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ag-reveal-fade.is-revealed {
@@ -2292,45 +2226,85 @@ body.site-revealed .navbar {
 }
 
 @keyframes avatarSquirclePop {
-    0% { transform: scale(0.75) rotate(-3deg); opacity: 0; }
-    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    0% {
+        transform: scale(0.75) rotate(-3deg);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
 }
 
 .profile-id-card.is-revealed .skill-chip {
     animation: skillChipEntrance 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.profile-id-card.is-revealed .skill-chip:nth-child(1) { animation-delay: 0.18s; }
-.profile-id-card.is-revealed .skill-chip:nth-child(2) { animation-delay: 0.28s; }
-.profile-id-card.is-revealed .skill-chip:nth-child(3) { animation-delay: 0.38s; }
+
+.profile-id-card.is-revealed .skill-chip:nth-child(1) {
+    animation-delay: 0.18s;
+}
+
+.profile-id-card.is-revealed .skill-chip:nth-child(2) {
+    animation-delay: 0.28s;
+}
+
+.profile-id-card.is-revealed .skill-chip:nth-child(3) {
+    animation-delay: 0.38s;
+}
 
 @keyframes skillChipEntrance {
-    0% { opacity: 0; transform: translateY(12px) scale(0.92); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translateY(12px) scale(0.92);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .profile-id-card.is-revealed .profile-actions-row .btn {
     animation: actionBtnEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(1) { animation-delay: 0.28s; }
-.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(2) { animation-delay: 0.38s; }
-.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(3) { animation-delay: 0.48s; }
+
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(1) {
+    animation-delay: 0.28s;
+}
+
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(2) {
+    animation-delay: 0.38s;
+}
+
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(3) {
+    animation-delay: 0.48s;
+}
 
 @keyframes actionBtnEntrance {
-    0% { opacity: 0; transform: translateY(16px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 2. GALLERY PROJECT CARDS CINEMATIC REVEAL & SHEEN */
 .project-card.ag-reveal {
     opacity: 0;
-    transform: translateY(24px) scale(0.97);
-    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(30px) scale(0.96);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
 }
 
 .project-card.ag-reveal.is-revealed {
     opacity: 1;
-    transform: none;
+    transform: translateY(0) scale(1);
     filter: none !important;
     will-change: auto;
 }
@@ -2349,8 +2323,13 @@ body.site-revealed .navbar {
 }
 
 @keyframes cardSheenSweep {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 /* 3. ZERO-GRAVITY PARTICLES CANVAS BACKGROUND */
@@ -2489,8 +2468,8 @@ body.theme-light .ag-particles-canvas {
     padding: 1.5rem;
     overflow: hidden;
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+        filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform, filter;
     cursor: pointer;
 }
@@ -2523,6 +2502,7 @@ body.theme-light .ag-particles-canvas {
         transform: scale(0.9) translate(-5%, -5%);
         opacity: 0.65;
     }
+
     100% {
         transform: scale(1.15) translate(5%, 5%);
         opacity: 1;
@@ -2546,6 +2526,7 @@ body.theme-light .ag-particles-canvas {
         opacity: 0;
         transform: translateY(30px) scale(0.96);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
@@ -2579,8 +2560,17 @@ body.theme-light .ag-particles-canvas {
 }
 
 @keyframes liveDotPulse {
-    0%, 100% { opacity: 0.4; transform: scale(0.85); }
-    50% { opacity: 1; transform: scale(1.3); }
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
 }
 
 /* Emblem */
@@ -2618,8 +2608,15 @@ body.theme-light .ag-particles-canvas {
 }
 
 @keyframes emblemPulse {
-    0% { transform: scale(0.92); opacity: 0.8; }
-    100% { transform: scale(1.3); opacity: 0; }
+    0% {
+        transform: scale(0.92);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
 }
 
 /* Entrance Title */
@@ -2667,17 +2664,51 @@ body.theme-light .ag-particles-canvas {
     animation: waveBounce 1.2s ease-in-out infinite alternate;
 }
 
-.bar-1 { animation-delay: 0.1s; height: 12px; }
-.bar-2 { animation-delay: 0.25s; height: 22px; }
-.bar-3 { animation-delay: 0.05s; height: 16px; }
-.bar-4 { animation-delay: 0.35s; height: 26px; }
-.bar-5 { animation-delay: 0.15s; height: 18px; }
-.bar-6 { animation-delay: 0.3s; height: 20px; }
-.bar-7 { animation-delay: 0.2s; height: 10px; }
+.bar-1 {
+    animation-delay: 0.1s;
+    height: 12px;
+}
+
+.bar-2 {
+    animation-delay: 0.25s;
+    height: 22px;
+}
+
+.bar-3 {
+    animation-delay: 0.05s;
+    height: 16px;
+}
+
+.bar-4 {
+    animation-delay: 0.35s;
+    height: 26px;
+}
+
+.bar-5 {
+    animation-delay: 0.15s;
+    height: 18px;
+}
+
+.bar-6 {
+    animation-delay: 0.3s;
+    height: 20px;
+}
+
+.bar-7 {
+    animation-delay: 0.2s;
+    height: 10px;
+}
 
 @keyframes waveBounce {
-    0% { transform: scaleY(0.35); opacity: 0.5; }
-    100% { transform: scaleY(1.3); opacity: 1; }
+    0% {
+        transform: scaleY(0.35);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scaleY(1.3);
+        opacity: 1;
+    }
 }
 
 /* Loader Box */
@@ -2747,17 +2778,24 @@ body.theme-light .ag-particles-canvas {
 }
 
 @keyframes hintFadeInOut {
-    0% { opacity: 0.3; }
-    100% { opacity: 0.75; }
+    0% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 0.75;
+    }
 }
 
 @media (max-width: 600px) {
     .entrance-title {
         font-size: 2.15rem;
     }
+
     .entrance-subtitle {
         font-size: 0.92rem;
     }
+
     .entrance-loader-wrap {
         max-width: 280px;
     }
