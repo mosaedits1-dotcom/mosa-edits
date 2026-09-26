@@ -1390,5 +1390,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initSiteEntrance();
     initAntigravityParticles();
     initCardTilt();
+
+    const bannerVideo = document.querySelector('.profile-banner-media');
+    if (bannerVideo) {
+        bannerVideo.play().catch(() => {});
+    }
 });
 

@@ -289,9 +289,13 @@
         <section class="profile-hero-section" id="profile">
             <div class="container">
                 <div class="profile-id-card ag-reveal ag-reveal-scale">
-                    <!-- Top Cover Banner Header -->
+                    <!-- Top Cover Banner Header with Seamless Video Animation -->
                     <div class="profile-card-banner">
-                        <img src="img/banner.png" alt="MosaEdits Pro — Short Form Video Editor & Motion Graphics Designer" class="profile-banner-img">
+                        <video class="profile-banner-media" autoplay loop muted playsinline poster="img/banner.png" aria-label="MosaEdits Animated Branding Banner">
+                            <source src="img/banner-anim.webm" type="video/webm">
+                            <source src="img/banner-anim.mp4" type="video/mp4">
+                            <img src="img/banner.png" alt="MosaEdits Pro — Short Form Video Editor & Motion Graphics Designer" class="profile-banner-img">
+                        </video>
                         <div class="profile-banner-sheen"></div>
                     </div>
 

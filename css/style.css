@@ -551,7 +551,8 @@ body.theme-light .bulb-off {
     border-bottom: 1px solid var(--apple-border);
 }
 
-.profile-banner-img {
+.profile-banner-img,
+.profile-banner-media {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -560,7 +561,8 @@ body.theme-light .bulb-off {
     transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.profile-id-card:hover .profile-banner-img {
+.profile-id-card:hover .profile-banner-img,
+.profile-id-card:hover .profile-banner-media {
     transform: scale(1.02);
 }
 
