@@ -531,30 +531,64 @@ body.theme-light .bulb-off {
     background: var(--apple-card);
     border: 1px solid var(--apple-border);
     border-radius: var(--radius-xl);
-    padding: 2.2rem;
+    padding: 0;
     box-shadow: var(--shadow-apple);
     display: flex;
-    align-items: center;
-    gap: 2.2rem;
-    transition: all var(--transition-smooth);
+    flex-direction: column;
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-smooth);
 }
 
+/* Static Cover Banner Header (Crisp & Clean, No Animations) */
+.profile-card-banner {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1024 / 270;
+    max-height: 220px;
+    min-height: 140px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #182232, #0d131d);
+    border-bottom: 1px solid var(--apple-border);
+}
+
+.profile-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* Profile Card Body */
+.profile-card-body {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.2rem;
+    padding: 1.25rem 2.4rem 2.2rem;
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Avatar squircle overlapping the banner */
 .profile-avatar-wrapper {
     flex-shrink: 0;
     position: relative;
+    margin-top: -4.2rem;
+    z-index: 3;
 }
 
 .profile-avatar-squircle {
-    width: 140px;
-    height: 140px;
+    width: 136px;
+    height: 136px;
     border-radius: 36px;
     overflow: hidden;
     position: relative;
-    border: 3px solid var(--apple-border-strong);
-    box-shadow: var(--shadow-card);
+    border: 4px solid var(--apple-card);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
     background: var(--apple-card-subtle);
+    transition: border-color var(--transition-smooth);
 }
 
 .profile-avatar-img {
@@ -568,17 +602,21 @@ body.theme-light .bulb-off {
 .profile-online-indicator {
     position: absolute;
     bottom: 6px;
-    right: 6px;
-    width: 14px;
-    height: 14px;
+    inset-inline-end: 6px;
+    width: 15px;
+    height: 15px;
     background: var(--apple-green);
     border-radius: 50%;
-    border: 2px solid var(--apple-card);
+    border: 2.5px solid var(--apple-card);
     box-shadow: 0 0 8px rgba(52, 199, 89, 0.6);
 }
 
 .profile-content {
     flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
 }
 
 .profile-header-row {
@@ -2123,17 +2161,38 @@ html[dir="ltr"] .mark-max {
         display: flex;
     }
 
-    .profile-id-card {
+    .profile-card-banner {
+        aspect-ratio: 1024 / 320;
+        max-height: 160px;
+        min-height: 110px;
+    }
+
+    .profile-card-body {
         flex-direction: column;
+        align-items: center;
         text-align: center;
-        padding: 1.75rem 1.25rem;
-        gap: 1.25rem;
+        padding: 1rem 1.4rem 1.8rem;
+        gap: 1.2rem;
+    }
+
+    .profile-avatar-wrapper {
+        margin-top: -3.5rem;
+    }
+
+    .profile-avatar-squircle {
+        width: 112px;
+        height: 112px;
+        border-radius: 30px;
     }
 
     .profile-header-row,
     .profile-skills-row,
     .profile-actions-row {
         justify-content: center;
+    }
+
+    .profile-bio {
+        margin-inline: auto;
     }
 
     .configurator-card-grid {
@@ -2150,6 +2209,36 @@ html[dir="ltr"] .mark-max {
 
     .form-row {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 520px) {
+    .profile-card-banner {
+        aspect-ratio: 1024 / 360;
+        max-height: 130px;
+        min-height: 95px;
+    }
+
+    .profile-card-body {
+        padding: 0.85rem 1rem 1.5rem;
+    }
+
+    .profile-avatar-wrapper {
+        margin-top: -2.8rem;
+    }
+
+    .profile-avatar-squircle {
+        width: 96px;
+        height: 96px;
+        border-radius: 26px;
+    }
+
+    .profile-actions-row {
+        width: 100%;
+    }
+
+    .profile-actions-row .btn {
+        width: 100%;
     }
 }
 

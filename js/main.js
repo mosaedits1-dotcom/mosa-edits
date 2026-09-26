@@ -891,13 +891,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (reviewFeedback) {
+                const waReviewText = currentLang === 'ar'
+                    ? `أهلاً موسى 👋\nلقد تركت لك تقييماً جديداً على الموقع:\n• الاسم: ${name}${role ? ` (${role})` : ''}\n• التقييم: ${'★'.repeat(rating)}\n• الرأي: "${comment}"`
+                    : `Hi Mosa 👋\nI left a new review on your portfolio:\n• Name: ${name}${role ? ` (${role})` : ''}\n• Rating: ${'★'.repeat(rating)}\n• Review: "${comment}"`;
+
+                const waReviewUrl = `https://wa.me/201096419945?text=${encodeURIComponent(waReviewText)}`;
+
                 reviewFeedback.className = 'form-feedback success';
-                reviewFeedback.textContent = currentLang === 'ar'
-                    ? translations.ar.reviews.successMsg
-                    : translations.en.reviews.successMsg;
-                setTimeout(() => {
-                    reviewFeedback.textContent = '';
-                }, 4000);
+                reviewFeedback.innerHTML = currentLang === 'ar'
+                    ? `<span>${translations.ar.reviews.successMsg}</span> <a href="${waReviewUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700; text-decoration: underline; margin-inline-start: 8px; display: inline-block; margin-top: 6px;"><i class="fa-brands fa-whatsapp"></i> إرسال نسخة لموسى على واتساب لتأكيد النشر</a>`
+                    : `<span>${translations.en.reviews.successMsg}</span> <a href="${waReviewUrl}" target="_blank" rel="noopener noreferrer" style="color: #25D366; font-weight: 700; text-decoration: underline; margin-inline-start: 8px; display: inline-block; margin-top: 6px;"><i class="fa-brands fa-whatsapp"></i> Send a copy to Mosa on WhatsApp</a>`;
             }
 
             renderReviews();
