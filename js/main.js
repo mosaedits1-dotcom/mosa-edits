@@ -769,7 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --------------------------------------------------------------------------
-    // 8. Client Review Submission System (Zero pre-made reviews!)
+    // 8. Client Review Submission System (Cloud Synced with Google Firebase)
     // --------------------------------------------------------------------------
     const clientReviewForm = document.getElementById('clientReviewForm');
     const reviewRatingInput = document.getElementById('reviewRatingInput');
@@ -793,8 +793,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Local Storage Reviews Handling
+    // Cloud & Local Reviews Storage System
+    let cloudReviews = [];
+
+    function initCloudReviews() {
+        if (typeof db !== 'undefined' && db) {
+            try {
+                db.collection('reviews').orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
+                    const fetched = [];
+                    snapshot.forEach(doc => {
+                        fetched.push({ id: doc.id, ...doc.data() });
+                    });
+                    cloudReviews = fetched;
+                    renderReviews();
+                }, (error) => {
+                    console.warn('Firestore onSnapshot fallback to local storage:', error);
+                });
+            } catch (err) {
+                console.warn('Firestore subscription error:', err);
+            }
+        }
+    }
+
     function getStoredReviews() {
+        if (cloudReviews && cloudReviews.length > 0) {
+            return cloudReviews;
+        }
+
         const saved = localStorage.getItem('client_submitted_reviews');
         if (saved) {
             try {
@@ -803,7 +828,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error parsing reviews from localStorage', e);
             }
         }
-        // ZERO pre-made reviews as strictly requested
         return [];
     }
 
@@ -831,7 +855,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         publishedReviewsContainer.innerHTML = '';
         reviews.forEach(rev => {
-            const starsText = '★'.repeat(rev.rating) + '☆'.repeat(5 - rev.rating);
+            const ratingVal = parseInt(rev.rating, 10) || 5;
+            const starsText = '★'.repeat(ratingVal) + '☆'.repeat(Math.max(0, 5 - ratingVal));
             const card = document.createElement('div');
             card.className = 'client-review-card';
             card.innerHTML = `
@@ -880,6 +905,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 date: dateStr
             };
 
+            // 1. Save to Google Firebase Cloud Firestore (if configured)
+            if (typeof db !== 'undefined' && db) {
+                try {
+                    db.collection('reviews').add({
+                        name: name,
+                        role: role,
+                        rating: rating,
+                        comment: comment,
+                        date: dateStr,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                    }).then(() => {
+                        console.log('✅ Review successfully saved to Firebase Firestore');
+                    }).catch(err => {
+                        console.warn('Firebase save fallback:', err);
+                    });
+                } catch (err) {
+                    console.warn('Firestore add error:', err);
+                }
+            }
+
+            // 2. Also save to local storage as instant local cache
             const reviews = getStoredReviews();
             reviews.unshift(newReview);
             saveStoredReviews(reviews);
@@ -906,6 +952,9 @@ document.addEventListener('DOMContentLoaded', () => {
             renderReviews();
         });
     }
+
+    // Initialize Cloud Reviews sync on load
+    initCloudReviews();
 
     // --------------------------------------------------------------------------
     // 9. Navbar Scroll & Mobile Menu
