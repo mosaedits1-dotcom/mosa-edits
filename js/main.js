@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const card = document.createElement('div');
             card.className = `project-card ag-reveal ag-stagger ${isVertical ? 'vertical-card' : ''}`;
-            card.style.setProperty('--reveal-delay', `${(index % 8) * 65}ms`);
+            card.style.setProperty('--reveal-delay', `${(index % 8) * 35}ms`);
             card.setAttribute('data-category', proj.category);
             card.setAttribute('data-proj-id', proj.id);
 
@@ -949,44 +949,47 @@ document.addEventListener('DOMContentLoaded', () => {
             agObserver.disconnect();
         }
 
+        const revealElements = document.querySelectorAll('.ag-reveal:not(.is-revealed)');
+
         if ('IntersectionObserver' in window) {
             agObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Do not prematurely reveal while entrance screen covers the viewport
-                        if (!document.body.classList.contains('entrance-active')) {
-                            entry.target.classList.add('is-revealed');
-                            agObserver.unobserve(entry.target);
-                        }
+                        entry.target.classList.add('is-revealed');
+                        agObserver.unobserve(entry.target);
                     }
                 });
             }, {
-                threshold: 0.05,
-                rootMargin: '0px 0px 60px 0px'
+                threshold: 0.02,
+                rootMargin: '0px 0px 80px 0px'
             });
 
-            document.querySelectorAll('.ag-reveal:not(.is-revealed)').forEach(el => agObserver.observe(el));
+            revealElements.forEach(el => {
+                // If element is already in viewport, reveal immediately
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('is-revealed');
+                } else {
+                    agObserver.observe(el);
+                }
+            });
         } else {
-            if (!document.body.classList.contains('entrance-active')) {
-                document.querySelectorAll('.ag-reveal').forEach(el => el.classList.add('is-revealed'));
-            }
+            revealElements.forEach(el => el.classList.add('is-revealed'));
         }
     }
 
     function triggerRevealForNewElements(container) {
         if (!container) return;
-        // If site entrance is still active, entrance exit will trigger reveals smoothly
         if (document.body.classList.contains('entrance-active')) return;
 
-        const newElements = container.querySelectorAll('.ag-reveal');
+        const newElements = container.querySelectorAll('.ag-reveal:not(.is-revealed)');
         requestAnimationFrame(() => {
             newElements.forEach((el, idx) => {
-                if (!el.style.getPropertyValue('--reveal-delay')) {
-                    el.style.setProperty('--reveal-delay', `${(idx % 8) * 80}ms`);
-                }
+                const delay = (idx % 8) * 35;
+                el.style.setProperty('--reveal-delay', `${delay}ms`);
                 setTimeout(() => {
                     el.classList.add('is-revealed');
-                }, ((idx % 8) * 75) + 30);
+                }, delay + 10);
             });
         });
     }
@@ -1002,38 +1005,29 @@ document.addEventListener('DOMContentLoaded', () => {
         // 2. Reveal Hero Profile Card
         const profileCard = document.querySelector('.profile-id-card');
         if (profileCard) {
-            setTimeout(() => {
-                profileCard.classList.add('is-revealed');
-            }, 60);
+            profileCard.classList.add('is-revealed');
         }
 
         // 3. Reveal Portfolio Section Header & Filter Controls
         const portfolioHeader = document.querySelector('#portfolio .section-header');
         const portfolioControls = document.querySelector('#portfolio .portfolio-controls-bar');
-        if (portfolioHeader) {
-            setTimeout(() => {
-                portfolioHeader.classList.add('is-revealed');
-            }, 180);
-        }
-        if (portfolioControls) {
-            setTimeout(() => {
-                portfolioControls.classList.add('is-revealed');
-            }, 260);
-        }
+        if (portfolioHeader) portfolioHeader.classList.add('is-revealed');
+        if (portfolioControls) portfolioControls.classList.add('is-revealed');
 
-        // 4. Reveal Project Cards in Gallery with glorious staggered ripple
+        // 4. Reveal Project Cards in Gallery
         const projectCards = document.querySelectorAll('#projectsGrid .project-card');
         projectCards.forEach((card, idx) => {
-            card.style.setProperty('--reveal-delay', `${(idx % 8) * 85}ms`);
+            const delay = (idx % 8) * 40;
+            card.style.setProperty('--reveal-delay', `${delay}ms`);
             setTimeout(() => {
                 card.classList.add('is-revealed');
-            }, 320 + ((idx % 8) * 85));
+            }, delay + 20);
         });
 
         // 5. Initialize IntersectionObserver for sections down below the fold
         setTimeout(() => {
             initAntigravityReveal();
-        }, 600);
+        }, 120);
     }
 
     // B) Antigravity Zero-Gravity Floating Particles Canvas
@@ -1043,93 +1037,182 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
         if (!ctx) return;
 
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+        let width = window.innerWidth;
+        let height = window.innerHeight;
+        let dpr = Math.min(window.devicePixelRatio || 1, 2);
         let particles = [];
-        let mouse = { x: -1000, y: -1000, radius: 140 };
-        let isRunning = true;
+        let mouse = { x: -1000, y: -1000, radius: 150 };
+        let isTabVisible = true;
+        let rafId = null;
 
-        window.addEventListener('resize', () => {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }, { passive: true });
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+        function resizeCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(width * dpr);
+            canvas.height = Math.round(height * dpr);
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(dpr, dpr);
+        }
+        resizeCanvas();
+
+        window.addEventListener('resize', resizeCanvas, { passive: true });
+
+        // Mouse and Touch Interaction
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         }, { passive: true });
 
-        // Pause animation when scrolled deep down to conserve resources
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > height * 2.2) {
-                isRunning = false;
-            } else {
-                if (!isRunning) {
-                    isRunning = true;
-                    requestAnimationFrame(loop);
-                }
+        window.addEventListener('touchstart', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
             }
         }, { passive: true });
 
-        const colorsDark = [
-            'rgba(0, 113, 227, 0.45)',   // Apple blue
-            'rgba(56, 189, 248, 0.35)',   // Cyan
-            'rgba(168, 85, 247, 0.28)',   // Purple
-            'rgba(255, 255, 255, 0.22)'   // Starlight
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                mouse.x = e.touches[0].clientX;
+                mouse.y = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        }, { passive: true });
+
+        window.addEventListener('mouseleave', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        }, { passive: true });
+
+        // Pause ONLY when switching browser tabs to save battery, never freeze on scroll
+        document.addEventListener('visibilitychange', () => {
+            isTabVisible = !document.hidden;
+            if (isTabVisible && !rafId) {
+                loop();
+            }
+        });
+
+        // Luminous modern color palette (vibrant and clear on any monitor/screen)
+        const darkColors = [
+            'rgba(0, 140, 255, 0.75)',   // Electric Apple Blue
+            'rgba(56, 189, 248, 0.70)',   // Cyan Glow
+            'rgba(192, 132, 252, 0.65)',  // Cosmic Violet
+            'rgba(251, 191, 36, 0.60)',   // Golden Star
+            'rgba(255, 255, 255, 0.75)'   // Pure Starlight
+        ];
+
+        const lightColors = [
+            'rgba(0, 113, 227, 0.55)',
+            'rgba(14, 165, 233, 0.50)',
+            'rgba(147, 51, 234, 0.45)',
+            'rgba(245, 166, 35, 0.50)',
+            'rgba(71, 85, 105, 0.45)'
         ];
 
         class Particle {
             constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.radius = Math.random() * 2 + 1;
-                this.baseVx = (Math.random() - 0.5) * 0.4;
-                this.baseVy = (Math.random() - 0.5) * 0.4;
+                this.reset(true);
+            }
+
+            reset(initial = false) {
+                this.x = initial ? Math.random() * width : (Math.random() < 0.5 ? 0 : width);
+                this.y = initial ? Math.random() * height : Math.random() * height;
+                this.baseRadius = Math.random() * 2.2 + 1.2;
+                this.radius = this.baseRadius;
+                const speedScale = prefersReducedMotion ? 0.08 : 0.35;
+                this.baseVx = (Math.random() - 0.5) * speedScale;
+                this.baseVy = (Math.random() - 0.5) * speedScale;
                 this.vx = this.baseVx;
                 this.vy = this.baseVy;
-                this.color = colorsDark[Math.floor(Math.random() * colorsDark.length)];
+                this.colorIdx = Math.floor(Math.random() * darkColors.length);
+                this.pulseSpeed = Math.random() * 0.03 + 0.01;
+                this.pulse = Math.random() * Math.PI * 2;
             }
 
             update() {
                 this.x += this.vx;
                 this.y += this.vy;
 
-                if (this.x < 0) this.x = width;
-                if (this.x > width) this.x = 0;
-                if (this.y < 0) this.y = height;
-                if (this.y > height) this.y = 0;
+                // Subtle twinkling pulse
+                this.pulse += this.pulseSpeed;
+                this.radius = Math.max(0.8, this.baseRadius + Math.sin(this.pulse) * 0.5);
 
-                // Mouse repulsion (Antigravity physics)
+                // Screen boundaries wrap
+                if (this.x < -10) this.x = width + 10;
+                if (this.x > width + 10) this.x = -10;
+                if (this.y < -10) this.y = height + 10;
+                if (this.y > height + 10) this.y = -10;
+
+                // Smooth Antigravity mouse repulsion
                 const dx = this.x - mouse.x;
                 const dy = this.y - mouse.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                if (distance < mouse.radius) {
+                if (distance < mouse.radius && distance > 0) {
                     const force = (mouse.radius - distance) / mouse.radius;
                     const angle = Math.atan2(dy, dx);
-                    this.vx += Math.cos(angle) * force * 0.6;
-                    this.vy += Math.sin(angle) * force * 0.6;
+                    this.vx += Math.cos(angle) * force * 0.5;
+                    this.vy += Math.sin(angle) * force * 0.5;
                 } else {
-                    this.vx += (this.baseVx - this.vx) * 0.05;
-                    this.vy += (this.baseVy - this.vy) * 0.05;
+                    this.vx += (this.baseVx - this.vx) * 0.04;
+                    this.vy += (this.baseVy - this.vy) * 0.04;
                 }
             }
 
             draw() {
+                const palette = currentTheme === 'light' ? lightColors : darkColors;
+                const color = palette[this.colorIdx];
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = currentTheme === 'light' ?
-                    this.color.replace('0.45', '0.22').replace('0.35', '0.15') : this.color;
+                ctx.fillStyle = color;
                 ctx.fill();
             }
         }
 
-        const count = Math.min(Math.floor(width / 32), 45);
+        // Responsive particle count (35 to 65 particles)
+        const count = Math.max(35, Math.min(Math.floor(width / 24), 65));
+        particles = [];
         for (let i = 0; i < count; i++) {
             particles.push(new Particle());
         }
 
+        function drawConnections() {
+            const maxDist = 80;
+            const maxDistSq = maxDist * maxDist;
+            const isLight = currentTheme === 'light';
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distSq = dx * dx + dy * dy;
+
+                    if (distSq < maxDistSq) {
+                        const alpha = (1 - Math.sqrt(distSq) / maxDist) * (isLight ? 0.12 : 0.18);
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = isLight
+                            ? `rgba(0, 113, 227, ${alpha})`
+                            : `rgba(100, 180, 255, ${alpha})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
         function loop() {
-            if (!isRunning) return;
+            if (!isTabVisible) {
+                rafId = null;
+                return;
+            }
+
             ctx.clearRect(0, 0, width, height);
 
             for (let i = 0; i < particles.length; i++) {
@@ -1137,12 +1220,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 particles[i].draw();
             }
 
-            requestAnimationFrame(loop);
+            drawConnections();
+
+            rafId = requestAnimationFrame(loop);
         }
         loop();
     }
 
-    // D) 3D Perspective Card Tilt & Dynamic Glare Sheen
+    // D) 3D Perspective Card Tilt & Dynamic Glare Sheen (High Performance RAF)
     function initCardTilt() {
         if (window.matchMedia('(pointer: coarse)').matches) return;
 
@@ -1151,22 +1236,55 @@ document.addEventListener('DOMContentLoaded', () => {
             if (card._tiltInitialized) return;
             card._tiltInitialized = true;
 
+            let rect = null;
+            let rafId = null;
+            let isHovered = false;
+
+            function updateRect() {
+                rect = card.getBoundingClientRect();
+            }
+
+            card.addEventListener('mouseenter', () => {
+                isHovered = true;
+                updateRect();
+                card.style.transition = 'transform 0.08s ease-out, box-shadow 0.25s ease';
+            });
+
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
+                if (!isHovered) return;
+                if (!rect) updateRect();
+
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
                 const centerX = rect.width / 2;
                 const centerY = rect.height / 2;
-                const rotateX = ((y - centerY) / centerY) * -4;
-                const rotateY = ((x - centerX) / centerX) * 4;
 
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-                card.style.setProperty('--mouse-x', `${x}px`);
-                card.style.setProperty('--mouse-y', `${y}px`);
+                // Max tilt 5 degrees - smooth and physically pleasing
+                const rotateX = Math.max(-5.5, Math.min(5.5, ((y - centerY) / centerY) * -5));
+                const rotateY = Math.max(-5.5, Math.min(5.5, ((x - centerX) / centerX) * 5));
+
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(() => {
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+                    card.style.setProperty('--mouse-x', `${x.toFixed(1)}px`);
+                    card.style.setProperty('--mouse-y', `${y.toFixed(1)}px`);
+                });
             });
 
             card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
+                isHovered = false;
+                if (rafId) cancelAnimationFrame(rafId);
+                rect = null;
+
+                card.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease';
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
+
+                setTimeout(() => {
+                    if (!isHovered) {
+                        card.style.transform = '';
+                        card.style.transition = '';
+                    }
+                }, 460);
             });
         });
     }

@@ -746,14 +746,13 @@ body.theme-light .bulb-off {
     border: 1px solid var(--apple-border);
     border-radius: var(--radius-lg);
     overflow: hidden;
-    transition: all var(--transition-fast);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
     display: flex;
     flex-direction: column;
     box-shadow: var(--shadow-card);
 }
 
 .project-card:hover {
-    transform: translateY(-3px);
     border-color: var(--apple-border-strong);
     box-shadow: var(--shadow-apple);
 }
@@ -972,9 +971,15 @@ body.theme-light .bulb-off {
    ========================================================================== */
 .calculator-section {
     padding: 2.5rem 0;
-    background: var(--apple-surface);
+    background: rgba(18, 18, 21, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     border-top: 1px solid var(--apple-border);
     border-bottom: 1px solid var(--apple-border);
+}
+
+body.theme-light .calculator-section {
+    background: rgba(255, 255, 255, 0.72);
 }
 
 .configurator-wrapper {
@@ -2000,7 +2005,9 @@ html[dir="ltr"] .mark-max {
 .footer {
     border-top: 1px solid var(--apple-border);
     padding: 2rem 0 1.5rem;
-    background: var(--apple-bg);
+    background: transparent;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-container {
@@ -2171,18 +2178,16 @@ body.site-revealed .navbar {
 
 .ag-reveal {
     opacity: 0;
-    transform: translateY(32px) scale(0.96);
-    filter: blur(8px);
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform, filter;
+    transform: translateY(22px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ag-reveal.is-revealed {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: none;
+    filter: none !important;
+    will-change: auto;
 }
 
 /* Staggered card entrance */
@@ -2192,24 +2197,25 @@ body.site-revealed .navbar {
 
 /* Reveal Variations */
 .ag-reveal-scale {
-    transform: translateY(28px) scale(0.93);
-    filter: blur(10px);
+    transform: translateY(18px) scale(0.96);
 }
 
 .ag-reveal-scale.is-revealed {
-    transform: translateY(0) scale(1);
-    filter: blur(0);
+    transform: none;
+    filter: none !important;
+    will-change: auto;
 }
 
 .ag-reveal-fade {
     transform: none;
-    filter: blur(6px);
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .ag-reveal-fade.is-revealed {
-    filter: blur(0);
+    opacity: 1;
+    transform: none;
+    filter: none !important;
+    will-change: auto;
 }
 
 /* Micro-animations inside Profile Card on Reveal */
@@ -2249,24 +2255,16 @@ body.site-revealed .navbar {
 /* 2. GALLERY PROJECT CARDS CINEMATIC REVEAL & SHEEN */
 .project-card.ag-reveal {
     opacity: 0;
-    transform: translateY(38px) scale(0.94);
-    filter: blur(8px);
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease,
-                box-shadow 0.35s ease;
-    will-change: opacity, transform, filter;
+    transform: translateY(24px) scale(0.97);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card.ag-reveal.is-revealed {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-}
-
-.project-card.ag-reveal.is-revealed:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: none;
+    filter: none !important;
+    will-change: auto;
 }
 
 /* Dynamic light sheen sweep across video cards as they land */
@@ -2296,12 +2294,12 @@ body.site-revealed .navbar {
     height: 100vh;
     pointer-events: none !important;
     z-index: 0;
-    opacity: 0.65;
+    opacity: 0.85;
     transition: opacity 0.4s ease;
 }
 
 body.theme-light .ag-particles-canvas {
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 /* 4. 3D CARD PERSPECTIVE TILT & SHEEN */
@@ -2310,10 +2308,9 @@ body.theme-light .ag-particles-canvas {
 .feedback-card,
 .contact-card-apple {
     position: relative;
-    transform-style: preserve-3d;
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.3s ease;
+    /* Flatten 3D context to prevent overflow:hidden clipping and disappearance bugs */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Video cards are fully clickable */
@@ -2403,7 +2400,7 @@ body.theme-light .ag-particles-canvas {
     }
 
     .ag-particles-canvas {
-        display: none !important;
+        opacity: 0.45;
     }
 }
 
