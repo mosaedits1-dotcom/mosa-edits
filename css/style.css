@@ -2053,6 +2053,47 @@ html[dir="ltr"] .mark-max {
     background: rgba(37, 211, 102, 0.12);
 }
 
+/* Footer SEO Keywords & Capabilities Section */
+.footer-seo-wrap {
+    margin: 1.25rem auto 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--apple-border);
+}
+
+.seo-tag-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--apple-text-muted);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.01em;
+}
+
+.seo-tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.seo-chip {
+    font-size: 0.74rem;
+    color: var(--apple-text-secondary);
+    background: var(--apple-card-subtle);
+    border: 1px solid var(--apple-border);
+    padding: 4px 11px;
+    border-radius: var(--radius-pill);
+    transition: all var(--transition-fast);
+    cursor: default;
+}
+
+.seo-chip:hover {
+    color: var(--apple-blue);
+    border-color: var(--apple-blue);
+    background: rgba(0, 113, 227, 0.08);
+}
+
 .footer-bottom {
     border-top: 1px solid var(--apple-border);
     padding-top: 1rem;
