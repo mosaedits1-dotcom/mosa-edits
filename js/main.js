@@ -799,18 +799,25 @@ document.addEventListener('DOMContentLoaded', () => {
     function initCloudReviews() {
         if (typeof db !== 'undefined' && db) {
             try {
-                db.collection('reviews').orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
+                // Query collection directly without mandatory server-side index to avoid any permission/index rejection
+                db.collection('reviews').onSnapshot((snapshot) => {
                     const fetched = [];
                     snapshot.forEach(doc => {
                         fetched.push({ id: doc.id, ...doc.data() });
                     });
+                    // Client-side sort so all reviews (even with different date types) show in newest-first order
+                    fetched.sort((a, b) => {
+                        const timeA = a.createdAtMs || (a.timestamp && a.timestamp.toMillis ? a.timestamp.toMillis() : 0) || 0;
+                        const timeB = b.createdAtMs || (b.timestamp && b.timestamp.toMillis ? b.timestamp.toMillis() : 0) || 0;
+                        return timeB - timeA;
+                    });
                     cloudReviews = fetched;
                     renderReviews();
                 }, (error) => {
-                    console.warn('Firestore onSnapshot fallback to local storage:', error);
+                    console.error('Firestore onSnapshot error:', error);
                 });
             } catch (err) {
-                console.warn('Firestore subscription error:', err);
+                console.error('Firestore subscription error:', err);
             }
         }
     }
@@ -890,6 +897,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!name || !comment) return;
 
             const now = new Date();
+            const nowMs = Date.now();
             const dateStr = now.toLocaleDateString(currentLang === 'ar' ? 'ar-EG' : 'en-US', {
                 month: 'short',
                 day: 'numeric',
@@ -897,15 +905,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             const newReview = {
-                id: 'rev-' + Date.now(),
+                id: 'rev-' + nowMs,
                 name: name,
                 role: role,
                 rating: rating,
                 comment: comment,
-                date: dateStr
+                date: dateStr,
+                createdAtMs: nowMs
             };
 
-            // 1. Save to Google Firebase Cloud Firestore (if configured)
+            // 1. Save to Google Firebase Cloud Firestore
             if (typeof db !== 'undefined' && db) {
                 try {
                     db.collection('reviews').add({
@@ -914,14 +923,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         rating: rating,
                         comment: comment,
                         date: dateStr,
-                        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                        createdAtMs: nowMs
                     }).then(() => {
                         console.log('✅ Review successfully saved to Firebase Firestore');
                     }).catch(err => {
-                        console.warn('Firebase save fallback:', err);
+                        console.error('Firebase save error:', err);
                     });
                 } catch (err) {
-                    console.warn('Firestore add error:', err);
+                    console.error('Firestore add exception:', err);
                 }
             }
 
