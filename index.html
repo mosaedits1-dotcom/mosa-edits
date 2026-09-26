@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="MosaEdits Pro — مونتير فيديو وموشن جرافيكس. بنمنتج فيديوهاتك بحب وشغف، وبأعلى جودة تناسب كل المنصات.">
+    <meta name="keywords"
+        content="MosaEdits, Video Editor, Reels Editor, Motion Graphics, DaVinci Resolve, After Effects, Premiere Pro, حاسبة أسعار المونتاج, مونتير ريلز">
+    <meta name="author" content="MosaEdits">
+
+    <title>MosaEdits Pro | Video Editor & Motion Graphics</title>
+
+    <!-- Google Fonts: Cairo & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="theme-dark">
+
+    <!-- ==========================================================================
+         Cinematic Entrance Screen (Interactive Intro Experience)
+         ========================================================================== -->
+    <div id="siteEntrance" class="site-entrance-overlay" role="dialog" aria-modal="true" aria-label="Welcome to MosaEdits">
+        <div class="entrance-backdrop-glow"></div>
+        <div class="entrance-stars-bg"></div>
+
+        <div class="entrance-card">
+            <!-- Top Pro Tag -->
+            <div class="entrance-tag-pill">
+                <span class="entrance-live-dot"></span>
+                <span data-i18n="entrance.tag">MosaEdits • High Retention Video Production</span>
+            </div>
+
+            <!-- Monogram / Visual Brand Icon -->
+            <div class="entrance-brand-emblem">
+                <div class="emblem-inner">
+                    <i class="fa-solid fa-play"></i>
+                </div>
+                <div class="emblem-pulse-ring"></div>
+            </div>
+
+            <!-- Brand Logo -->
+            <h1 class="entrance-title">
+                <span class="entrance-title-main">MosaEdits</span>
+                <span class="apple-badge">Pro</span>
+            </h1>
+
+            <p class="entrance-subtitle" data-i18n="entrance.tagline">
+                مونتاج فيديو وموشن جرافيكس عالي الأداء والاحترافية
+            </p>
+
+            <!-- Cinematic Audio / Equalizer Motion Wave -->
+            <div class="entrance-soundwave">
+                <span class="wave-bar bar-1"></span>
+                <span class="wave-bar bar-2"></span>
+                <span class="wave-bar bar-3"></span>
+                <span class="wave-bar bar-4"></span>
+                <span class="wave-bar bar-5"></span>
+                <span class="wave-bar bar-6"></span>
+                <span class="wave-bar bar-7"></span>
+            </div>
+
+            <!-- Progress & Percentage Loader -->
+            <div class="entrance-loader-wrap">
+                <div class="entrance-progress-track">
+                    <div class="entrance-progress-fill" id="entranceProgressFill"></div>
+                </div>
+                <div class="entrance-loader-info">
+                    <span class="entrance-status-text" id="entranceStatus" data-i18n="entrance.status">جاري تجهيز الاستوديو وتجربة العرض...</span>
+                    <span class="entrance-percent-text" id="entranceCounter">0%</span>
+                </div>
+            </div>
+
+            <!-- Direct Enter Button -->
+            <button type="button" class="btn btn-apple-primary btn-lg entrance-cta-btn" id="entranceEnterBtn">
+                <span data-i18n="entrance.enterBtn">دخول معرض الأعمال</span>
+                <span class="btn-chevron">
+                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </span>
+            </button>
+        </div>
+
+        <!-- Fast Skip / Enter Hint -->
+        <div class="entrance-hint-bottom" id="entranceSkipHint">
+            <span data-i18n="entrance.skip">اضغط في أي مكان لتخطي المقدمة ›</span>
+        </div>
+    </div>
+
+    <!-- Google Antigravity Zero-Gravity Cosmic Particles Canvas -->
+    <canvas id="agParticlesCanvas" class="ag-particles-canvas" aria-hidden="true"></canvas>
+
+    <!-- Global Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#profile" class="logo">
+                <span class="logo-text" data-i18n="nav.brand">MosaEdits <span class="apple-badge">Pro</span></span>
+            </a>
+
+            <!-- Minimal Nav Links -->
+            <nav class="nav-links" id="navLinks">
+                <a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">الأعمال</a>
+                <a href="#calculator" class="nav-link" data-i18n="nav.calculator">حاسبة الأسعار</a>
+                <a href="#reviews" class="nav-link" data-i18n="nav.reviews">التقييمات</a>
+                <a href="#contact" class="nav-link" data-i18n="nav.contact">تواصل معي</a>
+            </nav>
+
+            <div class="nav-actions">
+                <!-- Theme Switcher (Lightbulb Lamp Icon) -->
+                <button class="icon-toggle-btn" id="themeToggle" aria-label="Toggle Dark/Light Mode"
+                    title="تبديل المظهر (إضاءة / عتمة)">
+                    <i class="fa-solid fa-lightbulb bulb-lit" title="إطفاء المصباح"></i>
+                    <i class="fa-regular fa-lightbulb bulb-off" title="إنارة المصباح"></i>
+                </button>
+
+                <!-- Language Switcher (AR / EN) -->
+                <button class="lang-switch-btn" id="langSwitch" aria-label="Toggle Language" title="تغيير اللغة">
+                    <span id="currentLangLabel">EN</span>
+                </button>
+
+                <!-- WhatsApp Quick CTA -->
+                <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                    target="_blank" rel="noopener noreferrer" class="btn btn-apple-pill nav-cta">
+                    <span data-i18n="nav.hireMe">تواصل واتساب</span>
+                    <span class="btn-chevron">
+                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </span>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Open Menu">
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenu">
+        <div class="mobile-menu-inner">
+            <a href="#profile" class="mobile-nav-link" data-i18n="nav.brand">الرئيسية</a>
+            <a href="#portfolio" class="mobile-nav-link" data-i18n="nav.portfolio">الأعمال</a>
+            <a href="#calculator" class="mobile-nav-link" data-i18n="nav.calculator">حاسبة الأسعار</a>
+            <a href="#reviews" class="mobile-nav-link" data-i18n="nav.reviews">التقييمات</a>
+            <a href="#contact" class="mobile-nav-link" data-i18n="nav.contact">تواصل معي</a>
+            <div class="mobile-cta-wrapper">
+                <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                    target="_blank" class="btn btn-apple-primary btn-block" data-i18n="nav.hireMe">
+                    تواصل واتساب مباشر
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- ==========================================================================
+             1. بطاقة التعريف الشخصية (Profile / ID Card) - The First Thing Client Sees
+             ========================================================================== -->
+        <section class="profile-hero-section" id="profile">
+            <div class="container">
+                <div class="profile-id-card ag-reveal ag-reveal-scale">
+                    <!-- Avatar / Profile Picture -->
+                    <div class="profile-avatar-wrapper">
+                        <div class="profile-avatar-squircle">
+                            <img src="img/profile.jpeg" alt="MosaEdits Profile Picture" class="profile-avatar-img"
+                                onerror="this.src='WhatsApp Image 2026-09-26 at 1.04.17 PM.jpeg'">
+                            <span class="profile-online-indicator" title="متاح الآن"></span>
+                        </div>
+                    </div>
+
+                    <!-- Profile Bio & Meta -->
+                    <div class="profile-content">
+                        <div class="profile-header-row">
+                            <span class="profile-status-badge" data-i18n="profile.statusBadge">
+                                <span class="pulse-dot"></span> متاح لمشاريع جديدة
+                            </span>
+                            <span class="profile-experience-tag" data-i18n="profile.expBadge">3 Years Experience</span>
+                        </div>
+
+                        <h1 class="profile-name" data-i18n="profile.name">موسى | MosaEdits</h1>
+                        <h2 class="profile-role" data-i18n="profile.role">مونتير فيديو وموشن جرافيكس</h2>
+
+                        <p class="profile-bio" data-i18n="profile.bio">
+                            بنمنتج فيديوهاتك بحب وشغف عشان فكرتك توصل للناس بأبسط وأجمل شكل مريح للعين ومناسب لكل
+                            المنصات.
+                        </p>
+
+                        <!-- Feature Chips -->
+                        <div class="profile-skills-row">
+                            <span class="skill-chip"><i class="fa-solid fa-wand-magic-sparkles"></i> <span
+                                    data-i18n="profile.skill1">DaVinci Resolve & After Effects</span></span>
+                            <span class="skill-chip"><i class="fa-solid fa-display"></i> <span
+                                    data-i18n="profile.skill2">تصدير مناسب لكل المنصات</span></span>
+                            <span class="skill-chip"><i class="fa-solid fa-play"></i> <span
+                                    data-i18n="profile.skill3">إيقاع ممتع وسريع</span></span>
+                        </div>
+
+                        <!-- Action Buttons with Antigravity Sliding Arrows -->
+                        <div class="profile-actions-row">
+                            <a href="#calculator" class="btn btn-apple-primary">
+                                <span data-i18n="profile.btnCalc">احسب تكلفة مشروعك</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                                target="_blank" rel="noopener noreferrer" class="btn btn-apple-secondary">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span data-i18n="profile.btnWhatsApp">مراسلة واتساب فورية</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <a href="#portfolio" class="btn btn-apple-outline">
+                                <i class="fa-solid fa-film"></i>
+                                <span data-i18n="profile.btnWorks">تصفح الأعمال</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             2. قسم الأعمال (Portfolio / Work Showcase)
+             ========================================================================== -->
+        <section class="portfolio-section" id="portfolio">
+            <div class="container">
+                <div class="section-header ag-reveal">
+                    <span class="section-tag" data-i18n="portfolio.tag">معرض الأعمال</span>
+                    <h2 class="section-title" data-i18n="portfolio.title">نماذج من أعمالي</h2>
+                    <p class="section-subtitle" data-i18n="portfolio.subtitle">تصفح نماذج من الفيديوهات والموشن جرافيكس
+                        المنفذة بأعلى معايير الإتقان</p>
+                </div>
+
+                <!-- Filter Controls & Add Video (2 Streamlined Categories) -->
+                <div class="portfolio-controls-bar ag-reveal">
+                    <div class="filter-wrapper">
+                        <button class="filter-btn active" data-filter="shorts"
+                            data-i18n="portfolio.filterShorts">فيديوهات قصيرة (ريلز)</button>
+                        <button class="filter-btn" data-filter="long" data-i18n="portfolio.filterLong">فيديوهات
+                            طويلة</button>
+                    </div>
+
+                    <!-- Add Video Button -->
+                    <button class="btn btn-apple-secondary btn-sm add-video-trigger-btn" id="openAddModalBtn">
+                        <span data-i18n="portfolio.addVideoBtn">+ إضافة فيديو جديد</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Projects Grid (Populated by JS) -->
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Populated dynamically via main.js from localStorage / projects-data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             3. حاسبة باقات المشاريع (Apple Pro Configurator)
+             ========================================================================== -->
+        <section class="calculator-section" id="calculator">
+            <div class="container">
+                <div class="section-header ag-reveal">
+                    <span class="section-tag" data-i18n="calculator.tag">حاسبة باقات المشاريع</span>
+                    <h2 class="section-title" data-i18n="calculator.title">Price Calculator</h2>
+                    <p class="section-subtitle" data-i18n="calculator.subtitle">خصص باقتك واحسب التكلفة الدقيقة لمشروعك
+                        مع إمكانية إرسال التفاصيل مباشرة لواتساب</p>
+                </div>
+
+                <div class="configurator-wrapper ag-reveal ag-reveal-scale">
+                    <!-- Service Type Tabs -->
+                    <div class="config-tabs-bar">
+                        <button class="config-tab-btn active" data-tab="shorts" id="tabShorts">
+                            <i class="fa-solid fa-mobile-screen"></i>
+                            <span data-i18n="calculator.tabShorts">فيديوهات قصيرة (ريلز)</span>
+                        </button>
+                        <button class="config-tab-btn" data-tab="long" id="tabLong">
+                            <i class="fa-brands fa-youtube"></i>
+                            <span data-i18n="calculator.tabLong">فيديوهات طويلة</span>
+                        </button>
+                        <button class="config-tab-btn" data-tab="podcast" id="tabPodcast">
+                            <i class="fa-solid fa-microphone-lines"></i>
+                            <span data-i18n="calculator.tabPodcast">بودكاست</span>
+                        </button>
+                    </div>
+
+                    <div class="configurator-card-grid">
+                        <!-- Configuration Controls Form Column -->
+                        <div class="config-controls-col">
+
+                            <!-- TAB 1: REELS / SHORTS CONFIGURATION -->
+                            <div class="config-panel active" id="panelShorts">
+                                <div class="config-group">
+                                    <label class="config-label" data-i18n="calculator.shortsLabel">مدة فيديو
+                                        الريل:</label>
+                                    <div class="options-pills-grid">
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="reelDuration" value="60" checked>
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.opt60sTitle">أقل من دقيقة
+                                                    (حتى 60 ث)</span>
+                                                <span class="pill-price" data-i18n="calculator.opt60sPrice">$35
+                                                    (الأساس)</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="reelDuration" value="90">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.opt90sTitle">دقيقة ونصف
+                                                    (حتى 90 ث)</span>
+                                                <span class="pill-price" data-i18n="calculator.opt90sPrice">$45</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="reelDuration" value="120">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.opt120sTitle">دقيقتان
+                                                    (حتى 120 ث)</span>
+                                                <span class="pill-price" data-i18n="calculator.opt120sPrice">$55</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="reelDuration" value="180">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.opt180sTitle">3 دقائق
+                                                    (حتى 180 ث)</span>
+                                                <span class="pill-price" data-i18n="calculator.opt180sPrice">$75</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB 2: LONG-FORM / YOUTUBE CONFIGURATION -->
+                            <div class="config-panel" id="panelLong">
+                                <div class="config-group">
+                                    <label class="config-label" data-i18n="calculator.longMotionLabel">مستوى الموشن
+                                        جرافيكس:</label>
+                                    <div class="options-pills-grid">
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="motionLevel" value="simple" checked>
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.motionSimpleTitle">موشن
+                                                    جرافيكس بسيط</span>
+                                                <span class="pill-price" data-i18n="calculator.motionSimplePrice">$60
+                                                    لأول 8 د (+ $5/د زيادة)</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="motionLevel" value="heavy">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.motionHeavyTitle">موشن
+                                                    جرافيكس مكثف</span>
+                                                <span class="pill-price" data-i18n="calculator.motionHeavyPrice">$80
+                                                    لأول 8 د (+ $8/د زيادة)</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="config-group">
+                                    <div class="label-with-val">
+                                        <label class="config-label" data-i18n="calculator.longDurationLabel">مدة الفيديو
+                                            بالدقائق:</label>
+                                        <span class="slider-val-badge" id="longDurationBadge">8 دقائق</span>
+                                    </div>
+                                    <input type="range" id="longDurationSlider" min="1" max="45" value="8" step="1"
+                                        class="apple-slider">
+                                    <div class="slider-marks">
+                                        <span class="mark-min" data-val="1" data-i18n="calculator.markMin">1 د</span>
+                                        <span class="mark-base mark-base-pos" data-val="8"
+                                            data-i18n="calculator.markBase">8 د (الأساس)</span>
+                                        <span class="mark-mid mark-mid-pos" data-val="20"
+                                            data-i18n="calculator.markMid">20 د</span>
+                                        <span class="mark-max" data-val="45" data-i18n="calculator.markMax">45 د</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- TAB 3: PODCAST CONFIGURATION -->
+                            <div class="config-panel" id="panelPodcast">
+                                <div class="config-group">
+                                    <label class="config-label" data-i18n="calculator.podcastLabel">مدة حلقة
+                                        البودكاست:</label>
+                                    <div class="options-pills-grid">
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="podcastDuration" value="60">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.podcast1hTitle">ساعة
+                                                    واحدة (60 دقيقة)</span>
+                                                <span class="pill-price"
+                                                    data-i18n="calculator.podcast1hPrice">$60</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="podcastDuration" value="120" checked>
+                                            <div class="pill-card highlight-card">
+                                                <span class="pill-title" data-i18n="calculator.podcast2hTitle">ساعتان
+                                                    (120 دقيقة)</span>
+                                                <span class="pill-price" data-i18n="calculator.podcast2hPrice">$115
+                                                    (الأكثر طلباً)</span>
+                                            </div>
+                                        </label>
+                                        <label class="option-pill-label">
+                                            <input type="radio" name="podcastDuration" value="180">
+                                            <div class="pill-card">
+                                                <span class="pill-title" data-i18n="calculator.podcast3hTitle">3 ساعات
+                                                    (180 دقيقة)</span>
+                                                <span class="pill-price"
+                                                    data-i18n="calculator.podcast3hPrice">$165</span>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Common: Quantity Stepper & Monthly Deal Quick Presets -->
+                            <div class="config-group quantity-group">
+                                <div class="quantity-header-row">
+                                    <label class="config-label" data-i18n="calculator.quantityLabel">عدد الفيديوهات
+                                        المطلوبة:</label>
+                                    <div class="quantity-stepper">
+                                        <button type="button" class="stepper-btn" id="qtyMinus"
+                                            aria-label="Decrease quantity">-</button>
+                                        <span class="stepper-val" id="qtyVal">1</span>
+                                        <button type="button" class="stepper-btn" id="qtyPlus"
+                                            aria-label="Increase quantity">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Monthly Deals Quick Preset Triggers -->
+                                <div class="monthly-deals-triggers">
+                                    <button type="button" class="deal-pill-btn" id="dealShortsBtn"
+                                        data-i18n="calculator.monthlyDealReelsBtn">✨ باقة صناع المحتوى (10 ريلز شهرياً -
+                                        خصم 15%)</button>
+                                    <button type="button" class="deal-pill-btn" id="dealLongBtn"
+                                        data-i18n="calculator.monthlyDealLongBtn" style="display: none;">✨ باقة اليوتيوب
+                                        الشهرية (4 فيديوهات - خصم 20%)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Live Order Summary & WhatsApp CTA Column -->
+                        <div class="config-summary-col">
+                            <div class="summary-card">
+                                <div class="summary-top">
+                                    <span class="summary-kicker" data-i18n="calculator.summaryKicker">ملخص الباقة</span>
+                                    <h3 class="summary-heading" id="calcServiceTitle">فيديوهات قصيرة (ريلز)</h3>
+                                </div>
+
+                                <div class="summary-breakdown">
+                                    <div class="breakdown-row">
+                                        <span class="b-label" id="calcParamLabel"
+                                            data-i18n="calculator.paramLabelDuration">المدة:</span>
+                                        <span class="b-val" id="calcParamVal">&le; 60 ثانية</span>
+                                    </div>
+                                    <div class="breakdown-row">
+                                        <span class="b-label" data-i18n="calculator.singlePriceLabel">سعر الفيديو
+                                            الواحد:</span>
+                                        <span class="b-val" id="calcPerVideoVal">$35</span>
+                                    </div>
+                                    <div class="breakdown-row">
+                                        <span class="b-label" data-i18n="calculator.qtyLabel">الكمية:</span>
+                                        <span class="b-val" id="calcQuantityVal">1 فيديو</span>
+                                    </div>
+                                    <div class="breakdown-row delivery-row">
+                                        <span class="b-label" data-i18n="calculator.deliveryLabel">مدة التسليم
+                                            المتوقعة:</span>
+                                        <span class="b-val b-delivery-val" id="calcDeliveryVal">يومان كحد أدنى</span>
+                                    </div>
+                                    <div class="breakdown-row discount-row" id="calcDiscountRow" style="display: none;">
+                                        <span class="b-label" data-i18n="calculator.discountLabel">خصم العرض الشهري:</span>
+                                        <span class="b-val discount-val" id="calcDiscountVal">-$53</span>
+                                    </div>
+                                    <div class="summary-divider"></div>
+                                    <div class="breakdown-row total-row">
+                                        <span class="b-label" data-i18n="calculator.totalTitle">الإجمالي
+                                            التقديري:</span>
+                                        <div class="total-display-wrapper">
+                                            <span class="original-strikethrough" id="calcOriginalPrice"
+                                                style="display: none;">$350</span>
+                                            <span class="total-price-display" id="calcTotalDisplay">$35</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Highlights features included in price -->
+                                <ul class="summary-included-list">
+                                    <li><i class="fa-solid fa-check"></i> <span data-i18n="calculator.featSound">ساوند
+                                            ديزاين بطبقات ممتعة وواقعية</span></li>
+                                    <li><i class="fa-solid fa-check"></i> <span data-i18n="calculator.featExport">تصدير
+                                            مناسب لكل المنصات</span></li>
+                                    <li><i class="fa-solid fa-check"></i> <span
+                                            data-i18n="calculator.featRevisions">تعديلات مرنة وسلسة حتى الرضا
+                                            التام</span></li>
+                                </ul>
+
+                                <!-- Direct WhatsApp Booking Action -->
+                                <a href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block"
+                                    id="calcWhatsAppBtn">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                    <span data-i18n="calculator.bookViaWa">إرسال تفاصيل الباقة لواتساب</span>
+                                    <span class="btn-chevron">
+                                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <p class="instant-book-sub" data-i18n="calculator.instantBookSub">يتم تجهيز رسالة
+                                    بالباقة والسعر فوراً لمناقشتها عبر واتساب</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             4. قسم الريفيوهات والتواصل (Reviews & Contact)
+             ========================================================================== -->
+        <section class="reviews-contact-section" id="reviews">
+            <div class="container">
+                <div class="section-header ag-reveal">
+                    <span class="section-tag" data-i18n="reviews.tag">التقييمات والآراء</span>
+                    <h2 class="section-title" data-i18n="reviews.title">شارك برأيك في الخدمة</h2>
+                    <p class="section-subtitle" data-i18n="reviews.subtitle">رأيك يهمنا ويساعدنا على التطوير الدائم.
+                        اترك تقييمك وتجربتك معنا بكل شفافية</p>
+                </div>
+
+                <div class="reviews-contact-grid">
+                    <!-- Column 1: Client Review Submission Box (خانة فارغة لكتابة الرأي بدون تقييمات مسبقة) -->
+                    <div class="review-box-col ag-reveal ag-reveal-scale">
+                        <div class="feedback-card">
+                            <div class="card-header-clean">
+                                <h3 data-i18n="reviews.formTitle">اترك رأيك وتقييمك</h3>
+                                <div class="rating-stars-picker" id="starPicker">
+                                    <span class="star-btn active" data-rating="1">★</span>
+                                    <span class="star-btn active" data-rating="2">★</span>
+                                    <span class="star-btn active" data-rating="3">★</span>
+                                    <span class="star-btn active" data-rating="4">★</span>
+                                    <span class="star-btn active" data-rating="5">★</span>
+                                </div>
+                            </div>
+
+                            <form id="clientReviewForm" class="inquiry-form">
+                                <input type="hidden" id="reviewRatingInput" value="5">
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="reviewName" class="form-label" data-i18n="reviews.nameLabel">اسمك
+                                            الكريم أو اسم القناة / الشركة *</label>
+                                        <input type="text" id="reviewName" class="form-input"
+                                            placeholder="مثال: أحمد عبد الله" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reviewRole" class="form-label" data-i18n="reviews.roleLabel">الصفة /
+                                            مجال العمل (اختياري)</label>
+                                        <input type="text" id="reviewRole" class="form-input"
+                                            placeholder="مثال: صانع محتوى / شركة تقنية">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reviewComment" class="form-label" data-i18n="reviews.commentLabel">رأيك
+                                        في جودة المونتاج وسرعة التسليم *</label>
+                                    <textarea id="reviewComment" class="form-textarea" rows="3"
+                                        placeholder="اكتب تجربتك بكل صراحة هنا..." required></textarea>
+                                </div>
+
+                                <button type="submit" class="btn btn-apple-primary btn-block" id="submitReviewBtn">
+                                    <span data-i18n="reviews.submitBtn">نشر تقييمي الآن</span>
+                                    <span class="btn-chevron">
+                                        <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                            <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </span>
+                                </button>
+                                <p class="form-feedback" id="reviewFeedback"></p>
+                            </form>
+                        </div>
+
+                        <!-- Real-time Submitted Reviews Display Container -->
+                        <div class="published-reviews-wrapper" id="publishedReviewsContainer">
+                            <!-- Dynamic Reviews will appear here or empty state -->
+                        </div>
+                    </div>
+
+                    <!-- Column 2: Direct Contact Card (قسم التواصل السريع) -->
+                    <div class="contact-box-col ag-reveal ag-reveal-scale">
+                        <div class="contact-card-apple">
+                            <span class="section-tag" data-i18n="contact.tag">ابدأ مشروعك الآن</span>
+                            <h3 class="contact-card-title" data-i18n="contact.title">جاهز لنقل فيديوهاتك لمستوى جديد؟
+                            </h3>
+                            <p class="contact-card-desc" data-i18n="contact.subtitle">
+                                تواصل معي مباشرة لمناقشة فكرة مشروعك، أو احجز باقتك وسأرد عليك في أسرع وقت.
+                            </p>
+
+                            <!-- Big WhatsApp Action -->
+                            <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                                target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-block btn-lg">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span data-i18n="contact.waBtn">مراسلة واتساب مباشرة</span>
+                                <span class="btn-chevron">
+                                    <svg class="ag-arrow-svg" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8h10m0 0L8.5 3.5M13 8l-4.5 4.5" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            </a>
+                            <p class="contact-note" data-i18n="contact.directNote">رد سريع خلال دقائق عبر واتساب</p>
+
+                            <div class="contact-channels-list">
+                                <div class="channel-item">
+                                    <i class="fa-solid fa-bolt"></i>
+                                    <div>
+                                        <strong>سرعة والتزام بالموعد</strong>
+                                        <span>تسليم المسودة الأولى في وقت قياسي</span>
+                                    </div>
+                                </div>
+                                <div class="channel-item">
+                                    <i class="fa-solid fa-sliders"></i>
+                                    <div>
+                                        <strong>تعديلات مرنة وسلسة</strong>
+                                        <span>نعمل معاً حتى نصل للنتيجة التي تفوق توقعاتك</span>
+                                    </div>
+                                </div>
+                                <div class="channel-item">
+                                    <i class="fa-solid fa-film"></i>
+                                    <div>
+                                        <strong>تصدير مناسب لكل المنصات</strong>
+                                        <span>جودة نقية ومضبوطة لكل شاشة ومنصة</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal 1: Video Lightbox Player Modal -->
+    <div class="video-modal" id="videoModal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-container" id="modalContainer">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Video">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-body">
+                <div class="modal-video-wrapper" id="modalVideoWrapper">
+                    <div class="video-embed-container" id="videoEmbedContainer"></div>
+                </div>
+
+                <div class="modal-details">
+                    <div class="modal-title-area">
+                        <h3 id="modalFooterTitle">اسم الفيديو والمشروع</h3>
+                        <p id="modalFooterDesc">تفاصيل إضافية حول التحدي الإبداعي والنتائج المحققة.</p>
+                    </div>
+                    <div class="modal-action-area">
+                        <a href="#calculator" class="btn btn-apple-primary btn-sm" onclick="closeModal()"
+                            data-i18n="modal.requestSimilar">طلب مشروع فيديو مماثل ›</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Add New Video Project Modal -->
+    <div class="video-modal" id="addVideoModal" aria-hidden="true" role="dialog">
+        <div class="modal-backdrop" id="addModalBackdrop"></div>
+        <div class="modal-container add-modal-container" id="addModalContainer">
+            <button class="modal-close-btn" id="addModalCloseBtn" aria-label="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-form-body">
+                <div class="add-modal-header">
+                    <h3 data-i18n="addModal.heading">إضافة فيديو جديد إلى البورتفوليو</h3>
+                    <p data-i18n="addModal.subheading">ضع رابط الفيديو الخاص بك وسيظهر فوراً في المعرض</p>
+                </div>
+
+                <form id="addNewProjectForm" class="inquiry-form">
+                    <div class="form-group">
+                        <label for="newProjTitle" class="form-label" data-i18n="addModal.titleLabel">عنوان الفيديو أو
+                            المشروع *</label>
+                        <input type="text" id="newProjTitle" class="form-input"
+                            placeholder="مثال: ريل إعلاني لمنتج تقني" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newProjUrl" class="form-label" data-i18n="addModal.urlLabel">رابط الفيديو (YouTube /
+                            Shorts / Vimeo / MP4) *</label>
+                        <input type="url" id="newProjUrl" class="form-input"
+                            placeholder="https://www.youtube.com/shorts/... أو https://youtu.be/..." required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="newProjCategory" class="form-label" data-i18n="addModal.catLabel">التصنيف
+                                *</label>
+                            <select id="newProjCategory" class="form-input form-select">
+                                <option value="shorts" data-i18n="addModal.catShorts">فيديوهات قصيرة (ريلز وشورتس)
+                                </option>
+                                <option value="long" data-i18n="addModal.catLong">فيديوهات طويلة</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newProjAspect" class="form-label" data-i18n="addModal.aspectLabel">مقاس الفيديو
+                                *</label>
+                            <select id="newProjAspect" class="form-input form-select">
+                                <option value="vertical" data-i18n="addModal.aspectVertical">طولي (9:16 Vertical)
+                                </option>
+                                <option value="widescreen" data-i18n="addModal.aspectWide">عرضي (16:9 Widescreen)
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newProjSoftware" class="form-label" data-i18n="addModal.softwareLabel">البرامج
+                            المستخدمة</label>
+                        <input type="text" id="newProjSoftware" class="form-input"
+                            placeholder="مثال: DaVinci Resolve • After Effects">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newProjDesc" class="form-label" data-i18n="addModal.descLabel">وصف موجز للمشروع
+                            *</label>
+                        <textarea id="newProjDesc" class="form-textarea" rows="3"
+                            placeholder="اشرح التكنيك المستخدم مثل تحريك النصوص أو الساوند ديزاين..."
+                            required></textarea>
+                    </div>
+
+                    <div class="add-modal-actions">
+                        <button type="submit" class="btn btn-apple-primary btn-block" data-i18n="addModal.submitBtn">حفظ
+                            وإضافة الفيديو فوراً</button>
+                        <button type="button" class="btn btn-apple-secondary btn-sm" id="resetDefaultsBtn"
+                            data-i18n="addModal.resetDefaultBtn">استعادة الفيديوهات الافتراضية</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Action Button: Quick WhatsApp -->
+    <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+        target="_blank" rel="noopener noreferrer" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="floating-tooltip">تواصل واتساب مباشر</span>
+    </a>
+
+    <!-- Minimal Apple Footer -->
+    <footer class="footer">
+        <div class="container footer-container ag-reveal">
+            <div class="footer-brand">
+                <span class="logo-text">MosaEdits <span class="apple-badge">Pro</span></span>
+                <p class="footer-bio" data-i18n="footer.bio">MosaEdits Pro — مونتاج فيديو وموشن جرافيكس عالي الأداء
+                    والاحترافية.</p>
+            </div>
+            <div class="footer-socials">
+                <a href="https://wa.me/201096419945?text=أهلاً%20موسى،%20شفت%20البورتفوليو%20بتاعك%20ومحتاج%20نتعاون%20في%20مشروع"
+                    target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                    class="social-link whatsapp-social-link" title="تواصل عبر واتساب"><i
+                        class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>Copyright © 2026 MosaEdits. <span data-i18n="footer.rights">جميع الحقوق محفوظة.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/projects-data.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

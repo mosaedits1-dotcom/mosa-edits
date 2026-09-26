@@ -1,0 +1,2658 @@
+/* ==========================================================================
+   MOSAEDITS PRO - CLEAN APPLE MINIMAL DESIGN SYSTEM & STYLESHEET
+   ========================================================================== */
+
+/* --- Theme Variables & Root Setup --- */
+:root {
+    /* Fonts */
+    --font-arabic: "Cairo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+
+    /* Apple Accent Colors */
+    --apple-blue: #0071e3;
+    --apple-blue-hover: #0077ed;
+    --apple-blue-subtle: rgba(0, 113, 227, 0.12);
+    --apple-green: #30d158;
+    --apple-green-subtle: rgba(48, 209, 88, 0.15);
+    --apple-gold: #f5a623;
+    --apple-red: #ff453a;
+    --apple-wa: #25d366;
+    --apple-wa-hover: #22bf5b;
+
+    /* Radiuses */
+    --radius-pill: 9999px;
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+
+    /* Transitions */
+    --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.2s var(--ease-apple);
+    --transition-smooth: 0.3s var(--ease-apple);
+
+    --container-max-w: 1080px;
+}
+
+/* Dark Theme Default */
+body.theme-dark {
+    --apple-bg: #0a0a0c;
+    --apple-surface: #121215;
+    --apple-card: #18181c;
+    --apple-card-hover: #222228;
+    --apple-card-subtle: #141417;
+    --apple-text: #f5f5f7;
+    --apple-text-muted: #86868b;
+    --apple-border: rgba(255, 255, 255, 0.08);
+    --apple-border-strong: rgba(255, 255, 255, 0.15);
+    --apple-glass: rgba(14, 14, 17, 0.82);
+    --shadow-apple: 0 12px 36px rgba(0, 0, 0, 0.45);
+    --shadow-card: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Light Theme */
+body.theme-light {
+    --apple-bg: #f5f5f7;
+    --apple-surface: #ffffff;
+    --apple-card: #ffffff;
+    --apple-card-hover: #f8f9fa;
+    --apple-card-subtle: #f0f1f3;
+    --apple-text: #1d1d1f;
+    --apple-text-muted: #6e6e73;
+    --apple-border: rgba(0, 0, 0, 0.08);
+    --apple-border-strong: rgba(0, 0, 0, 0.16);
+    --apple-glass: rgba(255, 255, 255, 0.85);
+    --shadow-apple: 0 10px 30px rgba(0, 0, 0, 0.06);
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.04);
+}
+
+/* Base Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-arabic);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html[dir="ltr"] {
+    font-family: var(--font-sans);
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--apple-bg);
+    color: var(--apple-text);
+    font-size: 14.5px;
+    line-height: 1.6;
+    transition: background-color var(--transition-smooth), color var(--transition-smooth);
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: var(--container-max-w);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+/* Typography Defaults */
+h1,
+h2,
+h3,
+h4 {
+    color: var(--apple-text);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+p {
+    color: var(--apple-text-muted);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+/* ==========================================================================
+   Antigravity Arrow & Chevrons System (Interactive Motion & Sliding Reveal)
+   ========================================================================== */
+.btn-chevron,
+.ag-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    margin-inline-start: 6px;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+    will-change: transform;
+}
+
+.ag-arrow-svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    stroke: currentColor;
+}
+
+/* RTL: arrow points left by default */
+html[dir="rtl"] .btn-chevron {
+    transform: rotate(180deg);
+}
+
+html[dir="rtl"] .ag-arrow-svg {
+    transform: rotate(180deg);
+}
+
+/* LTR: arrow points right by default */
+html[dir="ltr"] .btn-chevron {
+    transform: rotate(0deg);
+}
+
+html[dir="ltr"] .ag-arrow-svg {
+    transform: rotate(0deg);
+}
+
+/* Hover Sliding Motion: In RTL moves to the left, in LTR moves to the right */
+html[dir="rtl"] .btn:hover .btn-chevron,
+html[dir="rtl"] .btn-apple-primary:hover .btn-chevron,
+html[dir="rtl"] .btn-apple-secondary:hover .btn-chevron,
+html[dir="rtl"] .btn-apple-outline:hover .btn-chevron,
+html[dir="rtl"] .btn-whatsapp:hover .btn-chevron,
+html[dir="rtl"] .nav-cta:hover .btn-chevron,
+html[dir="rtl"] .project-view-text-btn:hover .btn-chevron,
+html[dir="rtl"] .btn:hover .ag-arrow-svg,
+html[dir="rtl"] a:hover>.btn-chevron,
+html[dir="rtl"] button:hover>.btn-chevron {
+    transform: rotate(180deg) translateX(5px);
+}
+
+html[dir="ltr"] .btn:hover .btn-chevron,
+html[dir="ltr"] .btn-apple-primary:hover .btn-chevron,
+html[dir="ltr"] .btn-apple-secondary:hover .btn-chevron,
+html[dir="ltr"] .btn-apple-outline:hover .btn-chevron,
+html[dir="ltr"] .btn-whatsapp:hover .btn-chevron,
+html[dir="ltr"] .nav-cta:hover .btn-chevron,
+html[dir="ltr"] .project-view-text-btn:hover .btn-chevron,
+html[dir="ltr"] .btn:hover .ag-arrow-svg,
+html[dir="ltr"] a:hover>.btn-chevron,
+html[dir="ltr"] button:hover>.btn-chevron {
+    transform: rotate(0deg) translateX(5px);
+}
+
+
+/* ==========================================================================
+   Apple Navbar (Compact, Sleek, Frosted)
+   ========================================================================== */
+.navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--apple-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--apple-border);
+    transition: all var(--transition-fast);
+    padding: 0.65rem 0;
+}
+
+.navbar.scrolled {
+    box-shadow: var(--shadow-card);
+}
+
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: var(--container-max-w);
+    margin: 0 auto;
+    padding: 0 1.25rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.logo-text {
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--apple-text);
+}
+
+.apple-badge {
+    background: var(--apple-blue);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+}
+
+.nav-link {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--apple-text-muted);
+    transition: color var(--transition-fast);
+}
+
+.nav-link:hover {
+    color: var(--apple-text);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+/* Icon / Toggle Buttons */
+.icon-toggle-btn,
+.lang-switch-btn {
+    background: var(--apple-card-subtle);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text);
+    border-radius: var(--radius-pill);
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    transition: all var(--transition-fast);
+}
+
+.icon-toggle-btn:hover,
+.lang-switch-btn:hover {
+    background: var(--apple-card-hover);
+    border-color: var(--apple-border-strong);
+}
+
+/* Theme Icon Display (Lightbulb Lamp Style) */
+.icon-toggle-btn .bulb-lit {
+    color: #facc15;
+    filter: drop-shadow(0 0 7px rgba(250, 204, 21, 0.75));
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+
+.icon-toggle-btn .bulb-off {
+    color: var(--apple-text-secondary);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.icon-toggle-btn:hover .bulb-lit,
+.icon-toggle-btn:hover .bulb-off {
+    transform: scale(1.18);
+}
+
+body.theme-dark .bulb-lit {
+    display: none;
+}
+
+body.theme-dark .bulb-off {
+    display: inline-block;
+}
+
+body.theme-light .bulb-lit {
+    display: inline-block;
+}
+
+body.theme-light .bulb-off {
+    display: none;
+}
+
+/* Mobile Menu Button */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--apple-text);
+    border-radius: 2px;
+    transition: var(--transition-fast);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--apple-bg);
+    z-index: 999;
+    padding: 2rem 1.5rem;
+    display: none;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.mobile-menu-overlay.active {
+    display: flex;
+}
+
+.mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.mobile-nav-link {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--apple-text);
+    border-bottom: 1px solid var(--apple-border);
+    padding-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   Apple Buttons System
+   ========================================================================== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    border: none;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.btn-sm {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+}
+
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.98rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.btn-apple-primary {
+    background: var(--apple-blue);
+    color: #ffffff;
+}
+
+.btn-apple-primary:hover {
+    background: var(--apple-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+}
+
+.btn-apple-secondary {
+    background: var(--apple-card-subtle);
+    color: var(--apple-text);
+    border: 1px solid var(--apple-border);
+}
+
+.btn-apple-secondary:hover {
+    background: var(--apple-card-hover);
+    border-color: var(--apple-border-strong);
+}
+
+.btn-apple-outline {
+    background: transparent;
+    color: var(--apple-text);
+    border: 1px solid var(--apple-border-strong);
+}
+
+.btn-apple-outline:hover {
+    background: var(--apple-card-hover);
+}
+
+.btn-apple-pill {
+    background: var(--apple-card-subtle);
+    color: var(--apple-text);
+    border: 1px solid var(--apple-border);
+    font-size: 0.82rem;
+    padding: 0.38rem 0.9rem;
+}
+
+.btn-apple-pill:hover {
+    background: var(--apple-card-hover);
+    border-color: var(--apple-border-strong);
+}
+
+.btn-whatsapp {
+    background: var(--apple-wa);
+    color: #ffffff;
+}
+
+.btn-whatsapp:hover {
+    background: var(--apple-wa-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+}
+
+.btn-text {
+    background: transparent;
+    border: none;
+    color: var(--apple-blue);
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.84rem;
+}
+
+.btn-text:hover {
+    color: var(--apple-blue-hover);
+}
+
+/* ==========================================================================
+   Section Headers (Downsized, Comfortable, Refined)
+   ========================================================================== */
+.section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.section-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--apple-blue);
+    background: var(--apple-blue-subtle);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    margin-bottom: 0.6rem;
+}
+
+.section-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    font-size: 0.92rem;
+    max-width: 580px;
+    margin: 0 auto;
+    color: var(--apple-text-muted);
+}
+
+/* ==========================================================================
+   1. بطاقة التعريف الشخصية (Profile / ID Card Hero)
+   ========================================================================== */
+.profile-hero-section {
+    padding: 2.5rem 0 2rem;
+}
+
+.profile-id-card {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-xl);
+    padding: 2.2rem;
+    box-shadow: var(--shadow-apple);
+    display: flex;
+    align-items: center;
+    gap: 2.2rem;
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.profile-avatar-wrapper {
+    flex-shrink: 0;
+    position: relative;
+}
+
+.profile-avatar-squircle {
+    width: 140px;
+    height: 140px;
+    border-radius: 36px;
+    overflow: hidden;
+    position: relative;
+    border: 3px solid var(--apple-border-strong);
+    box-shadow: var(--shadow-card);
+    background: var(--apple-card-subtle);
+}
+
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    display: block;
+}
+
+.profile-online-indicator {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 14px;
+    height: 14px;
+    background: var(--apple-green);
+    border: 2.5px solid var(--apple-card);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(48, 209, 88, 0.6);
+}
+
+.profile-content {
+    flex: 1;
+}
+
+.profile-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.profile-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--apple-green);
+    background: var(--apple-green-subtle);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--apple-green);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulseGlow 1.8s infinite;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.4;
+        transform: scale(0.85);
+    }
+}
+
+.profile-experience-tag {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: var(--apple-text-muted);
+    background: var(--apple-card-subtle);
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--apple-border);
+}
+
+.profile-name {
+    font-size: 1.85rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.2rem;
+}
+
+.profile-role {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--apple-blue);
+    margin-bottom: 0.75rem;
+}
+
+.profile-bio {
+    font-size: 0.92rem;
+    color: var(--apple-text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+    max-width: 680px;
+}
+
+.profile-skills-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.25rem;
+}
+
+.skill-chip {
+    font-size: 0.78rem;
+    font-weight: 500;
+    background: var(--apple-card-subtle);
+    color: var(--apple-text);
+    border: 1px solid var(--apple-border);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.skill-chip i {
+    color: var(--apple-blue);
+}
+
+.profile-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   2. قسم الأعمال (Portfolio Section)
+   ========================================================================== */
+.portfolio-section {
+    padding: 2.5rem 0;
+}
+
+.portfolio-controls-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.filter-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+    color: var(--apple-text);
+    border-color: var(--apple-border-strong);
+}
+
+.filter-btn.active {
+    background: var(--apple-text);
+    color: var(--apple-bg);
+    border-color: var(--apple-text);
+}
+
+/* Projects Grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 1.5rem;
+}
+
+.project-card {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-card);
+}
+
+.project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--apple-border-strong);
+    box-shadow: var(--shadow-apple);
+}
+
+.project-thumb-box {
+    position: relative;
+    overflow: hidden;
+    background: var(--apple-surface);
+}
+
+.aspect-16-9 {
+    aspect-ratio: 16 / 9;
+}
+
+.aspect-9-16 {
+    aspect-ratio: 9 / 13;
+}
+
+.project-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: transform var(--transition-medium);
+}
+
+.project-card:hover .project-thumbnail-img {
+    transform: scale(1.06);
+}
+
+.project-img-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    z-index: 2;
+}
+
+.project-img-placeholder.has-thumb {
+    background: transparent !important;
+}
+
+/* Subtle Gradient Backgrounds for Demo Projects Fallback */
+.thumb-short-1 {
+    background: linear-gradient(135deg, #1f1c2c, #928dab);
+}
+
+.thumb-short-2 {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.thumb-motion-1 {
+    background: linear-gradient(135deg, #141e30, #243b55);
+}
+
+.thumb-motion-2 {
+    background: linear-gradient(135deg, #232526, #414345);
+}
+
+.thumb-yt-1 {
+    background: linear-gradient(135deg, #16222f, #1b384f);
+}
+
+.thumb-comm-1 {
+    background: linear-gradient(135deg, #2b1055, #7597de);
+}
+
+.vertical-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.thumb-badge {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(10px);
+    z-index: 3;
+}
+
+.project-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #000;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    padding-left: 2px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    transition: all var(--transition-fast);
+    z-index: 3;
+}
+
+.project-card:hover .project-play-btn {
+    transform: translate(-50%, -50%) scale(1.1);
+    background: #ffffff;
+}
+
+.delete-proj-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #ff453a;
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+    font-size: 0.75rem;
+}
+
+.project-card:hover .delete-proj-btn {
+    opacity: 1;
+}
+
+.delete-proj-btn:hover {
+    background: #ff453a;
+    color: #fff;
+}
+
+.project-info {
+    padding: 1.15rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--apple-text-muted);
+    background: var(--apple-card-subtle);
+    padding: 2px 7px;
+    border-radius: var(--radius-pill);
+}
+
+.tag-fire {
+    color: var(--apple-gold);
+}
+
+.project-title {
+    font-size: 0.98rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.35rem;
+}
+
+.project-desc {
+    font-size: 0.84rem;
+    color: var(--apple-text-muted);
+    line-height: 1.5;
+    margin-bottom: 0.85rem;
+    flex: 1;
+}
+
+.project-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--apple-border);
+    font-size: 0.78rem;
+}
+
+.software-tags {
+    color: var(--apple-text-muted);
+}
+
+/* ==========================================================================
+   3. حاسبة باقات المشاريع (Apple Pro Configurator)
+   ========================================================================== */
+.calculator-section {
+    padding: 2.5rem 0;
+    background: var(--apple-surface);
+    border-top: 1px solid var(--apple-border);
+    border-bottom: 1px solid var(--apple-border);
+}
+
+.configurator-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+/* Configurator Tabs */
+.config-tabs-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    flex-wrap: wrap;
+}
+
+.config-tab-btn {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-muted);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all var(--transition-fast);
+}
+
+.config-tab-btn:hover {
+    color: var(--apple-text);
+    border-color: var(--apple-border-strong);
+}
+
+.config-tab-btn.active {
+    background: var(--apple-blue);
+    color: #ffffff;
+    border-color: var(--apple-blue);
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.35);
+}
+
+/* Grid Layout */
+.configurator-card-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.95fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Controls Column */
+.config-controls-col {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+}
+
+.config-panel {
+    display: none;
+}
+
+.config-panel.active {
+    display: block;
+}
+
+.config-group {
+    margin-bottom: 1.5rem;
+}
+
+.config-group:last-child {
+    margin-bottom: 0;
+}
+
+.config-label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--apple-text);
+    margin-bottom: 0.75rem;
+}
+
+.label-with-val {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.label-with-val .config-label {
+    margin-bottom: 0;
+}
+
+.slider-val-badge {
+    background: var(--apple-blue-subtle);
+    color: var(--apple-blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+}
+
+/* Option Pills Grid */
+.options-pills-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.option-pill-label {
+    cursor: pointer;
+}
+
+.option-pill-label input[type="radio"] {
+    display: none;
+}
+
+.pill-card {
+    background: var(--apple-card-subtle);
+    border: 1.5px solid var(--apple-border);
+    border-radius: var(--radius-md);
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all var(--transition-fast);
+}
+
+.pill-title {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--apple-text);
+}
+
+.pill-price {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--apple-blue);
+}
+
+.option-pill-label:hover .pill-card {
+    border-color: var(--apple-border-strong);
+}
+
+.option-pill-label input[type="radio"]:checked+.pill-card {
+    background: var(--apple-blue-subtle);
+    border-color: var(--apple-blue);
+}
+
+.option-pill-label input[type="radio"]:checked+.pill-card .pill-title {
+    color: var(--apple-blue);
+}
+
+.config-hint {
+    font-size: 0.78rem;
+    color: var(--apple-text-muted);
+    margin-top: 0.75rem;
+    line-height: 1.5;
+}
+
+/* Apple Slider */
+.apple-slider {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: var(--apple-card-subtle);
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid var(--apple-border);
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.apple-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--apple-blue);
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0, 113, 227, 0.4);
+    border: 2px solid #ffffff;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.apple-slider::-webkit-slider-thumb:active {
+    cursor: grabbing;
+    transform: scale(1.15);
+    box-shadow: 0 4px 14px rgba(0, 113, 227, 0.6);
+}
+
+.apple-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--apple-blue);
+    border-radius: 50%;
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0, 113, 227, 0.4);
+    border: 2px solid #ffffff;
+}
+
+.slider-marks {
+    position: relative;
+    width: 100%;
+    height: 26px;
+    margin-top: 0.5rem;
+}
+
+.slider-marks span {
+    position: absolute;
+    top: 0;
+    font-size: 0.74rem;
+    color: var(--apple-text-muted);
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    transition: color var(--transition-fast);
+}
+
+.slider-marks span:hover {
+    color: var(--apple-blue);
+}
+
+/* RTL (Arabic Default) Exact Mathematical Positioning */
+html[dir="rtl"] .mark-min {
+    right: 0;
+}
+
+html[dir="rtl"] .mark-base-pos {
+    right: calc(10px + (7 / 44) * (100% - 20px));
+    transform: translateX(50%);
+}
+
+html[dir="rtl"] .mark-mid-pos {
+    right: calc(10px + (19 / 44) * (100% - 20px));
+    transform: translateX(50%);
+}
+
+html[dir="rtl"] .mark-max {
+    left: 0;
+}
+
+/* LTR (English) Exact Mathematical Positioning */
+html[dir="ltr"] .mark-min {
+    left: 0;
+}
+
+html[dir="ltr"] .mark-base-pos {
+    left: calc(10px + (7 / 44) * (100% - 20px));
+    transform: translateX(-50%);
+}
+
+html[dir="ltr"] .mark-mid-pos {
+    left: calc(10px + (19 / 44) * (100% - 20px));
+    transform: translateX(-50%);
+}
+
+html[dir="ltr"] .mark-max {
+    right: 0;
+}
+
+.mark-base {
+    color: var(--apple-blue) !important;
+    font-weight: 700;
+}
+
+.mark-base::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 5px;
+    background: var(--apple-blue);
+    margin: 0 auto 3px auto;
+    border-radius: 1px;
+}
+
+/* Quantity Stepper & Monthly Deals */
+.quantity-group {
+    padding-top: 1.2rem;
+    border-top: 1px solid var(--apple-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.quantity-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.quantity-header-row .config-label {
+    margin-bottom: 0;
+}
+
+.quantity-stepper {
+    display: inline-flex;
+    align-items: center;
+    background: var(--apple-card-subtle);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+}
+
+.stepper-btn {
+    width: 32px;
+    height: 32px;
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: 50%;
+    color: var(--apple-text);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.stepper-btn:hover {
+    background: var(--apple-card-hover);
+    color: var(--apple-blue);
+}
+
+.stepper-val {
+    width: 44px;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--apple-text);
+}
+
+/* Monthly Deal Quick Button */
+.monthly-deals-triggers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.deal-pill-btn {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.12) 0%, rgba(48, 209, 88, 0.12) 100%);
+    border: 1.5px dashed var(--apple-blue);
+    border-radius: var(--radius-md);
+    color: var(--apple-text);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition-fast);
+}
+
+.deal-pill-btn:hover {
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.22) 0%, rgba(48, 209, 88, 0.22) 100%);
+    border-color: var(--apple-green);
+    transform: translateY(-1px);
+}
+
+.deal-pill-btn.active {
+    background: linear-gradient(135deg, var(--apple-blue) 0%, #248a3d 100%);
+    color: #ffffff;
+    border-style: solid;
+    border-color: transparent;
+    box-shadow: 0 4px 15px rgba(0, 113, 227, 0.3);
+}
+
+/* Delivery & Discount Rows */
+.b-delivery-val {
+    color: var(--apple-blue) !important;
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.discount-row {
+    color: var(--apple-green);
+}
+
+.discount-row .b-label {
+    color: var(--apple-green);
+    font-weight: 600;
+}
+
+.discount-val {
+    color: var(--apple-green);
+    font-weight: 800;
+}
+
+.total-display-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.original-strikethrough {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--apple-text-muted);
+    text-decoration: line-through;
+}
+
+/* Order Summary Column */
+.summary-card {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-apple);
+    position: sticky;
+    top: 70px;
+}
+
+.summary-top {
+    margin-bottom: 1.25rem;
+}
+
+.summary-kicker {
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--apple-blue);
+    letter-spacing: 0.04em;
+}
+
+.summary-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-top: 0.2rem;
+}
+
+.summary-breakdown {
+    background: var(--apple-card-subtle);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.84rem;
+    margin-bottom: 0.5rem;
+}
+
+.breakdown-row:last-child {
+    margin-bottom: 0;
+}
+
+.b-label {
+    color: var(--apple-text-muted);
+}
+
+.b-val {
+    font-weight: 600;
+    color: var(--apple-text);
+}
+
+.summary-divider {
+    height: 1px;
+    background: var(--apple-border);
+    margin: 0.65rem 0;
+}
+
+.total-row {
+    margin-bottom: 0;
+}
+
+.total-row .b-label {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--apple-text);
+}
+
+.total-price-display {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--apple-green);
+    letter-spacing: -0.02em;
+}
+
+.summary-included-list {
+    margin-bottom: 1.25rem;
+}
+
+.summary-included-list li {
+    font-size: 0.8rem;
+    color: var(--apple-text-muted);
+    margin-bottom: 0.4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.summary-included-list li i {
+    color: var(--apple-green);
+    font-size: 0.75rem;
+}
+
+.instant-book-sub {
+    font-size: 0.74rem;
+    color: var(--apple-text-muted);
+    text-align: center;
+    margin-top: 0.6rem;
+}
+
+/* ==========================================================================
+   4. قسم الريفيوهات والتواصل (Reviews & Contact)
+   ========================================================================== */
+.reviews-contact-section {
+    padding: 2.5rem 0 3rem;
+}
+
+.reviews-contact-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+/* Feedback Card */
+.feedback-card {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+    margin-bottom: 1.5rem;
+}
+
+.card-header-clean {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.card-header-clean h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.rating-stars-picker {
+    display: flex;
+    gap: 3px;
+    direction: ltr;
+}
+
+.star-btn {
+    font-size: 1.3rem;
+    color: var(--apple-text-muted);
+    cursor: pointer;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.star-btn:hover {
+    transform: scale(1.15);
+}
+
+.star-btn.active {
+    color: var(--apple-gold);
+}
+
+/* Forms */
+.inquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.form-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--apple-text);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    background: var(--apple-card-subtle);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 0.85rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--apple-text);
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: var(--apple-blue);
+}
+
+.form-textarea {
+    resize: vertical;
+}
+
+.form-feedback {
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-top: 0.3rem;
+}
+
+.form-feedback.success {
+    color: var(--apple-green);
+}
+
+/* Published Reviews Display */
+.published-reviews-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.empty-reviews-state {
+    background: var(--apple-card);
+    border: 1px dashed var(--apple-border-strong);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.5rem;
+    text-align: center;
+}
+
+.empty-icon {
+    font-size: 1.8rem;
+    color: var(--apple-blue);
+    margin-bottom: 0.6rem;
+    opacity: 0.8;
+}
+
+.empty-reviews-state h4 {
+    font-size: 0.98rem;
+    margin-bottom: 0.35rem;
+}
+
+.empty-reviews-state p {
+    font-size: 0.82rem;
+    color: var(--apple-text-muted);
+}
+
+.client-review-card {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-lg);
+    padding: 1.15rem;
+    box-shadow: var(--shadow-card);
+}
+
+.review-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+}
+
+.rev-stars-gold {
+    color: var(--apple-gold);
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+}
+
+.rev-date-tag {
+    font-size: 0.72rem;
+    color: var(--apple-text-muted);
+}
+
+.rev-comment-text {
+    font-size: 0.86rem;
+    color: var(--apple-text);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+    font-style: italic;
+}
+
+.rev-author-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.rev-avatar-circle {
+    width: 30px;
+    height: 30px;
+    background: var(--apple-blue-subtle);
+    color: var(--apple-blue);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.82rem;
+}
+
+.rev-name-label {
+    display: block;
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.rev-role-label {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--apple-text-muted);
+}
+
+/* Contact Card */
+.contact-card-apple {
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    border-radius: var(--radius-xl);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-card);
+}
+
+.contact-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.contact-card-desc {
+    font-size: 0.86rem;
+    color: var(--apple-text-muted);
+    margin-bottom: 1.25rem;
+}
+
+.contact-note {
+    font-size: 0.75rem;
+    color: var(--apple-text-muted);
+    text-align: center;
+    margin-top: 0.6rem;
+    margin-bottom: 1.25rem;
+}
+
+.contact-channels-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    border-top: 1px solid var(--apple-border);
+    padding-top: 1.25rem;
+}
+
+.channel-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.channel-item i {
+    color: var(--apple-blue);
+    font-size: 1rem;
+    margin-top: 3px;
+}
+
+.channel-item strong {
+    display: block;
+    font-size: 0.86rem;
+}
+
+.channel-item span {
+    font-size: 0.78rem;
+    color: var(--apple-text-muted);
+}
+
+/* ==========================================================================
+   Modals & Overlays
+   ========================================================================== */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.modal-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+}
+
+.modal-container {
+    position: relative;
+    z-index: 2001;
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border-strong);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 800px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+.add-modal-container {
+    max-width: 520px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2002;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+}
+
+.modal-close-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.05);
+}
+
+.modal-video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+}
+
+.modal-video-wrapper.vertical-video {
+    max-width: 360px;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+}
+
+.video-embed-container {
+    width: 100%;
+    height: 100%;
+}
+
+.video-embed-container iframe,
+.video-embed-container video {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-placeholder-demo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0c;
+    color: #fff;
+    padding: 2rem;
+    text-align: center;
+}
+
+.demo-screen-content .play-indicator {
+    font-size: 2.2rem;
+    color: var(--apple-blue);
+    margin-bottom: 0.8rem;
+}
+
+.demo-screen-content h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.4rem;
+}
+
+.demo-screen-content p {
+    font-size: 0.84rem;
+    color: #888;
+    margin-bottom: 1rem;
+}
+
+.modal-badge-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.modal-badge-row .badge {
+    font-size: 0.72rem;
+    background: #1c1c1e;
+    color: #aaa;
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
+}
+
+.modal-badge-row .badge-gold {
+    color: var(--apple-gold);
+}
+
+.modal-details {
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: var(--apple-card);
+}
+
+.modal-title-area h3 {
+    font-size: 0.98rem;
+    margin-bottom: 0.2rem;
+}
+
+.modal-title-area p {
+    font-size: 0.82rem;
+}
+
+.modal-form-body {
+    padding: 1.75rem;
+}
+
+.add-modal-header {
+    margin-bottom: 1.25rem;
+}
+
+.add-modal-header h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.3rem;
+}
+
+.add-modal-header p {
+    font-size: 0.82rem;
+}
+
+.add-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 0.75rem;
+}
+
+/* ==========================================================================
+   Floating WhatsApp Button
+   ========================================================================== */
+.floating-whatsapp {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 990;
+    width: 50px;
+    height: 50px;
+    background: var(--apple-wa);
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+    transition: transform var(--transition-fast);
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+.floating-tooltip {
+    position: absolute;
+    left: 60px;
+    white-space: nowrap;
+    background: var(--apple-card);
+    color: var(--apple-text);
+    border: 1px solid var(--apple-border);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-size: 0.74rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+}
+
+.floating-whatsapp:hover .floating-tooltip {
+    opacity: 1;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+    border-top: 1px solid var(--apple-border);
+    padding: 2rem 0 1.5rem;
+    background: var(--apple-bg);
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.footer-brand .logo-text {
+    font-size: 1rem;
+}
+
+.footer-bio {
+    font-size: 0.8rem;
+    color: var(--apple-text-muted);
+    margin-top: 0.3rem;
+}
+
+.footer-socials {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.social-link {
+    width: 32px;
+    height: 32px;
+    background: var(--apple-card);
+    border: 1px solid var(--apple-border);
+    color: var(--apple-text-muted);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.social-link:hover {
+    color: var(--apple-blue);
+    border-color: var(--apple-blue);
+}
+
+.social-link.whatsapp-social-link:hover {
+    color: #25D366;
+    border-color: #25D366;
+    background: rgba(37, 211, 102, 0.12);
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--apple-border);
+    padding-top: 1rem;
+    text-align: center;
+    font-size: 0.74rem;
+    color: var(--apple-text-muted);
+}
+
+/* ==========================================================================
+   Responsive Adaptations
+   ========================================================================== */
+@media (max-width: 860px) {
+
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .profile-id-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.75rem 1.25rem;
+        gap: 1.25rem;
+    }
+
+    .profile-header-row,
+    .profile-skills-row,
+    .profile-actions-row {
+        justify-content: center;
+    }
+
+    .configurator-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-card {
+        position: static;
+    }
+
+    .reviews-contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   GOOGLE ANTIGRAVITY ANIMATION SUITE & MICRO-INTERACTIONS
+   ========================================================================== */
+
+/* 1. SCROLL REVEAL SYSTEM (Antigravity Entrance Reveal) */
+body.entrance-active .navbar {
+    transform: translateY(-28px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar {
+    transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.3s ease,
+                border-color 0.3s ease;
+}
+
+body.site-revealed .navbar {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.ag-reveal {
+    opacity: 0;
+    transform: translateY(32px) scale(0.96);
+    filter: blur(8px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+}
+
+.ag-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* Staggered card entrance */
+.ag-reveal.ag-stagger {
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Reveal Variations */
+.ag-reveal-scale {
+    transform: translateY(28px) scale(0.93);
+    filter: blur(10px);
+}
+
+.ag-reveal-scale.is-revealed {
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.ag-reveal-fade {
+    transform: none;
+    filter: blur(6px);
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ag-reveal-fade.is-revealed {
+    filter: blur(0);
+}
+
+/* Micro-animations inside Profile Card on Reveal */
+.profile-id-card.is-revealed .profile-avatar-squircle {
+    animation: avatarSquirclePop 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes avatarSquirclePop {
+    0% { transform: scale(0.75) rotate(-3deg); opacity: 0; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.profile-id-card.is-revealed .skill-chip {
+    animation: skillChipEntrance 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.profile-id-card.is-revealed .skill-chip:nth-child(1) { animation-delay: 0.18s; }
+.profile-id-card.is-revealed .skill-chip:nth-child(2) { animation-delay: 0.28s; }
+.profile-id-card.is-revealed .skill-chip:nth-child(3) { animation-delay: 0.38s; }
+
+@keyframes skillChipEntrance {
+    0% { opacity: 0; transform: translateY(12px) scale(0.92); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.profile-id-card.is-revealed .profile-actions-row .btn {
+    animation: actionBtnEntrance 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(1) { animation-delay: 0.28s; }
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(2) { animation-delay: 0.38s; }
+.profile-id-card.is-revealed .profile-actions-row .btn:nth-child(3) { animation-delay: 0.48s; }
+
+@keyframes actionBtnEntrance {
+    0% { opacity: 0; transform: translateY(16px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. GALLERY PROJECT CARDS CINEMATIC REVEAL & SHEEN */
+.project-card.ag-reveal {
+    opacity: 0;
+    transform: translateY(38px) scale(0.94);
+    filter: blur(8px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease,
+                box-shadow 0.35s ease;
+    will-change: opacity, transform, filter;
+}
+
+.project-card.ag-reveal.is-revealed {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+.project-card.ag-reveal.is-revealed:hover {
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* Dynamic light sheen sweep across video cards as they land */
+.project-card.is-revealed .project-thumb-box::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 25%, rgba(255, 255, 255, 0.18) 50%, transparent 75%);
+    transform: translateX(-100%);
+    animation: cardSheenSweep 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--reveal-delay, 0ms) + 160ms);
+    pointer-events: none;
+    z-index: 3;
+}
+
+@keyframes cardSheenSweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* 3. ZERO-GRAVITY PARTICLES CANVAS BACKGROUND */
+.ag-particles-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none !important;
+    z-index: 0;
+    opacity: 0.65;
+    transition: opacity 0.4s ease;
+}
+
+body.theme-light .ag-particles-canvas {
+    opacity: 0.3;
+}
+
+/* 4. 3D CARD PERSPECTIVE TILT & SHEEN */
+.profile-id-card,
+.project-card,
+.feedback-card,
+.contact-card-apple {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
+}
+
+/* Video cards are fully clickable */
+.project-card {
+    cursor: pointer !important;
+}
+
+.project-card * {
+    cursor: inherit;
+}
+
+.delete-proj-btn {
+    cursor: pointer !important;
+}
+
+/* Border Glare Sheen Reflection on Hover */
+.project-card::after,
+.profile-id-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none !important;
+    opacity: 0;
+    background: radial-gradient(500px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+            rgba(255, 255, 255, 0.08),
+            transparent 65%);
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+.project-card:hover::after,
+.profile-id-card:hover::after {
+    opacity: 1;
+}
+
+/* 5. CINEMATIC VIDEO MODAL ZOOM-IN REVEAL */
+.video-modal {
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-modal.active .modal-container {
+    animation: agModalZoom 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes agModalZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(24px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-backdrop {
+    backdrop-filter: blur(28px) !important;
+    -webkit-backdrop-filter: blur(28px) !important;
+    background: rgba(0, 0, 0, 0.82) !important;
+}
+
+/* 6. GLIDING TAB PILL TRANSITIONS */
+.filter-btn {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.filter-btn.active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(255, 255, 255, 0.12);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .ag-reveal,
+    .btn-chevron,
+    .ag-arrow,
+    .ag-arrow-svg {
+        transition: none !important;
+        transform: none !important;
+        animation: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+    }
+
+    .ag-particles-canvas {
+        display: none !important;
+    }
+}
+
+/* ==========================================================================
+   Cinematic Site Entrance Screen (Preloader & Intro Experience)
+   ========================================================================== */
+.site-entrance-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: #050608;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    overflow: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform, filter;
+    cursor: pointer;
+}
+
+.site-entrance-overlay.entrance-exiting {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.06) translateY(-25px);
+    filter: blur(16px);
+}
+
+.site-entrance-overlay.entrance-hidden {
+    display: none !important;
+}
+
+/* Ambient Pulsing Glow */
+.entrance-backdrop-glow {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 113, 227, 0.24) 0%, rgba(168, 85, 247, 0.16) 40%, transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+    animation: entranceGlowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes entranceGlowPulse {
+    0% {
+        transform: scale(0.9) translate(-5%, -5%);
+        opacity: 0.65;
+    }
+    100% {
+        transform: scale(1.15) translate(5%, 5%);
+        opacity: 1;
+    }
+}
+
+.entrance-card {
+    position: relative;
+    z-index: 2;
+    max-width: 540px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: entranceCardEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes entranceCardEnter {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Top Pill Badge */
+.entrance-tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--apple-blue);
+    margin-bottom: 1.4rem;
+    backdrop-filter: blur(10px);
+}
+
+.entrance-live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 10px #22c55e;
+    animation: liveDotPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes liveDotPulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.85); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Emblem */
+.entrance-brand-emblem {
+    position: relative;
+    width: 68px;
+    height: 68px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emblem-inner {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, #0071e3 0%, #a855f7 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.25rem;
+    box-shadow: 0 10px 25px rgba(0, 113, 227, 0.45);
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.emblem-pulse-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 24px;
+    border: 1.5px solid rgba(0, 113, 227, 0.5);
+    animation: emblemPulse 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes emblemPulse {
+    0% { transform: scale(0.92); opacity: 0.8; }
+    100% { transform: scale(1.3); opacity: 0; }
+}
+
+/* Entrance Title */
+.entrance-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+}
+
+.entrance-title-main {
+    background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.72) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.entrance-subtitle {
+    color: rgba(255, 255, 255, 0.68);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 440px;
+    margin-bottom: 1.4rem;
+}
+
+/* Soundwave Equalizer Animation */
+.entrance-soundwave {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    height: 28px;
+    margin-bottom: 1.4rem;
+}
+
+.wave-bar {
+    width: 3.5px;
+    height: 8px;
+    border-radius: 9999px;
+    background: linear-gradient(to top, var(--apple-blue), #a855f7);
+    animation: waveBounce 1.2s ease-in-out infinite alternate;
+}
+
+.bar-1 { animation-delay: 0.1s; height: 12px; }
+.bar-2 { animation-delay: 0.25s; height: 22px; }
+.bar-3 { animation-delay: 0.05s; height: 16px; }
+.bar-4 { animation-delay: 0.35s; height: 26px; }
+.bar-5 { animation-delay: 0.15s; height: 18px; }
+.bar-6 { animation-delay: 0.3s; height: 20px; }
+.bar-7 { animation-delay: 0.2s; height: 10px; }
+
+@keyframes waveBounce {
+    0% { transform: scaleY(0.35); opacity: 0.5; }
+    100% { transform: scaleY(1.3); opacity: 1; }
+}
+
+/* Loader Box */
+.entrance-loader-wrap {
+    width: 100%;
+    max-width: 340px;
+    margin-bottom: 1.5rem;
+}
+
+.entrance-progress-track {
+    width: 100%;
+    height: 4px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.entrance-progress-fill {
+    width: 0%;
+    height: 100%;
+    border-radius: 9999px;
+    background: linear-gradient(90deg, #0071e3 0%, #38bdf8 50%, #a855f7 100%);
+    box-shadow: 0 0 12px rgba(0, 113, 227, 0.7);
+    transition: width 0.12s linear;
+}
+
+.entrance-loader-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.entrance-percent-text {
+    font-family: 'Space Grotesk', monospace;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* CTA Enter Button */
+.entrance-cta-btn {
+    min-width: 220px;
+    font-size: 0.95rem;
+    padding: 0.85rem 2rem;
+    box-shadow: 0 10px 30px rgba(0, 113, 227, 0.45);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.entrance-cta-btn:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 14px 38px rgba(0, 113, 227, 0.6);
+}
+
+/* Skip Hint */
+.entrance-hint-bottom {
+    position: absolute;
+    bottom: 22px;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.02em;
+    pointer-events: none;
+    animation: hintFadeInOut 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes hintFadeInOut {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.75; }
+}
+
+@media (max-width: 600px) {
+    .entrance-title {
+        font-size: 2.15rem;
+    }
+    .entrance-subtitle {
+        font-size: 0.92rem;
+    }
+    .entrance-loader-wrap {
+        max-width: 280px;
+    }
+}
