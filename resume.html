@@ -6,16 +6,18 @@
     <title>Mosa - Professional Video Editor & Motion Designer Resume</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
             --primary: #0a84ff;
-            --text-dark: #111827;
-            --text-gray: #4b5563;
-            --text-light: #6b7280;
-            --border: #e5e7eb;
-            --bg-subtle: #f9fafb;
+            --primary-dark: #0056b3;
+            --accent-gold: #f59e0b;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --bg-subtle: #f8fafc;
         }
 
         * {
@@ -25,204 +27,78 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #eef2f6;
             color: var(--text-dark);
-            background: #f3f4f6;
-            line-height: 1.55;
-            padding: 2rem 1rem;
+            line-height: 1.5;
+            padding: 2rem 1rem 4rem;
         }
 
-        .resume-page {
-            max-width: 850px;
-            margin: 0 auto;
+        /* Top Switcher Toolbar (Screen Only) */
+        .resume-toolbar {
+            max-width: 900px;
+            margin: 0 auto 1.5rem auto;
             background: #ffffff;
-            padding: 3rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            padding: 0.85rem 1.25rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--border);
         }
 
-        .resume-header {
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 1.75rem;
-            margin-bottom: 1.75rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .header-main h1 {
-            font-size: 2.25rem;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            color: #000;
-            margin-bottom: 0.25rem;
-        }
-
-        .header-main .title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--primary);
-            letter-spacing: -0.01em;
-        }
-
-        .contact-info {
-            text-align: right;
-            font-size: 0.88rem;
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        .contact-info a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .contact-info a:hover {
-            color: var(--primary);
-            text-decoration: underline;
-        }
-
-        .contact-info i {
-            width: 16px;
-            color: var(--primary);
-            margin-right: 4px;
-        }
-
-        .section {
-            margin-bottom: 1.6rem;
-        }
-
-        .section-title {
-            font-size: 0.82rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.75rem;
+        .toolbar-group {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
 
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .summary-text {
-            font-size: 0.94rem;
-            color: var(--text-gray);
-            line-height: 1.65;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 0.75rem;
-            font-size: 0.88rem;
-        }
-
-        .skill-group strong {
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .skill-group span {
-            color: var(--text-gray);
-        }
-
-        .exp-item {
-            margin-bottom: 1.35rem;
-        }
-
-        .exp-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 0.35rem;
-        }
-
-        .exp-role {
-            font-size: 1.02rem;
+        .toolbar-label {
+            font-size: 0.82rem;
             font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .exp-company {
-            font-weight: 500;
-            color: var(--text-gray);
-        }
-
-        .exp-date {
-            font-size: 0.84rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
             color: var(--text-light);
-            font-weight: 500;
+            margin-right: 0.25rem;
         }
 
-        .exp-bullets {
-            list-style-type: none;
-            padding-left: 0;
-        }
-
-        .exp-bullets li {
-            position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            line-height: 1.55;
-        }
-
-        .exp-bullets li::before {
-            content: '•';
-            position: absolute;
-            left: 0.3rem;
-            color: var(--primary);
-            font-size: 1.1rem;
-            line-height: 1;
-        }
-
-        .exp-bullets strong {
-            color: var(--text-dark);
-        }
-
-        .project-tag-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .proj-badge {
-            font-size: 0.8rem;
-            font-weight: 500;
+        .template-btn {
             background: var(--bg-subtle);
             border: 1px solid var(--border);
-            padding: 4px 10px;
-            border-radius: 6px;
-            color: var(--text-dark);
-        }
-
-        .print-btn-bar {
-            max-width: 850px;
-            margin: 0 auto 1.5rem auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .print-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 0.65rem 1.4rem;
+            padding: 0.5rem 1rem;
             border-radius: 8px;
+            font-size: 0.85rem;
             font-weight: 600;
-            font-size: 0.92rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .template-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .template-btn.active {
+            background: #0f172a;
+            border-color: #0f172a;
+            color: #ffffff;
+        }
+
+        .action-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border: none;
+            padding: 0.55rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -230,157 +106,1277 @@
             transition: all 0.2s ease;
         }
 
-        .print-btn:hover {
-            background: #2563eb;
+        .action-btn:hover {
+            background: var(--primary-dark);
             transform: translateY(-1px);
         }
 
+        .photo-upload-label {
+            background: var(--bg-subtle);
+            border: 1px dashed var(--border);
+            padding: 0.45rem 0.85rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .photo-upload-label:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .resume-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .resume-view {
+            display: none;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .resume-view.active {
+            display: block;
+        }
+
+        /* ==========================================================================
+           TEMPLATE 1: CREATIVE STUDIO (Richard Saunderson Style)
+           ========================================================================== */
+        .t1-wrap {
+            padding: 2.75rem 3rem;
+            background: #ffffff;
+        }
+
+        .t1-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #0f172a;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .t1-tag {
+            background: #0f172a;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            padding: 4px 12px;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .t1-portfolio-link {
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .t1-header {
+            display: grid;
+            grid-template-columns: 1fr 200px;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .t1-name-box h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.75rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            color: #0f172a;
+            line-height: 1.05;
+            margin-bottom: 0.4rem;
+        }
+
+        .t1-role {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.85rem;
+        }
+
+        .t1-contact-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .t1-contact-row a, .t1-contact-row span {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .t1-contact-row a:hover {
+            color: var(--primary);
+        }
+
+        .t1-contact-row i {
+            color: #0f172a;
+            font-size: 0.85rem;
+        }
+
+        .t1-summary {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 580px;
+        }
+
+        .t1-photo-frame {
+            width: 190px;
+            height: 220px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f1f5f9;
+            border: 2px solid #0f172a;
+            box-shadow: 4px 4px 0px #0f172a;
+        }
+
+        .t1-photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .t1-body-grid {
+            display: grid;
+            grid-template-columns: 1.45fr 1fr;
+            gap: 2.25rem;
+        }
+
+        .t1-sec-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0f172a;
+            margin-bottom: 1.15rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .t1-job {
+            margin-bottom: 1.4rem;
+            position: relative;
+        }
+
+        .t1-job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+        }
+
+        .t1-job-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .t1-job-company {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .t1-job-date {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-light);
+            background: var(--bg-subtle);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .t1-job-desc {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            margin-bottom: 0.5rem;
+        }
+
+        .t1-bullets {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .t1-bullets li {
+            position: relative;
+            padding-left: 1.1rem;
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+
+        .t1-bullets li::before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        /* Skill bars */
+        .t1-skill-row {
+            margin-bottom: 0.85rem;
+        }
+
+        .t1-skill-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+
+        .t1-skill-bar {
+            width: 100%;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .t1-skill-fill {
+            height: 100%;
+            background: #0f172a;
+            border-radius: 4px;
+        }
+
+        .t1-project-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            padding: 0.85rem;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+        }
+
+        .t1-project-name {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+        }
+
+        .t1-project-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* ==========================================================================
+           TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style)
+           ========================================================================== */
+        .t2-wrap {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            background: #ffffff;
+            min-height: 800px;
+        }
+
+        .t2-sidebar {
+            background: #f8fafc;
+            border-right: 1px solid var(--border);
+            padding: 2.5rem 1.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+        }
+
+        .t2-profile-card {
+            text-align: center;
+        }
+
+        .t2-avatar {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.15rem auto;
+            border: 4px solid #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: block;
+        }
+
+        .t2-name {
+            font-size: 1.45rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.15;
+            margin-bottom: 0.35rem;
+        }
+
+        .t2-title-sub {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .t2-side-sec {
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+        }
+
+        .t2-side-title {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #0f172a;
+            margin-bottom: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .t2-contact-list {
+            list-style: none;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .t2-contact-list li {
+            margin-bottom: 0.65rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .t2-contact-list i {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+            margin-top: 2px;
+            width: 14px;
+        }
+
+        .t2-contact-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .t2-contact-list a:hover {
+            color: #0f172a;
+            text-decoration: underline;
+        }
+
+        .t2-skills-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .t2-chip {
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: #ffffff;
+            border: 1px solid var(--border);
+            padding: 4px 8px;
+            border-radius: 6px;
+            color: #0f172a;
+        }
+
+        .t2-value-box {
+            background: #0f172a;
+            color: #ffffff;
+            padding: 1.15rem;
+            border-radius: 10px;
+            margin-top: auto;
+        }
+
+        .t2-value-box h4 {
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-gold);
+            margin-bottom: 0.4rem;
+        }
+
+        .t2-value-box p {
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            line-height: 1.45;
+        }
+
+        /* Right Content Area */
+        .t2-main {
+            padding: 2.75rem 2.5rem;
+        }
+
+        .t2-main-sec {
+            margin-bottom: 2rem;
+        }
+
+        .t2-main-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid #f1f5f9;
+            position: relative;
+        }
+
+        .t2-main-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 40px;
+            height: 2px;
+            background: var(--accent-gold);
+        }
+
+        .t2-about-p {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* Timeline Items */
+        .t2-timeline {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .t2-timeline::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .t2-t-item {
+            position: relative;
+            margin-bottom: 1.6rem;
+        }
+
+        .t2-t-item::before {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            border: 3px solid var(--accent-gold);
+        }
+
+        .t2-t-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.2rem;
+        }
+
+        .t2-t-role {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .t2-t-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .t2-t-org {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.45rem;
+        }
+
+        .t2-t-bullets {
+            list-style: none;
+            padding-left: 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .t2-t-bullets li {
+            position: relative;
+            padding-left: 1rem;
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+
+        .t2-t-bullets li::before {
+            content: '–';
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+
+        .t2-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.85rem;
+        }
+
+        .t2-sc-box {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 0.85rem 1rem;
+            border-radius: 8px;
+            border-left: 3px solid var(--accent-gold);
+        }
+
+        .t2-sc-box strong {
+            display: block;
+            font-size: 0.86rem;
+            color: #0f172a;
+            margin-bottom: 0.25rem;
+        }
+
+        .t2-sc-box span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+            display: block;
+        }
+
+        /* ==========================================================================
+           TEMPLATE 3: MINIMALIST EDITORIAL (Adam Fletcher & John Doe Style)
+           ========================================================================== */
+        .t3-wrap {
+            padding: 3.5rem 3.5rem;
+            background: #ffffff;
+        }
+
+        .t3-header {
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 2.5rem;
+            align-items: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 2rem;
+            margin-bottom: 2.25rem;
+        }
+
+        .t3-name {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            color: #000;
+            line-height: 0.95;
+            margin-bottom: 0.5rem;
+        }
+
+        .t3-role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4b5563;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.15rem;
+        }
+
+        .t3-summary {
+            font-size: 0.95rem;
+            color: #374151;
+            line-height: 1.6;
+            max-width: 550px;
+        }
+
+        .t3-photo {
+            width: 170px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            filter: grayscale(100%);
+            display: block;
+        }
+
+        .t3-columns {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 3rem;
+        }
+
+        .t3-col-left {
+            border-right: 1px solid #e5e7eb;
+            padding-right: 2rem;
+        }
+
+        .t3-sec-label {
+            font-size: 0.78rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #000;
+            margin-bottom: 0.85rem;
+        }
+
+        .t3-left-sec {
+            margin-bottom: 2rem;
+        }
+
+        .t3-contact-item {
+            font-size: 0.84rem;
+            color: #4b5563;
+            margin-bottom: 0.6rem;
+            line-height: 1.4;
+        }
+
+        .t3-contact-item strong {
+            display: block;
+            color: #000;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .t3-contact-item a {
+            color: #4b5563;
+            text-decoration: none;
+        }
+
+        .t3-contact-item a:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+
+        .t3-skill-item {
+            font-size: 0.86rem;
+            color: #374151;
+            padding: 4px 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .t3-job {
+            margin-bottom: 1.75rem;
+        }
+
+        .t3-job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.35rem;
+        }
+
+        .t3-job-title {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #000;
+        }
+
+        .t3-job-date {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: #6b7280;
+        }
+
+        .t3-job-meta {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #4b5563;
+            margin-bottom: 0.65rem;
+        }
+
+        .t3-bullets {
+            list-style: square;
+            padding-left: 1.15rem;
+            font-size: 0.88rem;
+            color: #4b5563;
+        }
+
+        .t3-bullets li {
+            margin-bottom: 0.45rem;
+            line-height: 1.55;
+        }
+
+        .t3-bullets strong {
+            color: #111827;
+        }
+
+        /* ==========================================================================
+           PRINT STYLES (Pixel-Perfect A4 Export)
+           ========================================================================== */
         @media print {
             body {
-                background: #ffffff;
-                padding: 0;
+                background: #ffffff !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
-            .print-btn-bar {
-                display: none;
+            .resume-toolbar {
+                display: none !important;
             }
 
-            .resume-page {
-                box-shadow: none;
-                border: none;
-                padding: 0;
-                max-width: 100%;
+            .resume-container {
+                max-width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .resume-view {
+                box-shadow: none !important;
+                border: none !important;
+                border-radius: 0 !important;
+                display: none !important;
+            }
+
+            .resume-view.active {
+                display: block !important;
+            }
+
+            .t1-wrap, .t2-wrap, .t3-wrap {
+                padding: 1.5rem !important;
+            }
+
+            a {
+                text-decoration: none !important;
+                color: inherit !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .t1-header {
+                grid-template-columns: 1fr;
+            }
+            .t1-photo-frame {
+                margin: 0 auto;
+            }
+            .t1-body-grid {
+                grid-template-columns: 1fr;
+            }
+            .t2-wrap {
+                grid-template-columns: 1fr;
+            }
+            .t3-header {
+                grid-template-columns: 1fr;
+            }
+            .t3-columns {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="print-btn-bar">
-        <a href="index.html" style="text-decoration:none; color:#4b5563; font-weight:500; font-size:0.9rem;">
-            <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
-        </a>
-        <button class="print-btn" onclick="window.print()">
-            <i class="fa-solid fa-print"></i> Save / Print PDF
-        </button>
+    <!-- Top Switcher & Action Toolbar -->
+    <div class="resume-toolbar">
+        <div class="toolbar-group">
+            <span class="toolbar-label"><i class="fa-solid fa-layer-group"></i> Style:</span>
+            <button class="template-btn active" data-target="template1">
+                <i class="fa-solid fa-palette"></i> Creative Studio
+            </button>
+            <button class="template-btn" data-target="template2">
+                <i class="fa-solid fa-table-columns"></i> Agency Sidebar
+            </button>
+            <button class="template-btn" data-target="template3">
+                <i class="fa-solid fa-font"></i> Minimalist Editorial
+            </button>
+        </div>
+
+        <div class="toolbar-group">
+            <label class="photo-upload-label" title="Change photo with any image from your computer">
+                <i class="fa-solid fa-camera"></i> Change Photo
+                <input type="file" id="photoInput" accept="image/*" style="display: none;">
+            </label>
+            <button class="action-btn" onclick="window.print()">
+                <i class="fa-solid fa-print"></i> Save / Print PDF
+            </button>
+        </div>
     </div>
 
-    <div class="resume-page">
-        <!-- Header -->
-        <header class="resume-header">
-            <div class="header-main">
-                <h1>MOSA (MosaEdits)</h1>
-                <div class="title">Professional Video Editor & Motion Graphics Designer</div>
-            </div>
-            <div class="contact-info">
-                <div><i class="fa-solid fa-location-dot"></i> Cairo, Egypt (Open to Remote / Relocation)</div>
-                <div><i class="fa-solid fa-phone"></i> <a href="https://wa.me/201096419945">+20 109 641 9945</a></div>
-                <div><i class="fa-solid fa-envelope"></i> <a href="mailto:mosaedits1@gmail.com">mosaedits1@gmail.com</a></div>
-                <div><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">linkedin.com/in/mosa-edits</a></div>
-                <div><i class="fa-solid fa-globe"></i> <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank">mosaedits1-dotcom.github.io/mosa-edits</a></div>
-            </div>
-        </header>
+    <div class="resume-container">
 
-        <!-- Summary -->
-        <section class="section">
-            <div class="section-title">Professional Summary</div>
-            <p class="summary-text">
-                Results-driven <strong>Video Editor & Motion Graphics Designer</strong> with <strong>3+ years</strong> of professional experience delivering high-retention social content, cinematic documentaries, commercial ads, and podcast post-production. Proven track record of boosting viewer retention and watch time across international platforms through kinetic typography, dynamic pacing, seamless motion graphics, and rich sound design. Expert in <strong>DaVinci Resolve Studio (Fusion & Fairlight)</strong> and the <strong>Adobe Creative Suite (After Effects, Premiere Pro)</strong>. Adept at managing end-to-end post-production pipelines under tight deadlines with exceptional quality control.
-            </p>
-        </section>
+        <!-- ====================================================================
+             TEMPLATE 1: CREATIVE STUDIO (Richard Saunderson Style)
+             ==================================================================== -->
+        <div class="resume-view active" id="template1">
+            <div class="t1-wrap">
+                <div class="t1-top-bar">
+                    <span class="t1-tag">Video Editor & Motion Designer</span>
+                    <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="t1-portfolio-link">
+                        <i class="fa-solid fa-globe"></i> mosaedits1-dotcom.github.io/mosa-edits
+                    </a>
+                </div>
 
-        <!-- Core Competencies -->
-        <section class="section">
-            <div class="section-title">Core Competencies & Technical Skills</div>
-            <div class="skills-grid">
-                <div class="skill-group">
-                    <strong>NLE & Motion Software:</strong><br>
-                    <span>DaVinci Resolve Studio (Fusion, Fairlight, Color), Adobe After Effects, Adobe Premiere Pro, Photoshop, Illustrator</span>
-                </div>
-                <div class="skill-group">
-                    <strong>Video Disciplines:</strong><br>
-                    <span>High-Retention Vertical Reels (9:16), Long-Form Documentaries (16:9), Multi-Cam Podcast Post-Production, Commercial Ads</span>
-                </div>
-                <div class="skill-group">
-                    <strong>Motion Graphics & VFX:</strong><br>
-                    <span>Kinetic Typography, Motion Callouts, Custom Lower Thirds, Speed Ramping, Asset Tracking & Masking</span>
-                </div>
-                <div class="skill-group">
-                    <strong>Audio & Color Grading:</strong><br>
-                    <span>Cinematic Color Grading (Log/Raw, Rec.709, Custom LUTs), Sound Design, Foley, Vocal EQ & Dialogue Mastering</span>
-                </div>
-            </div>
-        </section>
+                <div class="t1-header">
+                    <div class="t1-name-box">
+                        <h1>MOSA</h1>
+                        <div class="t1-role">High-Retention Video Editor & Motion Graphics Designer</div>
 
-        <!-- Experience -->
-        <section class="section">
-            <div class="section-title">Professional Experience</div>
+                        <div class="t1-contact-row">
+                            <span><i class="fa-solid fa-location-dot"></i> Cairo, Egypt (Remote Ready)</span>
+                            <a href="https://wa.me/201096419945"><i class="fa-brands fa-whatsapp"></i> +20 109 641 9945</a>
+                            <a href="mailto:mosaedits1@gmail.com"><i class="fa-solid fa-envelope"></i> mosaedits1@gmail.com</a>
+                            <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank"><i class="fa-brands fa-linkedin"></i> linkedin.com/in/mosa-edits</a>
+                        </div>
 
-            <div class="exp-item">
-                <div class="exp-header">
-                    <div>
-                        <span class="exp-role">Lead Video Editor & Motion Designer</span> — 
-                        <span class="exp-company">MosaEdits (Independent & Agency Contracts)</span>
+                        <p class="t1-summary">
+                            Video editor & motion designer with 3+ years of experience helping creators, digital brands, and podcasts produce content that hooks viewers from the first second. Specialized in <strong>DaVinci Resolve Studio</strong> and <strong>After Effects</strong> — crafting tight visual pacing, kinetic subtitles, cinematic grading, and layered sound design that keeps retention high.
+                        </p>
                     </div>
-                    <div class="exp-date">Jan 2023 – Present</div>
-                </div>
-                <ul class="exp-bullets">
-                    <li>Directed and executed end-to-end post-production for <strong>200+ video projects</strong>, including brand commercial reels, YouTube long-form content, and high-impact educational series across the GCC and international markets.</li>
-                    <li>Engineered custom kinetic text and graphic templates in <strong>After Effects & DaVinci Resolve Fusion</strong>, elevating brand identity and maintaining cohesive visual aesthetics across client channels.</li>
-                    <li>Achieved average viewer retention rates of <strong>60%–75%</strong> on short-form reels through hook-focused storytelling, precise beat-synced cuts, and multi-layered sound design.</li>
-                    <li>Mixed and mastered multi-microphone podcast episodes, implementing noise suppression, spectral de-essing, and immersive background soundscapes.</li>
-                    <li>Reduced client revision cycles by <strong>35%</strong> by establishing structured pre-production creative briefs and rapid delivery of first-pass assemblies.</li>
-                </ul>
-            </div>
 
-            <div class="exp-item">
-                <div class="exp-header">
-                    <div>
-                        <span class="exp-role">Video Editor & Creative Content Specialist</span> — 
-                        <span class="exp-company">Digital Production Collaborations</span>
+                    <div class="t1-photo-frame">
+                        <img src="img/profile.jpeg" alt="Mosa Profile Picture" class="user-avatar-img">
                     </div>
-                    <div class="exp-date">Jan 2021 – Dec 2022</div>
                 </div>
-                <ul class="exp-bullets">
-                    <li>Collaborated with marketing directors and content creators to produce engaging video ads, social media campaigns, and product explainers.</li>
-                    <li>Performed professional color grading on mixed-camera footage to ensure consistent skin tones and cinematic visual mood.</li>
-                    <li>Handled multi-platform encoding and export specifications, optimizing bitrate and compression for YouTube 4K, Instagram Reels, and TikTok without loss of quality.</li>
-                    <li>Conceptualized and animated engaging UI/UX mockups and motion callouts for tech and SaaS product promotional videos.</li>
-                </ul>
-            </div>
-        </section>
 
-        <!-- Featured Projects -->
-        <section class="section">
-            <div class="section-title">Key Projects & Creative Highlights</div>
-            <p class="summary-text" style="margin-bottom: 0.5rem;">
-                Live interactive showcase with full video playback available at: 
-                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" style="color: var(--primary); font-weight:600;">mosaedits1-dotcom.github.io/mosa-edits</a>
-            </p>
-            <div class="project-tag-list">
-                <span class="proj-badge">🎬 National Documentary Reel (DaVinci • AE)</span>
-                <span class="proj-badge">✨ Luxury & Travel Showcases (TURK & Palace Series)</span>
-                <span class="proj-badge">💻 SaaS Product Kinetic Motion & Explainer</span>
-                <span class="proj-badge">🎙️ Multi-Cam High-Fidelity Podcast Suite</span>
-                <span class="proj-badge">🔥 Kinetic Typography & Retention Sound Design</span>
-            </div>
-        </section>
+                <div class="t1-body-grid">
+                    <!-- Left: Experience -->
+                    <div>
+                        <div class="t1-sec-title">
+                            <span>Work Experience</span>
+                            <span style="font-size:0.75rem; color:var(--text-light); text-transform:none;">2021 – Present</span>
+                        </div>
 
-        <!-- Education & Languages -->
-        <section class="section" style="margin-bottom: 0;">
-            <div class="section-title">Education & Languages</div>
-            <div class="skills-grid">
-                <div>
-                    <strong>Education & Certifications:</strong><br>
-                    <span>Bachelor's Degree • Advanced Masterclasses in DaVinci Resolve Studio & Adobe After Effects</span>
-                </div>
-                <div>
-                    <strong>Languages:</strong><br>
-                    <span>Arabic (Native) • English (Professional Working Proficiency)</span>
+                        <div class="t1-job">
+                            <div class="t1-job-top">
+                                <span class="t1-job-title">Lead Video Editor & Motion Designer</span>
+                                <span class="t1-job-date">2023 – Present</span>
+                            </div>
+                            <div class="t1-job-company">MosaEdits (Freelance & Creator Contracts)</div>
+                            <ul class="t1-bullets">
+                                <li>Edited and post-produced <strong>200+ vertical reels and long-form YouTube videos</strong> for creators and businesses across Egypt and the Gulf.</li>
+                                <li>Achieved average retention rates of <strong>60%–75%</strong> on short-form content through hook-driven pacing, dynamic b-roll assembly, and tight sound effects.</li>
+                                <li>Built custom kinetic typography templates and motion callouts in <strong>DaVinci Resolve Fusion & After Effects</strong> to maintain high brand consistency.</li>
+                                <li>Post-produced multi-microphone podcast episodes: multi-cam switching, audio noise suppression, vocal mastering, and color matching.</li>
+                                <li>Delivered projects on strict 24–48 hour turnarounds, reducing revision cycles through structured creative briefs.</li>
+                            </ul>
+                        </div>
+
+                        <div class="t1-job">
+                            <div class="t1-job-top">
+                                <span class="t1-job-title">Video Editor & Creative Specialist</span>
+                                <span class="t1-job-date">2021 – 2022</span>
+                            </div>
+                            <div class="t1-job-company">Agency & Digital Media Collaborations</div>
+                            <ul class="t1-bullets">
+                                <li>Assembled commercial promos, social video ads, and educational content from raw footage through final color and audio master.</li>
+                                <li>Executed cinematic color grading on mixed Log/Raw footage ensuring natural skin tones and strong visual mood.</li>
+                                <li>Engineered multi-platform exports optimized specifically for YouTube 4K, Instagram Reels, and TikTok.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Skills & Highlights -->
+                    <div>
+                        <div class="t1-sec-title">
+                            <span>Software & Skills</span>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>DaVinci Resolve Studio (Fusion & Color)</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 95%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Adobe After Effects (Motion Graphics)</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 90%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Adobe Premiere Pro</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 85%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Sound Design & Fairlight Audio</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 90%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Cinematic Color Grading & LUTs</span>
+                                <span>88%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 88%;"></div></div>
+                        </div>
+
+                        <div class="t1-sec-title" style="margin-top: 1.75rem;">
+                            <span>Featured Work</span>
+                        </div>
+
+                        <div class="t1-project-card">
+                            <div class="t1-project-name">🎬 National Documentary Reel</div>
+                            <div class="t1-project-desc">Documentary storytelling blending historical narrative pacing with kinetic text and custom audio design.</div>
+                        </div>
+
+                        <div class="t1-project-card">
+                            <div class="t1-project-name">✨ Luxury & Travel Showcases</div>
+                            <div class="t1-project-desc">Cinematic commercial promos (TURK & Palace Series) with speed ramping, whip cuts, and rich color grading.</div>
+                        </div>
+
+                        <div class="t1-project-card">
+                            <div class="t1-project-name">🎙️ Multi-Cam Podcast Suite</div>
+                            <div class="t1-project-desc">End-to-end podcast post-production with multi-speaker switching, dynamic lower thirds, and audio cleanup.</div>
+                        </div>
+
+                        <div class="t1-sec-title" style="margin-top: 1.5rem;">
+                            <span>Education & Languages</span>
+                        </div>
+                        <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.5;">
+                            <strong>Education:</strong> Bachelor's Degree (2019 – 2023)<br>
+                            <strong>Languages:</strong> Arabic (Native) • English (Fluent Professional)
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+
+        <!-- ====================================================================
+             TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style)
+             ==================================================================== -->
+        <div class="resume-view" id="template2">
+            <div class="t2-wrap">
+                <!-- Left Sidebar -->
+                <aside class="t2-sidebar">
+                    <div class="t2-profile-card">
+                        <img src="img/profile.jpeg" alt="Mosa Profile" class="t2-avatar user-avatar-img">
+                        <h2 class="t2-name">MOSA</h2>
+                        <div class="t2-title-sub">Video Editor & Motion Designer</div>
+                    </div>
+
+                    <div class="t2-side-sec">
+                        <div class="t2-side-title"><i class="fa-solid fa-address-book"></i> Contact</div>
+                        <ul class="t2-contact-list">
+                            <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <a href="https://wa.me/201096419945">+20 109 641 9945</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="mailto:mosaedits1@gmail.com">mosaedits1@gmail.com</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-globe"></i>
+                                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank">mosaedits portfolio</a>
+                            </li>
+                            <li>
+                                <i class="fa-brands fa-linkedin"></i>
+                                <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">linkedin.com/in/mosa-edits</a>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-location-dot"></i>
+                                <span>Cairo, Egypt (Remote Ready)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="t2-side-sec">
+                        <div class="t2-side-title"><i class="fa-solid fa-laptop-code"></i> Core Skills</div>
+                        <div class="t2-skills-chips">
+                            <span class="t2-chip">DaVinci Resolve Studio</span>
+                            <span class="t2-chip">Adobe After Effects</span>
+                            <span class="t2-chip">Premiere Pro</span>
+                            <span class="t2-chip">High-Retention Reels</span>
+                            <span class="t2-chip">Kinetic Typography</span>
+                            <span class="t2-chip">Sound Design & SFX</span>
+                            <span class="t2-chip">Color Grading</span>
+                            <span class="t2-chip">Podcast Multi-Cam</span>
+                            <span class="t2-chip">Photoshop & Illustrator</span>
+                        </div>
+                    </div>
+
+                    <div class="t2-side-sec">
+                        <div class="t2-side-title"><i class="fa-solid fa-language"></i> Languages</div>
+                        <ul class="t2-contact-list">
+                            <li><i class="fa-solid fa-check"></i> <strong>Arabic:</strong> Native</li>
+                            <li><i class="fa-solid fa-check"></i> <strong>English:</strong> Professional Working</li>
+                        </ul>
+                    </div>
+
+                    <div class="t2-value-box">
+                        <h4>Why Clients Hire Me</h4>
+                        <p>• 60%+ average retention focus<br>• Fast 24–48h delivery speed<br>• Zero fluff: clean sound & motion</p>
+                    </div>
+                </aside>
+
+                <!-- Right Main Content -->
+                <main class="t2-main">
+                    <section class="t2-main-sec">
+                        <h3 class="t2-main-title">About Me</h3>
+                        <p class="t2-about-p">
+                            I believe great video editing isn't just about flashy cuts; it's about holding the viewer's attention and making ideas click. Over the past 3 years, I've partnered with creators, businesses, and agencies across Egypt and the Gulf to create videos that feel alive — combining sharp rhythm, kinetic text, and atmospheric sound design in <strong>DaVinci Resolve Studio</strong> and <strong>After Effects</strong>.
+                        </p>
+                    </section>
+
+                    <section class="t2-main-sec">
+                        <h3 class="t2-main-title">Work Experience</h3>
+                        <div class="t2-timeline">
+                            <div class="t2-t-item">
+                                <div class="t2-t-head">
+                                    <span class="t2-t-role">Lead Video Editor & Motion Designer</span>
+                                    <span class="t2-t-date">Jan 2023 – Present</span>
+                                </div>
+                                <div class="t2-t-org">MosaEdits (Independent & Remote Contracts)</div>
+                                <ul class="t2-t-bullets">
+                                    <li>Edited <strong>200+ vertical reels and YouTube videos</strong> for creators and brands across the GCC and MENA region.</li>
+                                    <li>Boosted viewer watch time and retention to <strong>60%–75%</strong> on Instagram Reels and YouTube Shorts through hook-focused pacing and sound design.</li>
+                                    <li>Crafted custom title graphics and animated callouts in <strong>DaVinci Resolve Fusion & After Effects</strong>.</li>
+                                    <li>Engineered podcast episodes with multi-mic cleanup, vocal EQ, and dynamic camera switching.</li>
+                                    <li>Streamlined delivery turnaround times to <strong>24–48 hours</strong> with smooth client communication.</li>
+                                </ul>
+                            </div>
+
+                            <div class="t2-t-item">
+                                <div class="t2-t-head">
+                                    <span class="t2-t-role">Video Editor & Content Specialist</span>
+                                    <span class="t2-t-date">Jan 2021 – Dec 2022</span>
+                                </div>
+                                <div class="t2-t-org">Digital Media & Agency Collaborations</div>
+                                <ul class="t2-t-bullets">
+                                    <li>Delivered commercial video ads, social media campaigns, and educational explainers from rough cut to final master.</li>
+                                    <li>Performed cinematic color grading on mixed-camera footage ensuring balanced skin tones and rich contrast.</li>
+                                    <li>Managed export specifications tailored for 9:16 vertical and 16:9 widescreen formats without quality degradation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="t2-main-sec">
+                        <h3 class="t2-main-title">Selected Project Highlights</h3>
+                        <div class="t2-showcase-grid">
+                            <div class="t2-sc-box">
+                                <strong>🎬 National Documentary Reel</strong>
+                                <span>High-impact pacing with kinetic typography, custom sound design, and color grading.</span>
+                            </div>
+                            <div class="t2-sc-box">
+                                <strong>✨ Luxury & Travel Showcases</strong>
+                                <span>Commercial promos (TURK & Palace Series) with speed ramping and atmospheric soundscapes.</span>
+                            </div>
+                            <div class="t2-sc-box">
+                                <strong>💻 Tech & SaaS Motion Explainers</strong>
+                                <span>Clean software interface animation with kinetic text and snappy sound design.</span>
+                            </div>
+                            <div class="t2-sc-box">
+                                <strong>🎙️ Multi-Cam Podcast Suite</strong>
+                                <span>Complete audio mixing, multi-speaker cut switching, and branded visual overlays.</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="t2-main-sec" style="margin-bottom:0;">
+                        <h3 class="t2-main-title">Education</h3>
+                        <div style="font-size:0.88rem; color:var(--text-muted);">
+                            <strong style="color:#0f172a;">Bachelor's Degree</strong> (Relevant Field, 2019 – 2023)<br>
+                            <span>Continuous Masterclasses in DaVinci Resolve Studio & Adobe After Effects</span>
+                        </div>
+                    </section>
+                </main>
+            </div>
+        </div>
+
+        <!-- ====================================================================
+             TEMPLATE 3: MINIMALIST EDITORIAL (Adam Fletcher & John Doe Style)
+             ==================================================================== -->
+        <div class="resume-view" id="template3">
+            <div class="t3-wrap">
+                <header class="t3-header">
+                    <div>
+                        <h1 class="t3-name">MOSA</h1>
+                        <div class="t3-role">Video Editor & Motion Designer</div>
+                        <p class="t3-summary">
+                            I'm a video editor and motion designer with 3+ years of experience helping YouTubers, brands, and agencies craft high-retention content. I specialize in fast-paced storytelling, punchy kinetic typography, and cinematic color grading in DaVinci Resolve & After Effects.
+                        </p>
+                    </div>
+                    <div>
+                        <img src="img/profile.jpeg" alt="Mosa Headshot" class="t3-photo user-avatar-img">
+                    </div>
+                </header>
+
+                <div class="t3-columns">
+                    <!-- Left Column -->
+                    <aside class="t3-col-left">
+                        <div class="t3-left-sec">
+                            <div class="t3-sec-label">Contact:</div>
+                            <div class="t3-contact-item">
+                                <strong>Phone / WhatsApp</strong>
+                                <a href="https://wa.me/201096419945">+20 109 641 9945</a>
+                            </div>
+                            <div class="t3-contact-item">
+                                <strong>Email</strong>
+                                <a href="mailto:mosaedits1@gmail.com">mosaedits1@gmail.com</a>
+                            </div>
+                            <div class="t3-contact-item">
+                                <strong>Location</strong>
+                                <span>Cairo, Egypt (Remote)</span>
+                            </div>
+                            <div class="t3-contact-item">
+                                <strong>Portfolio</strong>
+                                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank">mosaedits-portfolio</a>
+                            </div>
+                            <div class="t3-contact-item">
+                                <strong>LinkedIn</strong>
+                                <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">in/mosa-edits</a>
+                            </div>
+                        </div>
+
+                        <div class="t3-left-sec">
+                            <div class="t3-sec-label">Skills:</div>
+                            <div class="t3-skill-item"><span>DaVinci Resolve Studio</span> <span>Expert</span></div>
+                            <div class="t3-skill-item"><span>Adobe After Effects</span> <span>Advanced</span></div>
+                            <div class="t3-skill-item"><span>Adobe Premiere Pro</span> <span>Advanced</span></div>
+                            <div class="t3-skill-item"><span>Kinetic Typography</span> <span>Expert</span></div>
+                            <div class="t3-skill-item"><span>Sound Design & Fairlight</span> <span>Advanced</span></div>
+                            <div class="t3-skill-item"><span>Cinematic Color Grading</span> <span>Advanced</span></div>
+                            <div class="t3-skill-item"><span>High-Retention Pacing</span> <span>Expert</span></div>
+                        </div>
+
+                        <div class="t3-left-sec">
+                            <div class="t3-sec-label">Education:</div>
+                            <div style="font-size:0.84rem; color:#4b5563; line-height:1.45;">
+                                <strong style="color:#000;">Bachelor's Degree</strong><br>
+                                2019 – 2023<br>
+                                Specialized Video Post-Production & Motion Training
+                            </div>
+                        </div>
+
+                        <div class="t3-left-sec" style="margin-bottom:0;">
+                            <div class="t3-sec-label">Languages:</div>
+                            <div style="font-size:0.84rem; color:#4b5563;">
+                                • Arabic (Native)<br>
+                                • English (Professional)
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Right Column -->
+                    <main>
+                        <div class="t3-sec-label" style="margin-bottom:1.25rem;">Experience:</div>
+
+                        <div class="t3-job">
+                            <div class="t3-job-header">
+                                <span class="t3-job-title">Lead Video Editor & Motion Designer</span>
+                                <span class="t3-job-date">2023 – Present</span>
+                            </div>
+                            <div class="t3-job-meta">MosaEdits | Remote Production</div>
+                            <ul class="t3-bullets">
+                                <li>Edited and delivered <strong>200+ vertical reels and YouTube videos</strong> for creators and digital brands across the Middle East.</li>
+                                <li>Achieved average viewer retention rates of <strong>60%–75%</strong> on short-form reels through hook-focused pacing, seamless b-roll cuts, and layered sound effects.</li>
+                                <li>Engineered custom kinetic text and lower third templates in <strong>DaVinci Resolve Fusion & After Effects</strong>.</li>
+                                <li>Post-produced multi-microphone podcast series: audio clean-up, vocal leveling, and multi-cam cut switching.</li>
+                                <li>Consistently delivered on fast 24–48 hour turnaround schedules without compromising visual quality.</li>
+                            </ul>
+                        </div>
+
+                        <div class="t3-job">
+                            <div class="t3-job-header">
+                                <span class="t3-job-title">Video Editor & Creative Specialist</span>
+                                <span class="t3-job-date">2021 – 2022</span>
+                            </div>
+                            <div class="t3-job-meta">Agency & Digital Media Collaborations</div>
+                            <ul class="t3-bullets">
+                                <li>Produced commercial video ads, social media campaigns, and educational explainers from rough assembly through final delivery.</li>
+                                <li>Graded mixed-camera footage to ensure consistent skin tones and cinematic visual mood.</li>
+                                <li>Handled multi-format encoding and delivery specifications (9:16 vertical and 16:9 widescreen).</li>
+                            </ul>
+                        </div>
+
+                        <div class="t3-sec-label" style="margin-top:2rem; margin-bottom:1rem;">Selected Works:</div>
+                        <div style="font-size:0.88rem; color:#4b5563; line-height:1.6;">
+                            • <strong>National Documentary Reel:</strong> Historical pacing with modern motion & sound design.<br>
+                            • <strong>Luxury & Travel Series (TURK & Palace):</strong> Advanced speed-ramping & cinematic grading.<br>
+                            • <strong>SaaS Product Motion:</strong> Clean UI animation with kinetic text and punchy sound effects.<br>
+                            • <strong>Podcast Multi-Cam Suite:</strong> Full multi-speaker editing with sound mastering.
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- Script for Live Template Switching & Photo Upload -->
+    <script>
+        // 1. Template Switcher
+        const templateBtns = document.querySelectorAll('.template-btn');
+        const views = document.querySelectorAll('.resume-view');
+
+        templateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const targetId = btn.getAttribute('data-target');
+
+                templateBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                views.forEach(v => {
+                    if (v.id === targetId) {
+                        v.classList.add('active');
+                    } else {
+                        v.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        // 2. Photo Upload Preview across all templates
+        const photoInput = document.getElementById('photoInput');
+        if (photoInput) {
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        const newSrc = event.target.result;
+                        document.querySelectorAll('.user-avatar-img').forEach(img => {
+                            img.src = newSrc;
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    </script>
 
 </body>
 </html>
