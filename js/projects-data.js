@@ -281,7 +281,7 @@ const defaultProjects = [
         titleEn: "SaaS Motion Graphics Intro",
         category: "long",
         aspect: "widescreen",
-        software: "After Effects • Illustrator",
+        software: "After Effects",
         tag: "موشن جرافيكس",
         videoUrl: "https://drive.google.com/file/d/1bDbSBGvLJuXHGTQS8ZvwrJb8FgFcvUia/preview",
         thumbnailUrl: "https://lh3.googleusercontent.com/d/1bDbSBGvLJuXHGTQS8ZvwrJb8FgFcvUia=w800",
