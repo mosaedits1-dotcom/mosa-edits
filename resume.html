@@ -11,8 +11,9 @@
     <style>
         :root {
             --primary: #0a84ff;
-            --primary-dark: #0056b3;
-            --accent-gold: #f59e0b;
+            --primary-dark: #0066cc;
+            --brand-blue: #0284c7;
+            --brand-blue-light: #e0f2fe;
             --text-dark: #0f172a;
             --text-muted: #475569;
             --text-light: #64748b;
@@ -149,6 +150,28 @@
             display: block;
         }
 
+        /* Portfolio Pill Link Button */
+        .portfolio-pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #f0f7ff;
+            border: 1px solid #bae0ff;
+            color: #0066cc;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .portfolio-pill-badge:hover {
+            background: #0066cc;
+            color: #ffffff;
+            border-color: #0066cc;
+        }
+
         /* ==========================================================================
            TEMPLATE 1: CREATIVE STUDIO (Richard Saunderson Style)
            ========================================================================== */
@@ -162,7 +185,7 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 2px solid #0f172a;
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.65rem;
             margin-bottom: 1.5rem;
         }
 
@@ -177,16 +200,9 @@
             border-radius: 4px;
         }
 
-        .t1-portfolio-link {
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
         .t1-header {
             display: grid;
-            grid-template-columns: 1fr 200px;
+            grid-template-columns: 1fr 190px;
             gap: 2rem;
             align-items: center;
             margin-bottom: 2rem;
@@ -245,7 +261,7 @@
         }
 
         .t1-photo-frame {
-            width: 190px;
+            width: 185px;
             height: 220px;
             border-radius: 10px;
             overflow: hidden;
@@ -315,13 +331,6 @@
             padding: 2px 8px;
             border-radius: 4px;
             border: 1px solid var(--border);
-        }
-
-        .t1-job-desc {
-            font-size: 0.86rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-            margin-bottom: 0.5rem;
         }
 
         .t1-bullets {
@@ -396,7 +405,7 @@
         }
 
         /* ==========================================================================
-           TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style)
+           TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style - Blue/Cyan Brand Theme)
            ========================================================================== */
         .t2-wrap {
             display: grid;
@@ -440,7 +449,7 @@
         .t2-title-sub {
             font-size: 0.85rem;
             font-weight: 700;
-            color: var(--accent-gold);
+            color: var(--brand-blue);
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
@@ -469,7 +478,7 @@
         }
 
         .t2-contact-list li {
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.75rem;
             display: flex;
             align-items: flex-start;
             gap: 0.6rem;
@@ -477,7 +486,7 @@
         }
 
         .t2-contact-list i {
-            color: var(--accent-gold);
+            color: var(--brand-blue);
             font-size: 0.9rem;
             margin-top: 2px;
             width: 14px;
@@ -490,7 +499,7 @@
         }
 
         .t2-contact-list a:hover {
-            color: #0f172a;
+            color: var(--brand-blue);
             text-decoration: underline;
         }
 
@@ -516,13 +525,14 @@
             padding: 1.15rem;
             border-radius: 10px;
             margin-top: auto;
+            border-left: 3px solid var(--brand-blue);
         }
 
         .t2-value-box h4 {
             font-size: 0.82rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            color: var(--accent-gold);
+            color: #38bdf8;
             margin-bottom: 0.4rem;
         }
 
@@ -560,7 +570,7 @@
             bottom: -2px;
             width: 40px;
             height: 2px;
-            background: var(--accent-gold);
+            background: var(--brand-blue);
         }
 
         .t2-about-p {
@@ -599,7 +609,7 @@
             height: 12px;
             border-radius: 50%;
             background: #ffffff;
-            border: 3px solid var(--accent-gold);
+            border: 3px solid var(--brand-blue);
         }
 
         .t2-t-head {
@@ -624,7 +634,7 @@
         .t2-t-org {
             font-size: 0.85rem;
             font-weight: 600;
-            color: var(--text-muted);
+            color: var(--brand-blue);
             margin-bottom: 0.45rem;
         }
 
@@ -646,7 +656,7 @@
             content: '–';
             position: absolute;
             left: 0;
-            color: var(--accent-gold);
+            color: var(--brand-blue);
             font-weight: 700;
         }
 
@@ -661,7 +671,7 @@
             border: 1px solid var(--border);
             padding: 0.85rem 1rem;
             border-radius: 8px;
-            border-left: 3px solid var(--accent-gold);
+            border-left: 3px solid var(--brand-blue);
         }
 
         .t2-sc-box strong {
@@ -756,7 +766,7 @@
         .t3-contact-item {
             font-size: 0.84rem;
             color: #4b5563;
-            margin-bottom: 0.6rem;
+            margin-bottom: 0.75rem;
             line-height: 1.4;
         }
 
@@ -766,6 +776,7 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-bottom: 0.15rem;
         }
 
         .t3-contact-item a {
@@ -781,7 +792,7 @@
         .t3-skill-item {
             font-size: 0.86rem;
             color: #374151;
-            padding: 4px 0;
+            padding: 5px 0;
             border-bottom: 1px solid #f3f4f6;
             display: flex;
             justify-content: space-between;
@@ -932,8 +943,8 @@
             <div class="t1-wrap">
                 <div class="t1-top-bar">
                     <span class="t1-tag">Video Editor & Motion Designer</span>
-                    <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="t1-portfolio-link">
-                        <i class="fa-solid fa-globe"></i> mosaedits1-dotcom.github.io/mosa-edits
+                    <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="portfolio-pill-badge">
+                        <i class="fa-solid fa-play"></i> View Interactive Video Portfolio
                     </a>
                 </div>
 
@@ -950,7 +961,7 @@
                         </div>
 
                         <p class="t1-summary">
-                            Video editor & motion designer with 3+ years of experience helping creators, digital brands, and podcasts produce content that hooks viewers from the first second. Specialized in <strong>DaVinci Resolve Studio</strong> and <strong>After Effects</strong> — crafting tight visual pacing, kinetic subtitles, cinematic grading, and layered sound design that keeps retention high.
+                            Video editor and motion designer with 3+ years of experience helping creators, digital brands, and podcasts produce content that hooks viewers from the first second. Specialized in <strong>DaVinci Resolve Studio</strong> and <strong>Adobe After Effects</strong> — crafting tight visual pacing, kinetic subtitles, cinematic grading, and layered sound design that keeps audience retention high.
                         </p>
                     </div>
 
@@ -974,11 +985,11 @@
                             </div>
                             <div class="t1-job-company">MosaEdits (Freelance & Creator Contracts)</div>
                             <ul class="t1-bullets">
-                                <li>Edited and post-produced <strong>200+ vertical reels and long-form YouTube videos</strong> for creators and businesses across Egypt and the Gulf.</li>
-                                <li>Achieved average retention rates of <strong>60%–75%</strong> on short-form content through hook-driven pacing, dynamic b-roll assembly, and tight sound effects.</li>
+                                <li>Edited and post-produced <strong>100+ vertical reels and long-form YouTube videos</strong> for creators and businesses across Egypt and the Gulf.</li>
+                                <li>Boosted viewer engagement and watch time on short-form content through hook-driven pacing, dynamic b-roll assembly, and tight sound effects.</li>
                                 <li>Built custom kinetic typography templates and motion callouts in <strong>DaVinci Resolve Fusion & After Effects</strong> to maintain high brand consistency.</li>
                                 <li>Post-produced multi-microphone podcast episodes: multi-cam switching, audio noise suppression, vocal mastering, and color matching.</li>
-                                <li>Delivered projects on strict 24–48 hour turnarounds, reducing revision cycles through structured creative briefs.</li>
+                                <li>Consistently delivered on fast 24–48 hour turnarounds, reducing revision cycles through structured creative briefs.</li>
                             </ul>
                         </div>
 
@@ -1004,15 +1015,23 @@
 
                         <div class="t1-skill-row">
                             <div class="t1-skill-info">
-                                <span>DaVinci Resolve Studio (Fusion & Color)</span>
-                                <span>95%</span>
+                                <span>DaVinci Resolve Studio (Fusion, Fairlight, Color)</span>
+                                <span>96%</span>
                             </div>
-                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 95%;"></div></div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 96%;"></div></div>
                         </div>
 
                         <div class="t1-skill-row">
                             <div class="t1-skill-info">
-                                <span>Adobe After Effects (Motion Graphics)</span>
+                                <span>Adobe After Effects (Motion Graphics & VFX)</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 92%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Sound Design & Fairlight Audio Mastering</span>
                                 <span>90%</span>
                             </div>
                             <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 90%;"></div></div>
@@ -1020,26 +1039,18 @@
 
                         <div class="t1-skill-row">
                             <div class="t1-skill-info">
-                                <span>Adobe Premiere Pro</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 85%;"></div></div>
-                        </div>
-
-                        <div class="t1-skill-row">
-                            <div class="t1-skill-info">
-                                <span>Sound Design & Fairlight Audio</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 90%;"></div></div>
-                        </div>
-
-                        <div class="t1-skill-row">
-                            <div class="t1-skill-info">
-                                <span>Cinematic Color Grading & LUTs</span>
+                                <span>Cinematic Color Grading (Log/Raw & LUTs)</span>
                                 <span>88%</span>
                             </div>
                             <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 88%;"></div></div>
+                        </div>
+
+                        <div class="t1-skill-row">
+                            <div class="t1-skill-info">
+                                <span>Photoshop & Illustrator (Asset Preparation)</span>
+                                <span>82%</span>
+                            </div>
+                            <div class="t1-skill-bar"><div class="t1-skill-fill" style="width: 82%;"></div></div>
                         </div>
 
                         <div class="t1-sec-title" style="margin-top: 1.75rem;">
@@ -1065,7 +1076,7 @@
                             <span>Education & Languages</span>
                         </div>
                         <p style="font-size:0.84rem; color:var(--text-muted); line-height:1.5;">
-                            <strong>Education:</strong> Bachelor's Degree (2019 – 2023)<br>
+                            <strong>Education:</strong> Bachelor's Degree<br>
                             <strong>Languages:</strong> Arabic (Native) • English (Fluent Professional)
                         </p>
                     </div>
@@ -1074,7 +1085,7 @@
         </div>
 
         <!-- ====================================================================
-             TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style)
+             TEMPLATE 2: AGENCY SIDEBAR (John Anderson Style - Cyan/Blue Theme)
              ==================================================================== -->
         <div class="resume-view" id="template2">
             <div class="t2-wrap">
@@ -1099,11 +1110,19 @@
                             </li>
                             <li>
                                 <i class="fa-solid fa-globe"></i>
-                                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank">mosaedits portfolio</a>
+                                <div>
+                                    <strong style="display:block; font-size:0.75rem; color:#0f172a; margin-bottom:4px;">PORTFOLIO:</strong>
+                                    <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="portfolio-pill-badge" style="font-size:0.75rem; padding:3px 10px;">
+                                        <i class="fa-solid fa-play"></i> View Video Portfolio
+                                    </a>
+                                </div>
                             </li>
                             <li>
                                 <i class="fa-brands fa-linkedin"></i>
-                                <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">linkedin.com/in/mosa-edits</a>
+                                <div>
+                                    <strong style="display:block; font-size:0.75rem; color:#0f172a;">LINKEDIN:</strong>
+                                    <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">linkedin.com/in/mosa-edits</a>
+                                </div>
                             </li>
                             <li>
                                 <i class="fa-solid fa-location-dot"></i>
@@ -1117,11 +1136,10 @@
                         <div class="t2-skills-chips">
                             <span class="t2-chip">DaVinci Resolve Studio</span>
                             <span class="t2-chip">Adobe After Effects</span>
-                            <span class="t2-chip">Premiere Pro</span>
                             <span class="t2-chip">High-Retention Reels</span>
                             <span class="t2-chip">Kinetic Typography</span>
                             <span class="t2-chip">Sound Design & SFX</span>
-                            <span class="t2-chip">Color Grading</span>
+                            <span class="t2-chip">Cinematic Color Grading</span>
                             <span class="t2-chip">Podcast Multi-Cam</span>
                             <span class="t2-chip">Photoshop & Illustrator</span>
                         </div>
@@ -1137,14 +1155,19 @@
 
                     <div class="t2-value-box">
                         <h4>Why Clients Hire Me</h4>
-                        <p>• 60%+ average retention focus<br>• Fast 24–48h delivery speed<br>• Zero fluff: clean sound & motion</p>
+                        <p>• High-retention visual rhythm<br>• Fast 24–48h delivery speed<br>• Zero fluff: punchy sound & motion</p>
                     </div>
                 </aside>
 
                 <!-- Right Main Content -->
                 <main class="t2-main">
                     <section class="t2-main-sec">
-                        <h3 class="t2-main-title">About Me</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+                            <h3 class="t2-main-title" style="margin-bottom:0; padding-bottom:0.3rem;">About Me</h3>
+                            <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="portfolio-pill-badge">
+                                <i class="fa-solid fa-play"></i> Live Video Portfolio
+                            </a>
+                        </div>
                         <p class="t2-about-p">
                             I believe great video editing isn't just about flashy cuts; it's about holding the viewer's attention and making ideas click. Over the past 3 years, I've partnered with creators, businesses, and agencies across Egypt and the Gulf to create videos that feel alive — combining sharp rhythm, kinetic text, and atmospheric sound design in <strong>DaVinci Resolve Studio</strong> and <strong>After Effects</strong>.
                         </p>
@@ -1160,11 +1183,11 @@
                                 </div>
                                 <div class="t2-t-org">MosaEdits (Independent & Remote Contracts)</div>
                                 <ul class="t2-t-bullets">
-                                    <li>Edited <strong>200+ vertical reels and YouTube videos</strong> for creators and brands across the GCC and MENA region.</li>
-                                    <li>Boosted viewer watch time and retention to <strong>60%–75%</strong> on Instagram Reels and YouTube Shorts through hook-focused pacing and sound design.</li>
+                                    <li>Edited <strong>100+ vertical reels and YouTube videos</strong> for creators and brands across the GCC and MENA region.</li>
+                                    <li>Boosted viewer watch time and engagement on Instagram Reels and YouTube Shorts through hook-focused pacing and sound design.</li>
                                     <li>Crafted custom title graphics and animated callouts in <strong>DaVinci Resolve Fusion & After Effects</strong>.</li>
                                     <li>Engineered podcast episodes with multi-mic cleanup, vocal EQ, and dynamic camera switching.</li>
-                                    <li>Streamlined delivery turnaround times to <strong>24–48 hours</strong> with smooth client communication.</li>
+                                    <li>Streamlined delivery turnaround times to <strong>24–48 hours</strong> with clear client communication.</li>
                                 </ul>
                             </div>
 
@@ -1208,8 +1231,7 @@
                     <section class="t2-main-sec" style="margin-bottom:0;">
                         <h3 class="t2-main-title">Education</h3>
                         <div style="font-size:0.88rem; color:var(--text-muted);">
-                            <strong style="color:#0f172a;">Bachelor's Degree</strong> (Relevant Field, 2019 – 2023)<br>
-                            <span>Continuous Masterclasses in DaVinci Resolve Studio & Adobe After Effects</span>
+                            <strong style="color:#0f172a;">Bachelor's Degree</strong>
                         </div>
                     </section>
                 </main>
@@ -1223,7 +1245,12 @@
             <div class="t3-wrap">
                 <header class="t3-header">
                     <div>
-                        <h1 class="t3-name">MOSA</h1>
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.35rem;">
+                            <h1 class="t3-name" style="margin-bottom:0;">MOSA</h1>
+                            <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="portfolio-pill-badge">
+                                <i class="fa-solid fa-play"></i> View Interactive Video Portfolio
+                            </a>
+                        </div>
                         <div class="t3-role">Video Editor & Motion Designer</div>
                         <p class="t3-summary">
                             I'm a video editor and motion designer with 3+ years of experience helping YouTubers, brands, and agencies craft high-retention content. I specialize in fast-paced storytelling, punchy kinetic typography, and cinematic color grading in DaVinci Resolve & After Effects.
@@ -1240,6 +1267,12 @@
                         <div class="t3-left-sec">
                             <div class="t3-sec-label">Contact:</div>
                             <div class="t3-contact-item">
+                                <strong>Interactive Video Portfolio</strong>
+                                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank" class="portfolio-pill-badge" style="margin-top: 4px; display:inline-flex;">
+                                    <i class="fa-solid fa-play"></i> Watch My Portfolio ↗
+                                </a>
+                            </div>
+                            <div class="t3-contact-item">
                                 <strong>Phone / WhatsApp</strong>
                                 <a href="https://wa.me/201096419945">+20 109 641 9945</a>
                             </div>
@@ -1252,10 +1285,6 @@
                                 <span>Cairo, Egypt (Remote)</span>
                             </div>
                             <div class="t3-contact-item">
-                                <strong>Portfolio</strong>
-                                <a href="https://mosaedits1-dotcom.github.io/mosa-edits/" target="_blank">mosaedits-portfolio</a>
-                            </div>
-                            <div class="t3-contact-item">
                                 <strong>LinkedIn</strong>
                                 <a href="https://www.linkedin.com/in/mosa-edits/" target="_blank">in/mosa-edits</a>
                             </div>
@@ -1265,19 +1294,17 @@
                             <div class="t3-sec-label">Skills:</div>
                             <div class="t3-skill-item"><span>DaVinci Resolve Studio</span> <span>Expert</span></div>
                             <div class="t3-skill-item"><span>Adobe After Effects</span> <span>Advanced</span></div>
-                            <div class="t3-skill-item"><span>Adobe Premiere Pro</span> <span>Advanced</span></div>
                             <div class="t3-skill-item"><span>Kinetic Typography</span> <span>Expert</span></div>
                             <div class="t3-skill-item"><span>Sound Design & Fairlight</span> <span>Advanced</span></div>
                             <div class="t3-skill-item"><span>Cinematic Color Grading</span> <span>Advanced</span></div>
                             <div class="t3-skill-item"><span>High-Retention Pacing</span> <span>Expert</span></div>
+                            <div class="t3-skill-item"><span>Photoshop & Illustrator</span> <span>Proficient</span></div>
                         </div>
 
                         <div class="t3-left-sec">
                             <div class="t3-sec-label">Education:</div>
-                            <div style="font-size:0.84rem; color:#4b5563; line-height:1.45;">
-                                <strong style="color:#000;">Bachelor's Degree</strong><br>
-                                2019 – 2023<br>
-                                Specialized Video Post-Production & Motion Training
+                            <div style="font-size:0.86rem; color:#4b5563; line-height:1.45;">
+                                <strong style="color:#000;">Bachelor's Degree</strong>
                             </div>
                         </div>
 
@@ -1301,8 +1328,8 @@
                             </div>
                             <div class="t3-job-meta">MosaEdits | Remote Production</div>
                             <ul class="t3-bullets">
-                                <li>Edited and delivered <strong>200+ vertical reels and YouTube videos</strong> for creators and digital brands across the Middle East.</li>
-                                <li>Achieved average viewer retention rates of <strong>60%–75%</strong> on short-form reels through hook-focused pacing, seamless b-roll cuts, and layered sound effects.</li>
+                                <li>Edited and delivered <strong>100+ vertical reels and YouTube videos</strong> for creators and digital brands across the Middle East.</li>
+                                <li>Boosted viewer watch time and engagement on short-form reels through hook-focused pacing, seamless b-roll cuts, and layered sound effects.</li>
                                 <li>Engineered custom kinetic text and lower third templates in <strong>DaVinci Resolve Fusion & After Effects</strong>.</li>
                                 <li>Post-produced multi-microphone podcast series: audio clean-up, vocal leveling, and multi-cam cut switching.</li>
                                 <li>Consistently delivered on fast 24–48 hour turnaround schedules without compromising visual quality.</li>
