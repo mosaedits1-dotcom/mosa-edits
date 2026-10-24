@@ -7,9 +7,120 @@
  * - إجمالي 12 مشروع فيديو حقيقي (8 ريلز + 4 فيديوهات طويلة)
  */
 
-const CURRENT_PROJECTS_VERSION = 'v5_clean_short_titles';
+const CURRENT_PROJECTS_VERSION = 'v6_october_wafada_reels';
 
 const defaultProjects = [
+    // =========================================================================
+    // 0. وفادة اكتوبر (Wafada October Reels) - 9 ريلز جديدة نقية بدون مسميات
+    // =========================================================================
+    {
+        id: "reel-oct-tayeb-1",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1pZADH7ofYGNJvJC3-_24dQmf0R9wiZW6/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1pZADH7ofYGNJvJC3-_24dQmf0R9wiZW6=w800",
+        thumbnailBg: "thumb-short-1"
+    },
+    {
+        id: "reel-oct-tayeb-2",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/14EsPwhNHneb9mVIl1rWIBMm_L85YNSRM/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/14EsPwhNHneb9mVIl1rWIBMm_L85YNSRM=w800",
+        thumbnailBg: "thumb-short-2"
+    },
+    {
+        id: "reel-oct-tayeb-3",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1NUb2tdKVVnxUcaf1dU7EXKa82zbdtK01/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1NUb2tdKVVnxUcaf1dU7EXKa82zbdtK01=w800",
+        thumbnailBg: "thumb-short-1"
+    },
+    {
+        id: "reel-oct-tayeb-4",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/13w_hKI7UZ0rWgsqhHyeJrU9fVGpllFwy/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/13w_hKI7UZ0rWgsqhHyeJrU9fVGpllFwy=w800",
+        thumbnailBg: "thumb-short-2"
+    },
+    {
+        id: "reel-oct-rayan",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve Studio",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1eZDoDRYjAzUJC9EBGs9mABTucOAK736O/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1eZDoDRYjAzUJC9EBGs9mABTucOAK736O=w800",
+        thumbnailBg: "thumb-comm-1"
+    },
+    {
+        id: "reel-oct-suhail",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1Lugc58YoMGdtFoELEzysLGYtcLvOV-UR/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1Lugc58YoMGdtFoELEzysLGYtcLvOV-UR=w800",
+        thumbnailBg: "thumb-short-1"
+    },
+    {
+        id: "reel-oct-asiri",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve Studio",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1s7FNF4q3azAGQQO63jKo_0QpZjw1drn7/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1s7FNF4q3azAGQQO63jKo_0QpZjw1drn7=w800",
+        thumbnailBg: "thumb-comm-2"
+    },
+    {
+        id: "reel-oct-fares",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1dwEmWj8rOm_quzu2lvl1vIX5Ta8-k_wp/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1dwEmWj8rOm_quzu2lvl1vIX5Ta8-k_wp=w800",
+        thumbnailBg: "thumb-short-2"
+    },
+    {
+        id: "reel-oct-bareeq",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • Premiere Pro",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1vEV0oentaHKnmfRdhzvV-6j90Z9twUzF/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1vEV0oentaHKnmfRdhzvV-6j90Z9twUzF=w800",
+        thumbnailBg: "thumb-comm-1"
+    },
     // =========================================================================
     // 1. الفيديوهات القصيرة (Reels / Shorts) - 8 فيديوهات
     // =========================================================================

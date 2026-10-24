@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <span class="tag ${isVertical ? 'tag-fire' : ''}">${proj.tag || 'Motion'}</span>
                         <span class="tag">${isVertical ? 'Vertical 9:16' : 'Widescreen 16:9'}</span>
                     </div>
-                    <h3 class="project-title">${title}</h3>
+                    ${title ? `<h3 class="project-title">${title}</h3>` : ''}
                     <div class="project-footer">
                         <span class="software-tags"><i class="fa-solid fa-wand-magic-sparkles"></i> ${proj.software || 'DaVinci • AE'}</span>
                         <button class="btn-text project-view-text-btn" data-proj-id="${proj.id}">
@@ -346,8 +346,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function openVideoModal(videoUrl, title, desc, aspect) {
         if (!videoModal) return;
-        if (modalFooterTitle) modalFooterTitle.textContent = title || 'فيديو موشن جرافيكس وريلز';
-        if (modalFooterDesc) modalFooterDesc.textContent = desc || 'تفاصيل العمل والمؤثرات المستخدمة';
+        if (modalFooterTitle) {
+            modalFooterTitle.textContent = title || '';
+            modalFooterTitle.style.display = title ? 'block' : 'none';
+        }
+        if (modalFooterDesc) {
+            modalFooterDesc.textContent = desc || '';
+            modalFooterDesc.style.display = desc ? 'block' : 'none';
+        }
 
         if (aspect === 'vertical') {
             modalVideoWrapper.classList.add('vertical-video');
@@ -1460,5 +1466,69 @@ document.addEventListener('DOMContentLoaded', () => {
     initSiteEntrance();
     initAntigravityParticles();
     initCardTilt();
-});
 
+
+    // --------------------------------------------------------------------------
+    // Owner / Admin Mode (Protected Controls for Mosa)
+    // --------------------------------------------------------------------------
+    function initOwnerMode() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const hash = window.location.hash.toLowerCase();
+
+        // 1. Activate via ?admin=mosa or ?owner=1 or #admin
+        if (urlParams.get('admin') === 'mosa' || urlParams.get('owner') === '1' || hash === '#admin') {
+            localStorage.setItem('mosa_owner_mode', 'true');
+            if (window.history && window.history.replaceState) {
+                const cleanUrl = window.location.pathname;
+                window.history.replaceState({}, document.title, cleanUrl);
+            }
+        }
+
+        // 2. Logout via ?logout=1 or ?admin=logout
+        if (urlParams.get('logout') === '1' || urlParams.get('admin') === 'logout') {
+            localStorage.removeItem('mosa_owner_mode');
+        }
+
+        const isOwner = localStorage.getItem('mosa_owner_mode') === 'true';
+        if (isOwner) {
+            document.body.classList.add('mosa-owner-mode');
+        }
+
+        // 3. Secret Triple-Click on profile avatar or nav brand to toggle
+        const triggerElements = document.querySelectorAll('.nav-brand, .profile-avatar-squircle');
+        triggerElements.forEach(el => {
+            let clickCount = 0;
+            let clickTimer = null;
+            el.addEventListener('click', (e) => {
+                clickCount++;
+                clearTimeout(clickTimer);
+                clickTimer = setTimeout(() => { clickCount = 0; }, 800);
+
+                if (clickCount >= 3) {
+                    clickCount = 0;
+                    if (document.body.classList.contains('mosa-owner-mode')) {
+                        const confirmLogout = confirm(currentLang === 'ar' ? 'هل تريد الخروج من وضع المالك (إخفاء أزرار الإضافة والحذف)؟' : 'Logout from Owner Mode?');
+                        if (confirmLogout) {
+                            localStorage.removeItem('mosa_owner_mode');
+                            document.body.classList.remove('mosa-owner-mode');
+                            location.reload();
+                        }
+                    } else {
+                        const pin = prompt(currentLang === 'ar' ? 'أدخل كلمة مرور المالك لتفعيل أزرار التعديل:' : 'Enter Owner PIN:');
+                        if (pin === 'mosa' || pin === '1234') {
+                            localStorage.setItem('mosa_owner_mode', 'true');
+                            document.body.classList.add('mosa-owner-mode');
+                            alert(currentLang === 'ar' ? 'تم تفعيل وضع المالك بنجاح! أزرار الإضافة والحذف ظاهرة لك الآن.' : 'Owner mode activated!');
+                            location.reload();
+                        } else if (pin !== null) {
+                            alert(currentLang === 'ar' ? 'كلمة المرور غير صحيحة.' : 'Incorrect PIN');
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    initOwnerMode();
+
+});

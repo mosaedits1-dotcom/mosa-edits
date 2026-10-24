@@ -2998,3 +2998,28 @@ body.theme-light .ag-particles-canvas {
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7) !important;
     }
 }
+
+
+/* ==========================================================================
+   OWNER / ADMIN MODE (MosaEdits Privileged Controls)
+   ========================================================================== */
+/* By default: Hide Add Video button and Delete Project buttons from ALL public visitors */
+#openAddModalBtn,
+.add-video-trigger-btn,
+.delete-proj-btn {
+    display: none !important;
+}
+
+/* Visible ONLY when Mosa Owner Mode is active on Mosa's device */
+body.mosa-owner-mode #openAddModalBtn,
+body.mosa-owner-mode .add-video-trigger-btn {
+    display: inline-flex !important;
+}
+
+body.mosa-owner-mode .delete-proj-btn {
+    display: flex !important;
+}
+
+.project-title:empty {
+    display: none !important;
+}
