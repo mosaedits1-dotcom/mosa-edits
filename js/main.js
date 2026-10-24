@@ -645,18 +645,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const durationSec = calcState.reelDuration;
 
             if (durationSec <= 60) {
-                singlePrice = 35;
+                singlePrice = 50;
                 paramValue = currentLang === 'ar' ? 'أقل من دقيقة (≤ 60 ث)' : 'Under 1 min (≤ 60s)';
             } else if (durationSec === 90) {
-                singlePrice = 45;
+                singlePrice = 65;
                 paramValue = currentLang === 'ar' ? 'دقيقة ونصف (90 ثانية)' : '1.5 min (90s)';
             } else if (durationSec === 120) {
-                singlePrice = 55;
+                singlePrice = 80;
                 paramValue = currentLang === 'ar' ? 'دقيقتان (120 ثانية)' : '2 min (120s)';
+            } else if (durationSec === 180) {
+                singlePrice = 110;
+                paramValue = currentLang === 'ar' ? '3 دقائق (180 ثانية)' : '3 min (180s)';
             } else {
                 const extraSeconds = durationSec - 60;
                 const extraSteps = Math.ceil(extraSeconds / 30);
-                singlePrice = 35 + (extraSteps * 10);
+                singlePrice = 50 + (extraSteps * 15);
                 paramValue = currentLang === 'ar' ? `${durationSec} ثانية` : `${durationSec} seconds`;
             }
 
@@ -668,14 +671,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const isHeavy = calcState.motionLevel === 'heavy';
 
             if (!isHeavy) {
-                const base = 60;
-                const extraMins = Math.max(0, minutes - 8);
-                singlePrice = base + (extraMins * 5);
-                serviceName = currentLang === 'ar' ? 'فيديو طويل (موشن بسيط)' : 'Long-form Video (Simple Motion)';
-            } else {
-                const base = 80;
+                const base = 100;
                 const extraMins = Math.max(0, minutes - 8);
                 singlePrice = base + (extraMins * 8);
+                serviceName = currentLang === 'ar' ? 'فيديو طويل (موشن بسيط)' : 'Long-form Video (Simple Motion)';
+            } else {
+                const base = 135;
+                const extraMins = Math.max(0, minutes - 8);
+                singlePrice = base + (extraMins * 12);
                 serviceName = currentLang === 'ar' ? 'فيديو طويل (موشن مكثف)' : 'Long-form Video (Heavy Motion)';
             }
 
@@ -685,13 +688,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (calcState.activeTab === 'podcast') {
             const durationMin = calcState.podcastMinutes;
             if (durationMin === 60) {
-                singlePrice = 60;
+                singlePrice = 120;
                 paramValue = currentLang === 'ar' ? 'ساعة واحدة (60 دقيقة)' : '1 Hour (60 mins)';
             } else if (durationMin === 120) {
-                singlePrice = 115;
+                singlePrice = 200;
                 paramValue = currentLang === 'ar' ? 'ساعتان (120 دقيقة)' : '2 Hours (120 mins)';
             } else {
-                singlePrice = 165;
+                singlePrice = 280;
                 paramValue = currentLang === 'ar' ? '3 ساعات (180 دقيقة)' : '3 Hours (180 mins)';
             }
 

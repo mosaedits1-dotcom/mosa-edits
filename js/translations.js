@@ -52,20 +52,20 @@ const translations = {
             // Shorts Options
             shortsLabel: 'مدة فيديو الريل:',
             opt60sTitle: 'أقل من دقيقة (حتى 60 ث)',
-            opt60sPrice: '$35 (الأساس)',
+            opt60sPrice: '$50 (الأساس)',
             opt90sTitle: 'دقيقة ونصف (حتى 90 ث)',
-            opt90sPrice: '$45',
+            opt90sPrice: '$65',
             opt120sTitle: 'دقيقتان (حتى 120 ث)',
-            opt120sPrice: '$55',
+            opt120sPrice: '$80',
             opt180sTitle: '3 دقائق (حتى 180 ث)',
-            opt180sPrice: '$75',
+            opt180sPrice: '$110',
             
             // Long-form Options
             longMotionLabel: 'مستوى الموشن جرافيكس:',
             motionSimpleTitle: 'موشن جرافيكس بسيط',
-            motionSimplePrice: '$60 لأول 8 د (+ $5/د زيادة)',
+            motionSimplePrice: '$100 لأول 8 د (+ $8/د زيادة)',
             motionHeavyTitle: 'موشن جرافيكس مكثف',
-            motionHeavyPrice: '$80 لأول 8 د (+ $8/د زيادة)',
+            motionHeavyPrice: '$135 لأول 8 د (+ $12/د زيادة)',
             longDurationLabel: 'مدة الفيديو بالدقائق:',
             markMin: '1 د',
             markBase: '8 د (الأساس)',
@@ -75,11 +75,11 @@ const translations = {
             // Podcast Options
             podcastLabel: 'مدة حلقة البودكاست:',
             podcast1hTitle: 'ساعة واحدة (60 دقيقة)',
-            podcast1hPrice: '$60',
+            podcast1hPrice: '$120',
             podcast2hTitle: 'ساعتان (120 دقيقة)',
-            podcast2hPrice: '$115 (الأكثر طلباً)',
+            podcast2hPrice: '$200 (الأكثر طلباً)',
             podcast3hTitle: '3 ساعات (180 دقيقة)',
-            podcast3hPrice: '$165',
+            podcast3hPrice: '$280',
             
             // Stepper & Monthly Packages
             quantityLabel: 'عدد الفيديوهات المطلوبة:',
@@ -213,20 +213,20 @@ const translations = {
             // Shorts Options
             shortsLabel: 'Reel Duration:',
             opt60sTitle: 'Under 1 min (up to 60s)',
-            opt60sPrice: '$35 (Base)',
+            opt60sPrice: '$50 (Base)',
             opt90sTitle: '1.5 min (up to 90s)',
-            opt90sPrice: '$45',
+            opt90sPrice: '$65',
             opt120sTitle: '2 min (up to 120s)',
-            opt120sPrice: '$55',
+            opt120sPrice: '$80',
             opt180sTitle: '3 min (up to 180s)',
-            opt180sPrice: '$75',
+            opt180sPrice: '$110',
             
             // Long-form Options
             longMotionLabel: 'Motion Graphics Complexity:',
             motionSimpleTitle: 'Simple Motion',
-            motionSimplePrice: '$60 for first 8 mins (+ $5/extra min)',
+            motionSimplePrice: '$100 for first 8 mins (+ $8/extra min)',
             motionHeavyTitle: 'Heavy Motion',
-            motionHeavyPrice: '$80 for first 8 mins (+ $8/extra min)',
+            motionHeavyPrice: '$135 for first 8 mins (+ $12/extra min)',
             longDurationLabel: 'Video Duration (in minutes):',
             markMin: '1m',
             markBase: '8m (Base)',
@@ -236,11 +236,11 @@ const translations = {
             // Podcast Options
             podcastLabel: 'Podcast Episode Duration:',
             podcast1hTitle: '1 Hour (60 mins)',
-            podcast1hPrice: '$60',
+            podcast1hPrice: '$120',
             podcast2hTitle: '2 Hours (120 mins)',
-            podcast2hPrice: '$115 (Most Popular)',
+            podcast2hPrice: '$200 (Most Popular)',
             podcast3hTitle: '3 Hours (180 mins)',
-            podcast3hPrice: '$165',
+            podcast3hPrice: '$280',
             
             // Stepper & Monthly Packages
             quantityLabel: 'Number of Videos:',
