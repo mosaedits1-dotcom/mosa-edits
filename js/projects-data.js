@@ -7,11 +7,38 @@
  * - إجمالي 12 مشروع فيديو حقيقي (8 ريلز + 4 فيديوهات طويلة)
  */
 
-const CURRENT_PROJECTS_VERSION = 'v6_october_wafada_reels';
+const CURRENT_PROJECTS_VERSION = 'v7_dorak_and_teacher_reels';
 
 const defaultProjects = [
     // =========================================================================
-    // 0. وفادة اكتوبر (Wafada October Reels) - 9 ريلز جديدة نقية بدون مسميات
+    // 0. ريلز جديدة (يوم المعلم + Dorak)
+    // =========================================================================
+    {
+        id: "reel-oct-teacher-day",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1sfgczE6YIDgH3QP4uS0YabwCKBJd3nbG/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1sfgczE6YIDgH3QP4uS0YabwCKBJd3nbG=w800",
+        thumbnailBg: "thumb-short-1"
+    },
+    {
+        id: "reel-oct-dorak-1",
+        titleAr: "",
+        titleEn: "",
+        category: "shorts",
+        aspect: "vertical",
+        software: "DaVinci Resolve • After Effects",
+        tag: "Reel",
+        videoUrl: "https://drive.google.com/file/d/1pAaFMYEjrs6UnPh8Zv2xF3u0F2EbcVj0/preview",
+        thumbnailUrl: "https://lh3.googleusercontent.com/d/1pAaFMYEjrs6UnPh8Zv2xF3u0F2EbcVj0=w800",
+        thumbnailBg: "thumb-short-2"
+    },
+    // =========================================================================
+    // وفادة اكتوبر (Wafada October Reels) - 9 ريلز نقية
     // =========================================================================
     {
         id: "reel-oct-tayeb-1",
