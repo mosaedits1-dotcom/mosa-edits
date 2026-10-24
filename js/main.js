@@ -141,10 +141,12 @@ document.addEventListener('DOMContentLoaded', () => {
             return `<iframe src="https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
         }
 
-        // Google Drive Video Embed
+        // Google Drive Video Embed (Clean Cinema Embed - hides header bar & popout icons)
         const driveMatch = cleanUrl.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?id=)?([a-zA-Z0-9_-]{25,})/);
         if (driveMatch && driveMatch[1]) {
-            return `<iframe src="https://drive.google.com/file/d/${driveMatch[1]}/preview" allow="autoplay; fullscreen" allowfullscreen style="width:100%; height:100%; border:none; border-radius: var(--radius-md);"></iframe>`;
+            return `<div class="gdrive-clean-embed">
+                <iframe src="https://drive.google.com/file/d/${driveMatch[1]}/preview" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+            </div>`;
         }
 
         // Direct Video (MP4 / WebM)
@@ -372,6 +374,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
     if (modalBackdrop) modalBackdrop.addEventListener('click', closeModal);
+
+    const modalContainer = document.getElementById('modalContainer');
+    if (modalContainer) {
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer || e.target.classList.contains('modal-body')) {
+                closeModal();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 
     // Add Video Modal
     const addVideoModal = document.getElementById('addVideoModal');
